@@ -1,52 +1,83 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Quiz</title>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Titre de la page</title>
-    <!--
-     <link rel="stylesheet" href="style.css">-->
+    <link defer rel="stylesheet" href="quiz.css" />
     <script defer src="quiz.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-</head>
+  </head>
 
+  <body>
+    <div id="quiz" x-data="{data: getData(2)}" class="center quiz">
+      <div x-data="{id_parcours : 4}">
+        <div x-data="{ step: 0 }">
+          <div x-data="{ count: 0 }" x-modelable="count" x-model="step">
+            <h1 x-data="{ message: 'QUIZ' }" x-text="message"></h1>
+            Avancée: <span x-text="step"></span>
+            <br />
+            <br />
+            <template x-if="await getFieldData(data,id_parcours, step, 3)=='lieu' ">
+              <h2 x-data="{ message: 'Lieu' }" x-text="message"></h2>
+            </template>
 
+            <template x-if="await getFieldData(data,id_parcours, step, 3)=='multiple' || await getFieldData(data,id_parcours, step, 3)=='saisie' ">
+              <h2 x-data="{ message: 'Question' }" x-text="message"></h2>
+            </template>
+            <h3 x-text="await getFieldData(data, id_parcours, step, 2)"></h3>
+            <br />
+            <!--
+            
+          <div x-data="{ message: 'Type' }" x-text="message"></div>
+          <div x-text="await getFieldData(data,id_parcours, step, 3)"></div>
+          <br />
+         
+        <div x-data="{ message: 'Réponse' }" x-text="message"></div>
+        <div x-text="await getFieldData(data,id_parcours, step, 4)"></div>
+        <br />
+        -->
+            <!-- CAS CHOIX MULTIPLE-->
+            <template x-if="await getFieldData(data,id_parcours, step, 3)=='multiple'">
+              <template x-for="i in 4">
+                <div class="button-borders centerH">
+                  <button
+                    class="primary-button"
+                    @click="if(await verification(getFieldData(data,id_parcours, step, (3+i)), data, id_parcours, step )) (await andMore(data,id_parcours, step)) ? count=0:count++"
+                    x-text="await getFieldData(data,id_parcours, step, (3+i))"
+                  ></button>
+                </div>
+                <br />
+              </template>
+            </template>
 
-<body>
-<div x-init="id_parcours = 1"></div>
-<div x-init="step = 2 "></div>
+            <!-- CAS SAISIE -->
 
+            <template x-if="await getFieldData(data,id_parcours, step, 3)=='saisie'  ">
+              <!--&& ! await andMore(data,id_parcours, step)-->
+              <div x-data="{ res: '' }">
+                <input type="text" x-model="res" />
+                <br /><br />
+                <button @click="if(await verification(res, data, id_parcours, step )) (await andMore(data,id_parcours, step)) ? count=0:count++">
+                  Valider
+                </button>
+              </div>
+            </template>
+            <!--
+          <template x-if="await andMore(data,id_parcours, step)">
+            <button @click="count=0">Fini</button>
+          </template>
+-->
+            <template x-if="await getFieldData(data,id_parcours, step, 3)=='lieu' ">
+              <button @click="count++">J'y suis</button>
+            </template>
 
-<h1 x-data="{ message: 'Liste' }" x-text="message"></h1>
-<div x-data="{ message: 'Nom' }" x-text="message"></div>
-<div x-data x-text="await getField(1, id_parcours, step, 2)"></div>
-<br>
-<div x-data="{ message: 'Description' }" x-text="message"></div>
-<div x-data x-text="await getField(1, id_parcours, step, 3)"></div>
-<br>
-<div x-data="{ message: 'Tag' }" x-text="message"></div>
-<div x-data x-text="await getField(1, id_parcours, step, 3)"></div><br>
-<div x-data="{ message: 'Lieux' }" x-text="message"></div>
-<div x-data x-text="await getField(1, id_parcours, step, 4)"></div>
-<div x-data x-text="await getField(1, id_parcours, step, 5)"></div>
-<div x-data x-text="await getField(1, id_parcours, step, 6)"></div>
-<div x-data x-text="await getField(1, id_parcours, step, 7)"></div>
-<div x-data x-text="await getField(1, id_parcours, step, 8)"></div>
-
-<hr>
-
-<h1 x-data="{ message: 'QUIZ' }" x-text="message"></h1>
-<div x-data="{ message: 'Question' }" x-text="message"></div>
-<div x-data x-text="await getField(2, id_parcours, step, 2)"></div>
-<br>
-<div x-data="{ message: 'Type' }" x-text="message"></div>
-<div x-data x-text="await getField(2, id_parcours, step, 3)"></div>
-<br>
-<div x-data="{ message: 'Réponse' }" x-text="message"></div>
-<div x-data x-text="await getField(2, id_parcours, step, 4)"></div>
-    
-</body>
-
+            <br />
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
