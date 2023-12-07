@@ -5,34 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Quiz</title>
-    <!--
-     <link rel="stylesheet" href="style.css">-->
+
+    <link defer rel="stylesheet" href="quiz.css" />
     <script defer src="quiz.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   </head>
 
   <body>
-    <div id="quiz" x-data="{data: getData(2)}">
-      <div x-init="id_parcours = 1"></div>
-      <div x-init="step = 1 "></div>
+    <div id="quiz" x-data="{data: getData(2)}" class="center quiz">
+      <div x-data="{id_parcours : 4}">
+        <div x-data="{ step: 0 }">
+          <div x-data="{ count: 0 }" x-modelable="count" x-model="step">
+            <h1 x-data="{ message: 'QUIZ' }" x-text="message"></h1>
+            Avancée: <span x-text="step"></span>
+            <br />
+            <br />
+            <template x-if="await getFieldData(data,id_parcours, step, 3)=='lieu' ">
+              <h2 x-data="{ message: 'Lieu' }" x-text="message"></h2>
+            </template>
 
-      <h1 x-data="{ message: 'QUIZ' }" x-text="message"></h1>
+            <template x-if="await getFieldData(data,id_parcours, step, 3)=='multiple' || await getFieldData(data,id_parcours, step, 3)=='saisie' ">
+              <h2 x-data="{ message: 'Question' }" x-text="message"></h2>
+            </template>
+            <h3 x-text="await getFieldData(data, id_parcours, step, 2)"></h3>
+            <br />
+            <!--
+            
+          <div x-data="{ message: 'Type' }" x-text="message"></div>
+          <div x-text="await getFieldData(data,id_parcours, step, 3)"></div>
+          <br />
+         
+        <div x-data="{ message: 'Réponse' }" x-text="message"></div>
+        <div x-text="await getFieldData(data,id_parcours, step, 4)"></div>
+        <br />
+        -->
+            <!-- CAS CHOIX MULTIPLE-->
+            <template x-if="await getFieldData(data,id_parcours, step, 3)=='multiple'">
+              <template x-for="i in 4">
+                <div class="button-borders centerH">
+                  <button
+                    class="primary-button"
+                    @click="if(await verification(getFieldData(data,id_parcours, step, (3+i)), data, id_parcours, step )) (await andMore(data,id_parcours, step)) ? count=0:count++"
+                    x-text="await getFieldData(data,id_parcours, step, (3+i))"
+                  ></button>
+                </div>
+                <br />
+              </template>
+            </template>
 
-      <div x-data="{ message: 'Question' }" x-text="message"></div>
-      <div x-text="await getFieldData(data, id_parcours, step, 2)"></div>
-      <br />
+            <!-- CAS SAISIE -->
 
-      <div x-data="{ message: 'Type' }" x-text="message"></div>
-      <div x-text="await getFieldData(data,id_parcours, step, 3)"></div>
-      <br />
+            <template x-if="await getFieldData(data,id_parcours, step, 3)=='saisie'  ">
+              <!--&& ! await andMore(data,id_parcours, step)-->
+              <div x-data="{ res: '' }">
+                <input type="text" x-model="res" />
+                <br /><br />
+                <button @click="if(await verification(res, data, id_parcours, step )) (await andMore(data,id_parcours, step)) ? count=0:count++">
+                  Valider
+                </button>
+              </div>
+            </template>
+            <!--
+          <template x-if="await andMore(data,id_parcours, step)">
+            <button @click="count=0">Fini</button>
+          </template>
+-->
+            <template x-if="await getFieldData(data,id_parcours, step, 3)=='lieu' ">
+              <button @click="count++">J'y suis</button>
+            </template>
 
-      <div x-data="{ message: 'Réponse' }" x-text="message"></div>
-      <div x-text="await getFieldData(data,id_parcours, step, 4)"></div>
-      <!--
-      <template x-if="open">
-        <div>Contents...</div>
-      </template>
-      -->
+            <br />
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>

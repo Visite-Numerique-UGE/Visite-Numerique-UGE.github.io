@@ -30,37 +30,22 @@ async function getData(type) {
     return await data
 }
 
-function parcours() {
-    const res = getData(1).then((value) => {
+async function getFieldData(data, id, step, field) {
+    console.log("PARCOURS 1 GET1");
+    console.log("STEP AAAAAAH")
+    console.log(step)
+    console.log("STEP AAAAAAH")
+    return data.then((data) => {
 
-        console.log(value)
-        return value
+        console.log(data)
+        console.log(data);
+        console.log(Object.values(data));
+        console.log("----------");
+        let parcours = data.filter((row) => row.c[0].v == id)
+        console.log(parcours[step].c[field].v);
+        return parcours[step].c[field].v
     })
 
-    return res
-
-}
-
-
-
-let test = parcours();
-let quiz = getData(2);
-//let data = { parcours, quiz }
-console.log("parcours")
-//console.log(data["parcours"])
-console.log(test)
-
-
-
-//console.log(parcours)
-
-async function getFieldData(id, step, field) {
-    console.log("PARCOURS 1 GET1");
-    console.log(data);
-    console.log(Object.values(data));
-    console.log("----------");
-    let parcours = data.filter((row) => row.c[0].v == id)
-    console.log(parcours[step].c[field].v);
     /* Questions
     - 0 : id
     - 1 : step
@@ -72,7 +57,7 @@ async function getFieldData(id, step, field) {
     - 7 : answer_opt4
     */
     //return _data.table.rows[nb].c[2].v
-    return await parcours[step].c[field].v
+
 }
 
 

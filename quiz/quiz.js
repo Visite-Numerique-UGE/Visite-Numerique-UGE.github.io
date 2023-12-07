@@ -13,9 +13,6 @@ async function getData(type) {
 
             //console.log(_data.table.rows);
 
-
-            let length = _data.table.rows.length;
-
             //player_Name_title.innerHTML = data.table.rows[0].c[0].v;
 
             //return test[0].c[2].v
@@ -31,19 +28,6 @@ async function getData(type) {
 }
 
 async function getFieldData(data, id, step, field) {
-    console.log("PARCOURS 1 GET1");
-
-    return data.then((data) => {
-
-        console.log(data)
-        console.log(data);
-        console.log(Object.values(data));
-        console.log("----------");
-        let parcours = data.filter((row) => row.c[0].v == id)
-        console.log(parcours[step].c[field].v);
-        return parcours[step].c[field].v
-    })
-
     /* Questions
     - 0 : id
     - 1 : step
@@ -54,19 +38,56 @@ async function getFieldData(data, id, step, field) {
     - 6 : answer_opt3
     - 7 : answer_opt4
     */
-    //return _data.table.rows[nb].c[2].v
+    console.log("GET QUESTION");
+    console.log(step)
+    return data.then((data) => {
+        /*
+                console.log(data)
+                console.log(data);
+                console.log(Object.values(data));
+                console.log("----------");
+                */
+        let parcours = data.filter((row) => row.c[0].v == id)
+        console.log("PARCOUUUUURS")
+        console.log(parcours[step].c[field].v);
+        console.log("STEP")
+        console.log(step)
+        console.log("------------")
+        return parcours[step].c[field].v
+    })
+}
+
+async function andMore(data, id, step) {
+    return data.then((data) => {
+        let parcours = data.filter((row) => row.c[0].v == id)
+        console.log("-----sFIN-----")
+        if (parcours.length == (step + 1)) {
+            console.log("ooui")
+        }
+        else { console.log("non") }
+        console.log("-----FsIN-----")
+        return parcours.length == (step + 1)
+    })
 
 }
 
 
+async function verification(res, data, id, step) {
+    let rep = await getFieldData(data, id, step, 4)
+    console.log("-----------type-----------")
+    console.log(typeof res)
+    String.upper
 
-
-async function getField(sheet, id, step, field) {
-    console.log("parcours")
-    console.log(id)
-    if (sheet == 1) step = 0
-    let all_data = await getData(sheet)
-    return await getFieldData(all_data, id, step, field)
+    if (typeof res === typeof "res") return res.toUpperCase() == rep.toUpperCase()
+    return res.then((res) => {
+        console.log("-----------getfield-----------")
+        console.log(rep)
+        console.log("-----------RES-----------")
+        console.log(res)
+        if (res === rep) console.log("C'ESTBON")
+        else console.log("PASBOON")
+        return res.toUpperCase() === rep.toUpperCase()
+    })
 
 }
 
