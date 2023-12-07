@@ -46,8 +46,8 @@
                 ><div class="centerH">
                   <div class="button-borders">
                     <button
-                      @click="if(await verification(randomAnswer(data,id_parcours, step, (3+i), true), data, id_parcours, step )) (await andMore(data,id_parcours, step)) ? count=0:count++"
-                      x-text="await randomAnswer2(data,id_parcours, step, (3+i))"
+                      @click="if(await verification(randomAnswer(data,id_parcours, step, i), data, id_parcours, step )) (await andMore(data,id_parcours, step)) ? count=0:count++"
+                      x-text="await randomAnswer(data,id_parcours, step, i, true)"
                     ></button>
                   </div>
                   <br />
