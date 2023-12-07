@@ -11,24 +11,15 @@ async function getData() {
             console.log(_data.table.rows);
             places = _data.table.rows;
             places.forEach((place) => {
-                console.log(place.c[5]);
-
-                // var myIcon = L.icon({
-                //     //marker rond avec image
-                //     iconUrl: place.c[6].v,
-                //     iconSize: [10, 10],
-                //     iconAnchor: [22, 94],
-                //     popupAnchor: [-3, -76],
-                //     shadowUrl: 'my-icon-shadow.png',
-                //     shadowSize: [68, 95],
-                //     shadowAnchor: [22, 94]
-                // });
-                
-                L.marker([place.c[5].v, place.c[4].v]).addTo(map);
-                var imageUrl = 'y-icon-shadow.png'; // Remplacez par le lien vers votre image
-                var imageBounds = [[51.49, -0.1], [51.51, -0.08]]; // Ajustez les coordonnées de la boîte englobante selon vos besoins
-                // Utiliser le plugin DistortableImage pour afficher l'image dans le marqueur
-                var distortedImage = L.distortableImageOverlay(imageUrl, { bounds: imageBounds, interactive: true }).addTo(marker);
+                var customIcon = L.divIcon({
+                    className: place.c[0].v,
+                    html: "<div class='marker-background'></div><img class='marker-image' src='" + place.c[6].v + "' alt='Image'>",
+                    iconSize: [50, 50],
+                    iconAnchor: [15, 30],
+                    popupAnchor: [0, -30]
+                  });
+                  // Ajouter le marqueur avec l'icône personnalisée
+                  L.marker([place.c[5].v, place.c[4].v], { icon: customIcon }).addTo(map);
                 // L.marker([place.c[5].v, place.c[4].v], {icon: myIcon})
                 // .bindPopup(
                 //     "<img src='"+place.c[6].v+"' width='100px' height='100px'><br>"+"<b>" +
