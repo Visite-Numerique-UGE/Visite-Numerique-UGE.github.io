@@ -94,3 +94,32 @@ async function verification(res, data, id, step) {
 
 
 
+let rand_help1 = [1, 2, 3, 4]
+let rand_help2 = [1, 2, 3, 4]
+async function randomAnswer(data, id, step, field, rand = false) {
+    const shuffle = (array) => {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    };
+    if (rand && field == 4) {
+        rand_help1 = shuffle(rand_help1);
+        rand_help2 = rand_help2
+    }
+    console.log("----rand_help1----")
+    console.log(rand_help1)
+
+
+    return await getFieldData(data, id, step, 3 + rand_help1.pop())
+}
+
+
+async function randomAnswer2(data, id, step) {
+    console.log("----rand_help2----")
+    console.log(rand_help2)
+
+
+    return await getFieldData(data, id, step, 3 + rand_help2.pop())
+}
