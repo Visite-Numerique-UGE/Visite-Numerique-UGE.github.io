@@ -19,13 +19,10 @@ async function getData() {
                     popupAnchor: [0, -30]
                   });
                   // Ajouter le marqueur avec l'icône personnalisée
-                  L.marker([place.c[5].v, place.c[4].v], { icon: customIcon }).addTo(map);
-                // L.marker([place.c[5].v, place.c[4].v], {icon: myIcon})
-                // .bindPopup(
-                //     "<img src='"+place.c[6].v+"' width='100px' height='100px'><br>"+"<b>" +
-                //     place.c[0].v+"</b>"
-                // )
-                // .addTo(map);
+                  L.marker([place.c[5].v, place.c[4].v], { icon: customIcon }).bindPopup(
+                     "<img src='"+place.c[6].v+"' width='100px' height='100px'><br>"+"<b>" +
+                        place.c[0].v+"</b>"
+                    ).addTo(map);
             });
         })
         .catch(error => {
