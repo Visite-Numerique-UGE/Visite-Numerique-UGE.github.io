@@ -1,5 +1,5 @@
 //define leaftlet map
-var map = L.map('map').setView([48.839623875988806, 2.588503717609941], 17);
+var map = L.map('map', {zoomControl:false}).setView([48.839623875988806, 2.588503717609941], 17);
 
 //define basemap
 var CartoDB_VoyagerNoLabels = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png', {
