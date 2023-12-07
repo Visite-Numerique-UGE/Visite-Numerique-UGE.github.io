@@ -40,16 +40,18 @@
         <br />
         -->
             <!-- CAS CHOIX MULTIPLE-->
+
             <template x-if="await getFieldData(data,id_parcours, step, 3)=='multiple'">
-              <template x-for="i in 4">
-                <div class="button-borders centerH">
-                  <button
-                    class="primary-button"
-                    @click="if(await verification(getFieldData(data,id_parcours, step, (3+i)), data, id_parcours, step )) (await andMore(data,id_parcours, step)) ? count=0:count++"
-                    x-text="await getFieldData(data,id_parcours, step, (3+i))"
-                  ></button>
+              <template x-for="i in 4"
+                ><div class="centerH">
+                  <div class="button-borders">
+                    <button
+                      @click="if(await verification(getFieldData(data,id_parcours, step, (3+i)), data, id_parcours, step )) (await andMore(data,id_parcours, step)) ? count=0:count++"
+                      x-text="await getFieldData(data,id_parcours, step, (3+i))"
+                    ></button>
+                  </div>
+                  <br />
                 </div>
-                <br />
               </template>
             </template>
 

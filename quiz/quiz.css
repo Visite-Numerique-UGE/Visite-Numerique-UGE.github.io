@@ -1,3 +1,4 @@
+
 .center {
     display: flex;
         justify-content: center;
@@ -8,8 +9,6 @@
 .centerH {
     display: flex;
     justify-content: center;
-    align-items: center;
-    text-align: center;
 }
 
 /*----- quiz ------*/
@@ -22,10 +21,12 @@ border: 1px solid #0E1822;
 /*----- bouton ------*/
 input {width: 15rem;}
 button {
+
     font-family: 'Ropa Sans', sans-serif;
     /* font-family: 'Valorant', sans-serif; */
     color: white;
     width: 15rem;
+    height: 5rem;
     cursor: pointer;
     font-size: 13px;
     font-weight: bold;
@@ -39,7 +40,6 @@ button {
     background-repeat: no-repeat;
     transition: 0.3s ease-in-out;
     transition-property: background-position, border, color;
-    position: relative;
     z-index: 1;
 }
 
@@ -50,24 +50,6 @@ button:hover {
     background-position: 40%;
 }
 
-button:before {
-    content: "";
-    position: absolute;
-    background-color: #0E1822;
-    width: 0.2rem;
-    height: 0.2rem;
-    top: -1px;
-    left: -1px;
-    transition: background-color 0.15s ease-in-out;
-}
-
-button:hover:before {
-    background-color: white;
-}
-
-button:hover:after {
-    background-color: white;
-}
 
 
 .button-borders {
