@@ -14,8 +14,8 @@ async function getData() {
             places.forEach((place) => {
                 var customIcon = L.divIcon({
                     className: place.c[0].v,
-                    id : place.c[1].v,
-                    html: "<div id = '"+ place.c[1].v +"'class='marker-background'><img id = '"+ place.c[1].v +"'class='marker-image' src='" + place.c[6].v + "' alt='Image''></div>",
+                    id : place.c[0].v,
+                    html: "<div id = '"+ place.c[0].v +"'class='marker-background'><img id = '"+ place.c[0].v +"'class='marker-image' src='" + place.c[6].v + "' alt='Image''></div>",
                     iconSize: [50, 50],
                     iconAnchor: [15, 30],
                     popupAnchor: [0, -30]

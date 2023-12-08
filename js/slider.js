@@ -7,7 +7,7 @@ function fillSlider(){
     var sliderImage = document.getElementById('slider-img');
 
     //get the place clicked
-    var place = places.find(place => place.c[1].v == event.target.id);
+    var place = places.find(place => place.c[0].v == event.target.id);
     console.log(place);
     //fill the slider
     //put the center of the map on the place
