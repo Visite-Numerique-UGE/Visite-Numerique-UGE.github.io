@@ -1,0 +1,119 @@
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/*progress bar*/
+
+#progressbar {
+  background-color: black;
+  border-radius: 13px;
+  padding: 3px;
+}
+
+#progressbar > div {
+  background-color: #d2213c;
+  height: 10px;
+  border-radius: 10px;
+}
+
+/*----- quiz ------*/
+
+html,
+body {
+  font-family: arial;
+  border: 1px solid #2f2a86;
+  margin: 0;
+  height: 100%;
+
+  font-size: min(4vh, 1rem);
+
+  background-color: #efefef;
+  color: #2f2a86;
+}
+.quiz {
+  height: 100%;
+}
+
+.answerblock {
+  display: grid;
+  align-items: center;
+}
+.questionblock {
+  max-width: 90vw;
+}
+
+/*----- bouton ------*/
+input {
+  width: 30vw;
+}
+
+button {
+  display: inline-flex;
+  justify-content: center;
+  /* center the content horizontally */
+  align-items: center;
+  /* center the content vertically */
+  /* font-family: 'Valorant', sans-serif; */
+  color: white;
+  width: 75vw;
+  height: 2rem;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 0.05rem;
+  border: 1px solid #2f2a86;
+  padding: 1.2rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 531.28 200'%3E%3Cdefs%3E%3Cstyle%3E .shape %7B fill: %23d2213c /* fill: %232f2a86; */ %7D %3C/style%3E%3C/defs%3E%3Cg id='Layer_2' data-name='Layer 2'%3E%3Cg id='Layer_1-2' data-name='Layer 1'%3E%3Cpolygon class='shape' points='415.81 200 0 200 115.47 0 531.28 0 415.81 200' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E%0A");
+  background-color: #2f2a86;
+  background-size: 200%;
+  background-position: 200%;
+  background-repeat: no-repeat;
+  transition: 0.3s ease-in-out;
+  transition-property: background-position, border, color;
+  z-index: 1;
+}
+
+button:hover {
+  border: 1px solid #d2213c;
+  color: white;
+  background-position: 40%;
+}
+
+.button-borders {
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+  margin: 0.75rem;
+}
+
+.button-borders:before {
+  content: "";
+  position: absolute;
+  width: calc(100% + 0.5em);
+  height: 50%;
+  left: -0.3em;
+  top: -0.3em;
+  border: 1px solid #2f2a86;
+  border-bottom: 0px;
+  /* opacity: 0.3; */
+}
+
+.button-borders:after {
+  content: "";
+  position: absolute;
+  width: calc(100% + 0.5em);
+  height: 50%;
+  left: -0.3em;
+  bottom: -0.3em;
+  border: 1px solid #2f2a86;
+  border-top: 0px;
+  /* opacity: 0.3; */
+  z-index: 0;
+}
+
+.shape {
+  fill: #2f2a86;
+}
