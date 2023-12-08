@@ -86,7 +86,6 @@ async function randomAnswer(data, id, step, i, rand = false) {
 
 function save(id, step) {
     localStorage.setItem(id, JSON.stringify({'step' : step}));
-    console.log(localStorage);
 }
 
 
