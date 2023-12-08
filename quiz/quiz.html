@@ -13,7 +13,7 @@
 
   <body>
     <div x-data="{data: getData(2)}" class="center quiz">
-      <div x-data="{id_parcours : 1}">
+      <div x-data="{id_parcours : 4}">
         <!-- TODO: faire une fonction pour récupérer l'id sélectionner-->
         <div x-data="{ step: isEmpty_localStorage(1)}">
           <div x-data="{ count: 0 }" x-modelable="count" x-model="step">
@@ -40,7 +40,7 @@
                   <div class="button-borders">
                     <button
                       x-text="await randomAnswer(data,id_parcours, step, (await getFieldData(data,id_parcours, step, 3)=='multiple') ? i : -1, true)"
-                      @click="if(await verification(randomAnswer(data,id_parcours, step, (await getFieldData(data,id_parcours, step, 3)=='multiple') ? i : -1), data, id_parcours, step)) (await andMore(data,id_parcours, step)) ? count=0:count++"
+                      @click="if(await verification(randomAnswer(data,id_parcours, step, (await getFieldData(data,id_parcours, step, 3)=='multiple') ? i : -1), data, id_parcours, step)) (await andMore(data,id_parcours, step)) ? (count=0, window.location.replace('../')):count++"
                     ></button>
                   </div>
                 </template>
@@ -51,18 +51,15 @@
                 <div x-data="{ res: '' }">
                   <input type="text" x-model="res" />
                   <br /><br />
-                  <button @click="if(await verification(res, data, id_parcours, step)) (await andMore(data,id_parcours, step)) ? count=0:count++">
+                  <button
+                    @click="if(await verification(res, data, id_parcours, step)) (await andMore(data,id_parcours, step)) ? (count=0, window.location.replace('../')):count++"
+                  >
                     Valider
                   </button>
                 </div>
               </template>
-              <!--
-          <template x-if="await andMore(data,id_parcours, step)">
-            <button @click="count=0">Fini</button>
-          </template>
--->
               <template x-if="await getFieldData(data,id_parcours, step, 3)=='lieu' ">
-                <button @click="await andMore(data,id_parcours, step) ? count=0:count++">J'y suis</button>
+                <button @click="await andMore(data,id_parcours, step) ? (count=0, window.location.replace('../')):count++">J'y suis</button>
               </template>
             </div>
             <br />
