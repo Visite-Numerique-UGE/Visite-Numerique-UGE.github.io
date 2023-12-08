@@ -1,3 +1,5 @@
+var places = [];
+
 async function getData() {
     let SHEET_ID = "1BM7ceJ2MygR80jV8AyIZ1sQQ5EeNJ1QT-O3OvNw-rsI";
     let SHEET_TITLE = "place";
@@ -8,21 +10,18 @@ async function getData() {
         .then((rep) => {
             let _data = JSON.parse(rep.substring(47).slice(0, -2));
             _data.table.rows.shift();
-            console.log(_data.table.rows);
             places = _data.table.rows;
             places.forEach((place) => {
                 var customIcon = L.divIcon({
                     className: place.c[0].v,
-                    html: "<div class='marker-background'></div><img class='marker-image' src='" + place.c[6].v + "' alt='Image'>",
+                    id : place.c[1].v,
+                    html: "<div id = '"+ place.c[1].v +"'class='marker-background'><img class='marker-image' src='" + place.c[6].v + "' alt='Image' onclick='toggleSlider()'></div>",
                     iconSize: [50, 50],
                     iconAnchor: [15, 30],
                     popupAnchor: [0, -30]
                   });
                   // Ajouter le marqueur avec l'icône personnalisée
-                  L.marker([place.c[5].v, place.c[4].v], { icon: customIcon }).bindPopup(
-                     "<img src='"+place.c[6].v+"' width='100px' height='100px'><br>"+"<b>" +
-                        place.c[0].v+"</b>"
-                    ).addTo(map);
+                  L.marker([place.c[5].v, place.c[4].v], { icon: customIcon }).addTo(map);
             });
         })
         .catch(error => {

@@ -10,12 +10,20 @@
   <link rel="stylesheet" href="//unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
   <script src="//unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link rel="stylesheet" href="css/map.css"/>
 </head>
 <body>
   <div x-data x-text="await getData()"></div>
-  <div id="map" style="height: 800px;"></div>
+  <div id="map"></div>
+  <div id="slider">
+    <div id="slider-content">
+      <img id="slider-img" src=""></img>
+      <h1 id="slider-name"></h1>
+      <p id="slider-description"></p>
+      <button id="slider-close">Fermer</button>
+  </div>
   <script src="js/place.js"></script>
+  <script src="js/slider.js"></script>
   <script src="js/map.js"></script>
-  <link rel="stylesheet" href="css/map.css"/>
 </body>
 </html>
