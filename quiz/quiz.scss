@@ -1,0 +1,18 @@
+$primary-color: #47dff0;
+$secondary-color: red;
+$margin: 16px;
+
+.highlight {
+    border-color: $primary-color;
+    color: $secondary-color;
+}
+
+h2 {
+    span {
+        margin: $margin / 2;
+    }
+
+    color: $secondary-color;
+}
+
+
