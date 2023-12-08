@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Titre de la page</title>
+    <meta name="description" content="Description de la page">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+</head>
+<body x-data="{ isChecked: false, showDiv2: false, isCheckedDiv3: false }">
+    <center>
+        <div class="1" x-show="!isChecked">
+            <h2>Rendez-vous au premier étage</h2>
+            <input type="checkbox" x-model="isChecked">
+            <label>J'y suis</label>
+        </div>
+
+        <template x-if="isChecked">
+            <div class="2" x-show="isChecked && !showDiv2"
+                 style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border: 1px solid black;">
+                <h2>Anecdote</h2>
+                <p>Savais-tu que... Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae corporis quasi ratione officia fuga! Mollitia nesciunt molestias, numquam labore provident omnis laudantium, natus architecto, voluptas blanditiis nobis quaerat alias rem?</p>
+                <button @click="showDiv2 = true">Suivant</button>
+            </div>
+        </template>
+
+        <div class="3" x-show="showDiv2" x-cloak>
+            <h2>Maintenant vas dans le hall d'entrée</h2>
+            <input type="checkbox" x-model="isCheckedDiv3" x-init="isCheckedDiv3 = false">
+            <label>J'y suis</label>
+        </div>
+    </center>
+
+</body>
+</html>
