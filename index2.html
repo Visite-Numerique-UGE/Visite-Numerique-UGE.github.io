@@ -9,7 +9,7 @@
 <body x-data="{ isChecked: false, showDiv2: false, isCheckedDiv3: false }">
     <center>
         <div class="1" x-show="!isChecked">
-            <h2>Rendez-vous au premier étage</h2>
+            <h2>Pour commencer, rendez-vous à la Maison de l'étudiant ! </h2>
             <input type="checkbox" x-model="isChecked">
             <label>J'y suis</label>
         </div>
@@ -17,14 +17,14 @@
         <template x-if="isChecked">
             <div class="2" x-show="isChecked && !showDiv2"
                  style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border: 1px solid black;">
-                <h2>Anecdote</h2>
-                <p>Savais-tu que... Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae corporis quasi ratione officia fuga! Mollitia nesciunt molestias, numquam labore provident omnis laudantium, natus architecto, voluptas blanditiis nobis quaerat alias rem?</p>
+                <h2>Réponse</h2>
+                <p>Bien joué ! La réponse était des moutons. En effet 4 moutons sont présent pour tondre la pelouse aux abords de la MDE</p>
                 <button @click="showDiv2 = true">Suivant</button>
             </div>
         </template>
 
         <div class="3" x-show="showDiv2" x-cloak>
-            <h2>Maintenant vas dans le hall d'entrée</h2>
+            <h2>Maintenant vas dans la cour de la MDE</h2>
             <input type="checkbox" x-model="isCheckedDiv3" x-init="isCheckedDiv3 = false">
             <label>J'y suis</label>
         </div>
