@@ -16,9 +16,10 @@
 
   <body>
     <div class="center quiz">
-      <div x-data="{id_parcours : 4}">
+      <div x-data="{id_parcours : getQuiz()}">
         <!-- TODO: faire une fonction pour récupérer l'id sélectionner-->
-        <div x-data="{ step: isEmpty_localStorage(1)}">
+        <div x-data="{ step: isEmpty_localStorage(getQuiz())}">
+          <h2 x-data="{ aaa: step }" x-text="aaa"></h2>
           <div x-data="{ count: 0 }" x-modelable="count" x-model="step">
             <div class="questionblock">
               <div x-data="{nb_question : 0}">

@@ -51,8 +51,19 @@ async function getField(sheet, id, step, field) {
 
 }
 
+/* à sauvegarder 
+- avancée par parcours => un id : actual_step (l'étape où on est), step_max (avancée max)
+- quel parcours je suis là mtn actual_quiz
+
+
+*/
+
+
 
 function save(id, step) {
+    console.log("id, step")
+    console.log(id)
+    console.log(step)
     localStorage.setItem(id, JSON.stringify({ 'step': step }));
 }
 
@@ -64,3 +75,4 @@ function isEmpty_localStorage(id) {
     }
     return JSON.parse(localStorage.getItem(id)).step;
 }
+

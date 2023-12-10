@@ -1,9 +1,17 @@
 let quiz;
 quiz = getDataQuiz();
 let rand_help1 = [1, 2, 3, 4]
+let actual_quiz = -1;
+
+function getQuiz() {
+    console.log("GET QUIZ")
+    console.log(isEmpty_localStorage("actual_quiz"))
+
+    return isEmpty_localStorage("actual_quiz")
+}
 
 async function getDataQuiz() {
-    let SHEET_ID = "1BM7ceJ2MygR80jV8AyIZ1sQQ5EeNJ1QT-O3OvNw-rsI";
+    let SHEET_ID = "1ENhL6EfZIEraeUmJafmKlN-FIYWMvw920LFmcIa5Hp8";
     let SHEET_TITLE = "quiz";
     let SHEET_RANGE = "A:H";
 
