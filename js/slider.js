@@ -13,7 +13,6 @@ function fillSlider() {
     sliderDescription.innerHTML = place.c[2].v;
     sliderImage.src = place.c[6].v;
     slider.style.visibility = "visible";
-    c
 }
 
 //eventListener pour afficher le slider

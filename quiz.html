@@ -6,13 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Quiz</title>
 
-    <link defer rel="stylesheet" href="temp.css" />
-    <script defer src="quiz.js"></script>
+    <link defer rel="stylesheet" href="css/temp.css" />
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <script src="js/quiz.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/parcours.js"></script>
   </head>
 
   <body>
-    <div x-data="{data: getData(2)}" class="center quiz">
+    <div class="center quiz">
       <div x-data="{id_parcours : 4}">
         <!-- TODO: faire une fonction pour récupérer l'id sélectionner-->
         <div x-data="{ step: isEmpty_localStorage(1)}">
@@ -20,46 +23,46 @@
             <div class="questionblock">
               <div x-data="{nb_question : 0}">
                 <div id="progressbar">
-                  <div :style="`width: ${(step+1)*100/await nbQuestion(data,id_parcours)}%;`"></div>
+                  <div :style="`width: ${(step+1)*100/await nbQuestion(id_parcours)}%;`"></div>
                 </div>
               </div>
-              <template x-if="await getFieldData(data,id_parcours, step, 3)=='lieu' ">
+              <template x-if="await getField(1,id_parcours, step, 3)=='lieu' ">
                 <h2 x-data="{ message: 'Lieu' }" x-text="message"></h2>
               </template>
 
-              <template x-if="await getFieldData(data,id_parcours, step, 3)=='multiple' || await getFieldData(data,id_parcours, step, 3)=='saisie' ">
+              <template x-if="await getField(1,id_parcours, step, 3)=='multiple' || await getField(1,id_parcours, step, 3)=='saisie' ">
                 <h2 x-data="{ message: 'Question' }" x-text="message"></h2>
               </template>
 
-              <h3 x-text="await getFieldData(data, id_parcours, step, 2)"></h3>
+              <h3 x-text="await getField(1, id_parcours, step, 2)"></h3>
             </div>
             <!-- CAS CHOIX MULTIPLE-->
             <div class="answerblock center">
-              <template x-if="await getFieldData(data,id_parcours, step, 3)=='multiple'">
+              <template x-if="await getField(1,id_parcours, step, 3)=='multiple'">
                 <template x-for="i in 4">
                   <div class="button-borders">
                     <button
-                      x-text="await randomAnswer(data,id_parcours, step, (await getFieldData(data,id_parcours, step, 3)=='multiple') ? i : -1, true)"
-                      @click="if(await verification(randomAnswer(data,id_parcours, step, (await getFieldData(data,id_parcours, step, 3)=='multiple') ? i : -1), data, id_parcours, step)) (await andMore(data,id_parcours, step)) ? (count=0, window.location.replace('../')):count++"
+                      x-text="await randomAnswer(id_parcours, step, (await getField(1,id_parcours, step, 3)=='multiple') ? i : -1, true)"
+                      @click="if(await verification(randomAnswer(id_parcours, step, (await getField(1,id_parcours, step, 3)=='multiple') ? i : -1),  id_parcours, step)) (await andMore(id_parcours, step)) ? (count=0, window.location.replace('index.html')):count++"
                     ></button>
                   </div>
                 </template>
               </template>
 
               <!-- CAS SAISIE -->
-              <template x-if="await getFieldData(data,id_parcours, step, 3)=='saisie'  ">
+              <template x-if="await getField(1,id_parcours, step, 3)=='saisie'  ">
                 <div x-data="{ res: '' }">
                   <input type="text" x-model="res" />
                   <br /><br />
                   <button
-                    @click="if(await verification(res, data, id_parcours, step)) (await andMore(data,id_parcours, step)) ? (count=0, window.location.replace('../')):count++"
+                    @click="if(await verification(res,  id_parcours, step)) (await andMore(id_parcours, step)) ? (count=0, window.location.replace('index.html')):count++"
                   >
                     Valider
                   </button>
                 </div>
               </template>
-              <template x-if="await getFieldData(data,id_parcours, step, 3)=='lieu' ">
-                <button @click="await andMore(data,id_parcours, step) ? (count=0, window.location.replace('../')):count++">J'y suis</button>
+              <template x-if="await getField(1,id_parcours, step, 3)=='lieu' ">
+                <button @click="await andMore(id_parcours, step) ? (count=0, window.location.replace('index.html')):count++">J'y suis</button>
               </template>
             </div>
             <br />

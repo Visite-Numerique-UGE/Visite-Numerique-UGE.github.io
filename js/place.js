@@ -14,14 +14,14 @@ async function getData() {
             places.forEach((place) => {
                 var customIcon = L.divIcon({
                     className: place.c[0].v,
-                    id : place.c[0].v,
-                    html: "<div id = '"+ place.c[0].v +"'class='marker-background'><img id = '"+ place.c[0].v +"'class='marker-image' src='" + place.c[6].v + "' alt='Image''></div>",
+                    id: place.c[0].v,
+                    html: "<div id = '" + place.c[0].v + "'class='marker-background'><img id = '" + place.c[0].v + "'class='marker-image' src='" + place.c[6].v + "' alt='Image''></div>",
                     iconSize: [50, 50],
                     iconAnchor: [15, 30],
                     popupAnchor: [0, -30]
-                  });
-                  // Ajouter le marqueur avec l'icône personnalisée
-                  L.marker([place.c[5].v, place.c[4].v], { icon: customIcon }).addTo(map);
+                });
+                // Ajouter le marqueur avec l'icône personnalisée
+                L.marker([place.c[5].v, place.c[4].v], { icon: customIcon }).addTo(map);
             });
         })
         .catch(error => {
