@@ -41,7 +41,7 @@ body {
   display: grid;
   align-items: center;
 }
-.questionblock {
+#questionblock {
   max-width: 90vw;
 }
 

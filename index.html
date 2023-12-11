@@ -1,31 +1,39 @@
 <!DOCTYPE html>
 <html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>Quiz</title>
+    <link defer rel="stylesheet" href="./src/css/temp.css" />
+  </head>
+  <body>
+    <div id="app" x-data="App()">
+      <!-- quiz-->
+      <div x-data="{quizFun : Alpine.raw(App())._quiz}">
+        <div x-data="{dataFun : Alpine.raw(App())._data}">
+          <div x-data="{id_parcours : Alpine.raw(App()).data.id_parcours}">
+            <!-- TODO: quizFun.getQuiz() récupérer id selectionné -->
+            <div class="center quiz">
+              <!-- TODO: faire une fonction pour récupérer l'id sélectionner-->
+              <div x-data="{ step: dataFun.isEmpty_localStorage(quizFun.getQuiz())}">
+                <br />
+                <br />
+                <div x-data="{ count: 0 }" x-modelable="count" x-model="step">
+                  <div id="question" x-data="quizFun.question()"></div>
+                  <div id="answer" x-data="quizFun.answer()"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- fin quiz-->
+    </div>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="robots" content="noindex,nofollow">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <title>Boilerplate</title>
-</head>
-
-<body>
-  <div id="app" x-data="App()">
-    <header>
-      <h1 x-text="data.hello"></h1>
-    </header>
-
-    <main>
-      <section>
-        <p x-text="data.i18n.description"></p>
-        <img src="./images/logos/vite.svg" />
-      </section>
-    </main>
-  </div>
-
-  <script type="module" src="./main.js"></script>
-</body>
-
+    <script type="module" src="./main.js"></script>
+  </body>
 </html>

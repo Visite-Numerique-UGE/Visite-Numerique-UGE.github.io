@@ -1,3 +1,4 @@
+import * as _quiz_ from "./quiz.js"
 async function getField(sheet, id, step, field) {
     /*
     - 0 : Parcours
@@ -10,8 +11,8 @@ async function getField(sheet, id, step, field) {
             return _tab.filter((row) => row.c[0].v == id)
         })
     }
-    let data = sheet == 0 ? await filterAsync(parcours_liste) : sheet == 1 ? await filterAsync(quiz) : await filterAsync(places)
-
+    //let data = sheet == 0 ? await filterAsync(parcours_liste) : sheet == 1 ? await filterAsync(_quiz_.quiz) : await filterAsync(places)
+    let data = await filterAsync(_quiz_.quiz)
     /* Questions
     - 0 : id
     - 1 : step
@@ -76,3 +77,8 @@ function isEmpty_localStorage(id) {
     return JSON.parse(localStorage.getItem(id)).step;
 }
 
+export {
+    getField,
+    save,
+    isEmpty_localStorage
+}
