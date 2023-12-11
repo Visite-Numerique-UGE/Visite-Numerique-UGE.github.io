@@ -1,7 +1,7 @@
 var places = [];
 
 async function getData() {
-    let SHEET_ID = "1BM7ceJ2MygR80jV8AyIZ1sQQ5EeNJ1QT-O3OvNw-rsI";
+    let SHEET_ID = "1ENhL6EfZIEraeUmJafmKlN-FIYWMvw920LFmcIa5Hp8";
     let SHEET_TITLE = "place";
     let SHEET_RANGE = "A:G";
     let FULL_URL = "https://docs.google.com/spreadsheets/d/" + SHEET_ID + "/gviz/tq?sheet=" + SHEET_TITLE + "&range=" + SHEET_RANGE;
@@ -14,14 +14,14 @@ async function getData() {
             places.forEach((place) => {
                 var customIcon = L.divIcon({
                     className: place.c[0].v,
-                    id : place.c[0].v,
-                    html: "<div id = '"+ place.c[0].v +"'class='marker-background'><img id = '"+ place.c[0].v +"'class='marker-image' src='" + place.c[6].v + "' alt='Image''></div>",
+                    id: place.c[0].v,
+                    html: "<div id = '" + place.c[0].v + "'class='marker-background'><img id = '" + place.c[0].v + "'class='marker-image' src='" + place.c[6].v + "' alt='Image''></div>",
                     iconSize: [50, 50],
                     iconAnchor: [15, 30],
                     popupAnchor: [0, -30]
-                  });
-                  // Ajouter le marqueur avec l'icône personnalisée
-                  L.marker([place.c[5].v, place.c[4].v], { icon: customIcon }).addTo(map);
+                });
+                // Ajouter le marqueur avec l'icône personnalisée
+                L.marker([place.c[5].v, place.c[4].v], { icon: customIcon }).addTo(map);
             });
         })
         .catch(error => {
