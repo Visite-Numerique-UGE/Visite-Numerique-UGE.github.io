@@ -1,2 +1,4 @@
 /quiz/.sass-cache
 /quiz/quiz.css.map
+.node-version
+node_modules
