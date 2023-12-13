@@ -1,4 +1,3 @@
-import { i18n } from "./data/i18n";
 import L from 'leaflet';
 import { parcours_liste } from "./parcours.js";
 import { places } from "./place.js";
@@ -12,7 +11,8 @@ export default () => {
       map: '',
       i18n: {},
       places: [],
-      parcours: []
+      parcours: [], 
+      slider : ''
     },
     async init() {
       this.data.map = L.map('map', { zoomControl: false }).setView([48.839623875988806, 2.588503717609941], 17);
@@ -47,6 +47,7 @@ export default () => {
 
       await this.getData();
       await this.placeMarkers();    
+      return this.data.map;
     },
     async getData() {
       this.data.places = await places();
@@ -54,19 +55,26 @@ export default () => {
     },
 
     async placeMarkers() {
-        console.log(this.data.places);
       this.data.places.forEach((place) => {
         var customIcon = L.divIcon({
           className: place.c[0].v,
           id: place.c[0].v,
-          html: "<div id = '" + place.c[0].v + "'class='marker-background'><img id = '" + place.c[0].v + "'class='marker-image' src='" + place.c[6].v + "' alt='Image''></div>",
+          html: "<div id = '" + place.c[0].v + "'class='marker-background'><img id = '" + place.c[0].v + "'class='marker-image' src='" + place.c[6].v + "' alt='Image'></div>",
           iconSize: [50, 50],
           iconAnchor: [15, 30],
-          popupAnchor: [0, -30]
+          popupAnchor: [0, -30],
         });
+        //lorsqu'on clique sur un marker, on zoom sur le lieu et on affiche le slider
 
-        L.marker([place.c[5].v, place.c[4].v], { icon: customIcon }).addTo(this.data.map);
+        L.marker([place.c[5].v, place.c[4].v], { icon: customIcon }).addTo(this.data.map).on('click', (e) => {
+          this.data.map.setView([e.latlng.lat - 0.001, e.latlng.lng], 18);
+        }
+        );
       });
     },
+    //get the map 
+    getMap() {
+      return this.data.map;
+    },  
   };
 };
