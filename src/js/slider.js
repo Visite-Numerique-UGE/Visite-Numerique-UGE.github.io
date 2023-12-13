@@ -1,3 +1,6 @@
+import { parcours_liste } from "./parcours.js";
+import { places } from "./place.js";
+
 var slider = document.getElementById("slider");
 
 //remplir le slider avec les données du lieu cliqué
