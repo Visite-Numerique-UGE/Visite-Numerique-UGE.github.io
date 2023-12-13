@@ -13,10 +13,27 @@
   padding: 3px;
 }
 
+button[disabled]:hover {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+button[disabled] {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
 #progressbar > div {
   background-color: #d2213c;
   height: 10px;
   border-radius: 10px;
+}
+
+#progress {
+  width: 5vw;
+  /*margin-right: 5vw;*/
 }
 
 /*----- quiz ------*/
