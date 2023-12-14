@@ -58,3 +58,8 @@ html {
   height: 50%;
   object-fit: cover;
 }
+
+.parcours-done::after{
+  content: "✓";
+  margin-left: 10px;
+}

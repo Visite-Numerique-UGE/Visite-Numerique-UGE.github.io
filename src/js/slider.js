@@ -1,6 +1,6 @@
 import { parcours_liste } from "./parcours.js";
 import { places } from "./place.js";
-import { save } from "./data/data.js"
+import { isEmpty_localStorage, save } from "./data/data.js"
 
 var slider = document.getElementById("slider");
 
@@ -20,7 +20,9 @@ function fillSlider() {
     var first_parcours_html = ""
 
     parcours.forEach((_parcours) => {
-        first_parcours_html += `<button  @click="((count = 0, state = 1, id_parcours = ` + _parcours.c[0].v + `), App().page(` + _parcours.c[0].v + `, count, state))" id='` + _parcours.c[0].v + `'class='parcours'>` + _parcours.c[1].v + `</button>`
+        var css = isEmpty_localStorage("fin_parcours_"+ _parcours.c[0].v) == true ? "parcours-done" : "parcours";
+        console.log(isEmpty_localStorage("fin_parcours_"+ _parcours.c[0].v));
+        first_parcours_html += `<button class = '`+ css +`' @click="((count = 0, state = 1, id_parcours = ` + _parcours.c[0].v + `), App().page(` + _parcours.c[0].v + `, count, state))" id='` + _parcours.c[0].v + `'class='parcours'>` + _parcours.c[1].v + `</button>`
     });
 
     sliderParcours.innerHTML = first_parcours_html

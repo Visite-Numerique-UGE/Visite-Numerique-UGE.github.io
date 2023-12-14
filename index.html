@@ -22,12 +22,6 @@
           <div x-data="{id_parcours : quizFun.getQuiz()}">
             <!-- TODO: à voir si besoin au début {id_parcours : save('actual_quiz', isEmpty_localStorage('actual_quiz'))}-->
             <div x-data="{state : dataFun.isEmpty_localStorage('state')}">
-              <!-- TODO: ENLEVER DEBUG-->
-              STATE :
-              <div x-text="state"></div>
-              id_parcours :
-              <div x-text="id_parcours"></div>
-              <!-- TODO: ENLEVER DEBUG-->
               <div x-data="{ step: dataFun.isEmpty_localStorage(id_parcours)}">
                 <div x-data="{ count: dataFun.isEmpty_localStorage(id_parcours) }" x-modelable="count" x-model="step">
                   <!-- MAP -->
