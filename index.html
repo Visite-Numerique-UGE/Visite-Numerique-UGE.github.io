@@ -1,34 +1,58 @@
-<!-- FILEPATH: /home/eniem/S3/ugecampus-app/elies.html -->
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
-    <title>UGE Campus</title>
-    <!-- Leaflet Map -->
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <link rel="stylesheet" href="//unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
-    <link rel="stylesheet" href="//unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
-    <script src="//unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <link rel="stylesheet" href="css/map.css" />
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>Quiz</title>
+    <link defer rel="stylesheet" href="./src/css/temp.css" />
   </head>
   <body>
-    <div x-data x-text="await getData()"></div>
-    <div id="map"></div>
-    <div id="slider">
-      <div id="slider-content">
-        <img id="slider-img" src="" />
-        <h1 id="slider-name"></h1>
-        <p id="slider-description"></p>
-        <div id="slider-parcours"></div>
-        <div id="slider-parcours-second"></div>
-        <button id="slider-close">Fermer</button>
+    <div id="app" x-data="App()">
+      <!-- APP -->
+      <div x-data="console.log(App()._quiz)"></div>
+      <div x-data="{quizFun : Alpine.raw(App())._quiz}">
+        <div x-data="{dataFun : Alpine.raw(App())._data}">
+          <div x-data="{id_parcours : 4}">
+            <div x-data="{state : dataFun.isEmpty_localStorage('state')}">
+              <!-- TODO: ENLEVER DEBUG-->
+              <div x-text="state"></div>
+              <div x-data="{ step: dataFun.isEmpty_localStorage(id_parcours)}">
+                <div x-data="{ count: dataFun.isEmpty_localStorage(id_parcours) }" x-modelable="count" x-model="step">
+                  <!-- MAP -->
+
+                  <div class="center" id="map" x-data="(quizFun.map(state))"></div>
+                  <!-- FIN MAP -->
+                  <!-- TODO: au début {id_parcours : save('actual_quiz', isEmpty_localStorage('actual_quiz'))}
+                       TODO: en sélectionnant un parcours save('actual_quiz', new_ID)
+                       TODO: id_parcours = quizFun.getQuiz() récupérer id selectionné 
+                       TODO: fin de parcours : id_parcours = 0 -->
+                  <!-- QUIZ -->
+                  <div class="center quiz">
+                    <div x-data="{ max_step: dataFun.isEmpty_localStorage(id_parcours, true)}">
+                      <br />
+                      <br />
+                      <div id="question" x-data="quizFun.question(id_parcours, count, state)"></div>
+                      <div id="answer" x-data="quizFun.answer(id_parcours, count,state)"></div>
+                    </div>
+                  </div>
+                  <!-- FIN QUIZ -->
+                  <!-- PAGE FIN QUIZ-->
+
+                  <div class="center" id="endPage" x-data="quizFun.endPage(id_parcours, state)"></div>
+                  <!-- FIN PAGE FIN QUIZ-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+      <!-- fin quiz-->
     </div>
-    <script src="js/place.js"></script>
-    <script src="js/parcours.js"></script>
-    <script src="js/slider.js"></script>
-    <script src="js/map.js"></script>
-    <script src="js/data.js"></script>
+
+    <script type="module" src="./main.js"></script>
   </body>
 </html>

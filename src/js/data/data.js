@@ -1,4 +1,9 @@
-async function getField(sheet, id, step, field) {
+import * as _quiz_ from "./quiz.js"
+async function getField(sheet, id, step, field, max = false) {
+    if (max) {
+        save(id, step, max)
+        return;
+    }
     /*
     - 0 : Parcours
     - 1 : Questions
@@ -10,8 +15,8 @@ async function getField(sheet, id, step, field) {
             return _tab.filter((row) => row.c[0].v == id)
         })
     }
-    let data = sheet == 0 ? await filterAsync(parcours_liste) : sheet == 1 ? await filterAsync(quiz) : await filterAsync(places)
-
+    //let data = sheet == 0 ? await filterAsync(parcours_liste) : sheet == 1 ? await filterAsync(_quiz_.quiz) : await filterAsync(places)
+    let data = await filterAsync(_quiz_.quiz)
     /* Questions
     - 0 : id
     - 1 : step
@@ -45,34 +50,42 @@ async function getField(sheet, id, step, field) {
     - 6 : img
     */
     save(id, step);
-
     return data[step].c[field].v
 
 
 }
 
-/* à sauvegarder 
-- avancée par parcours => un id : actual_step (l'étape où on est), step_max (avancée max)
-- quel parcours je suis là mtn actual_quiz
 
 
-*/
+function save(id, step, max = false) {
 
-
-
-function save(id, step) {
-    console.log("id, step")
-    console.log(id)
-    console.log(step)
     localStorage.setItem(id, JSON.stringify({ 'step': step }));
+    if (max) {
+        id = "max_" + id;
+        step = Math.max(step, isEmpty_localStorage(id));
+        localStorage.setItem(id, JSON.stringify({ 'step': step }));
+
+    }
+
+
 }
 
 
 
-function isEmpty_localStorage(id) {
+function isEmpty_localStorage(id, max = false) {
+    console.log(id)
+    console.log(localStorage.getItem(id))
+    if (max) id = "max_" + id
     if (localStorage.getItem(id) == null) {
         return 0;
     }
     return JSON.parse(localStorage.getItem(id)).step;
 }
 
+
+
+export {
+    getField,
+    save,
+    isEmpty_localStorage
+}
