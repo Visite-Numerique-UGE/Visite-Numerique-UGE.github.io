@@ -80,12 +80,11 @@ function question(id_parcours, step, state) {
   if (state != 1) {
     return;
   }
-
-
+  document.getElementById('hid').style.display = "contents"
 
   _data_.save(id_parcours, step, true)
   let nb = nbQuestion(id_parcours)
-  let progress = _data_.isEmpty_localStorage(id_parcours, true);
+  let progress = Math.max(_data_.isEmpty_localStorage(id_parcours, true), step);
 
   nb.then((nb) => {
 
@@ -150,7 +149,7 @@ function answer(id_parcours, step, state) {
 
     }
     else if (field == "lieu" || field == "anecdote") {
-      type = `<button @click="( (await quizFun.andMore(id_parcours, count) ? (count = 0, state = 2): count++) , App().page(id_parcours, count, state) )">
+      type = `<button @click="( (await quizFun.andMore(id_parcours, count) ? (count = 0, state = 2): count++), console.log('count : ' +count) , App().page(id_parcours, count, state) )">
                         J'y suis
                       </button>
                     </template `;
@@ -179,6 +178,7 @@ function endPage(id_parcours, state) {
   if (state != 2) {
     return;
   }
+
   let _html = `<h1>Bravo !</h1>
 
 <button @click="((count = 0, state = 0, id_parcours = quizFun.getQuiz() ) , App().page(id_parcours, count, state) )">Retourner sur la carte</button>`
@@ -198,6 +198,8 @@ function map(state) {
   }
 
 
+  document.getElementById('hid').style.display = "none"
+
 
   let _html = `<main>
                     <div id="map" x-data="App()">
@@ -205,12 +207,12 @@ function map(state) {
                     </div>
                     <div id="slider">
                       <div id="slider-content">
+                      <div class="close" id="slider-close">&times;</div>
                         <img id="slider-img" src="" />
                         <h1 id="slider-name"></h1>
                         <p id="slider-description"></p>
                         <div id="slider-parcours"></div>
                         <div id="slider-parcours-second"></div>
-                        <button id="slider-close">Fermer</button>
                       </div>
                     </div>
                   </main>`
@@ -219,6 +221,16 @@ let _html = `<h1>MAP !</h1>
 <button @click="((count = 0, state = 1) , App().page(id_parcours, count, state) )">Aller au parcours</button>`
 */
   map.innerHTML = _html
+}
+
+
+function setVisibility() {
+  let disp = document.getElementById('hid').style.display
+  console.log("vis")
+  console.log(disp)
+  console.log("plusvis")
+  document.getElementById('hid').style.display = disp == "contents" ? "none" : "contents"
+
 }
 
 export {
@@ -232,6 +244,7 @@ export {
   question,
   answer,
   endPage,
-  map
+  map,
+  setVisibility
 
 }

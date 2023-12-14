@@ -59,7 +59,7 @@ html {
   object-fit: cover;
 }
 
-.parcours-done::after{
+.parcours-done::after {
   content: "✓";
   margin-left: 10px;
 }

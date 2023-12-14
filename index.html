@@ -8,9 +8,8 @@
     <meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)" />
     <!--<link rel="icon" type="image/svg+xml" href="favicon.svg" />-->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <link rel="stylesheet" href="./src/css/map.css" />
     <title>Quiz</title>
-    <link defer rel="stylesheet" href="./src/css/temp.css" />
+    <!--<link defer rel="stylesheet" href="./src/css/temp.css" />-->
   </head>
   <body>
     <div id="app" x-data="App()">
@@ -29,19 +28,21 @@
                   <!-- FIN MAP -->
 
                   <!-- QUIZ -->
-                  <div class="center quiz">
-                    <div x-data="{ max_step: dataFun.isEmpty_localStorage(id_parcours, true)}">
-                      <br />
-                      <br />
-                      <div id="question" x-data="quizFun.question(id_parcours, count, state)"></div>
-                      <div id="answer" x-data="quizFun.answer(id_parcours, count,state)"></div>
+                  <div id="hid">
+                    <div class="center quiz">
+                      <div x-data="{ max_step: dataFun.isEmpty_localStorage(id_parcours, true)}">
+                        <br />
+                        <br />
+                        <div id="question" x-data="quizFun.question(id_parcours, count, state)"></div>
+                        <div id="answer" x-data="quizFun.answer(id_parcours, count,state)"></div>
+                      </div>
                     </div>
-                  </div>
-                  <!-- FIN QUIZ -->
+                    <!-- FIN QUIZ -->
 
-                  <!-- PAGE FIN QUIZ-->
-                  <div class="center" id="endPage" x-data="quizFun.endPage(id_parcours, state)"></div>
-                  <!-- FIN PAGE FIN QUIZ-->
+                    <!-- PAGE FIN QUIZ-->
+                    <div class="center" id="endPage" x-data="quizFun.endPage(id_parcours, state)"></div>
+                    <!-- FIN PAGE FIN QUIZ-->
+                  </div>
                 </div>
               </div>
             </div>

@@ -15,14 +15,14 @@ function fillSlider() {
     var sliderParcours = document.getElementById('slider-parcours');
     var sliderListe = document.getElementById('slider-liste');
     var sliderImage = document.getElementById('slider-img');
-    var place = data_places.find(place => place.c[0].v == event.target.id);
+    var place = data_places.find(place => place.c[0].v == event.target.id); //  place.c[0].v != null &&
     var parcours = data_parcours.filter(place => place.c[4].v == event.target.id);
     var first_parcours_html = ""
 
     parcours.forEach((_parcours) => {
-        var css = isEmpty_localStorage("fin_parcours_"+ _parcours.c[0].v) == true ? "parcours-done" : "parcours";
-        console.log(isEmpty_localStorage("fin_parcours_"+ _parcours.c[0].v));
-        first_parcours_html += `<button class = '`+ css +`' @click="((count = 0, state = 1, id_parcours = ` + _parcours.c[0].v + `), App().page(` + _parcours.c[0].v + `, count, state))" id='` + _parcours.c[0].v + `'class='parcours'>` + _parcours.c[1].v + `</button>`
+        var css = isEmpty_localStorage("fin_parcours_" + _parcours.c[0].v) == true ? "parcours-done" : "parcours";
+        console.log(isEmpty_localStorage("fin_parcours_" + _parcours.c[0].v));
+        first_parcours_html += `<button class = '` + css + `' @click="((count = 0, state = 1, id_parcours = ` + _parcours.c[0].v + `) , App().page(` + _parcours.c[0].v + `, count, state))" id='` + _parcours.c[0].v + `'class='parcours'>` + _parcours.c[1].v + `</button>`
     });
 
     sliderParcours.innerHTML = first_parcours_html
@@ -39,7 +39,7 @@ document.addEventListener('click', function (e) {
         slider.style.visibility = "hidden";
     }
 
-    else if (e.target.className == 'parcours') {
+    else if (e.target.className == 'parcours' || e.target.className == 'parcours-done') {
 
 
         console.log(e.target.id)
@@ -53,6 +53,7 @@ document.addEventListener('click', function (e) {
         fillSlider();
     }
 }, false);
+
 
 
 

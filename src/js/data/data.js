@@ -61,19 +61,24 @@ function save(id, step, max = false) {
 
     localStorage.setItem(id, JSON.stringify({ 'step': step }));
     if (max) {
+
+        console.log("max")
         let nb = _quiz_.nbQuestion(id);
         nb.then((nb) => {
             console.log("nb : " + nb);
-            if (step == nb-1) {
+            if (step == nb - 1) {
                 console.log("fini");
                 //localStorage.setItem("fin_parcours_"+id, true);
-                localStorage.setItem("fin_parcours_"+id, JSON.stringify({ 'step': true }));
+                localStorage.setItem("fin_parcours_" + id, JSON.stringify({ 'step': true }));
             }
             id = "max_" + id;
+            console.log("max_" + id + " [step : " + step + "]")
             step = Math.max(step, isEmpty_localStorage(id));
+            console.log("max_" + id + " [max_step : " + step + "]")
             localStorage.setItem(id, JSON.stringify({ 'step': step }));
+            console.log("is_empty : " + isEmpty_localStorage(id))
 
-            
+
         })
     }
 }
@@ -81,8 +86,8 @@ function save(id, step, max = false) {
 
 
 function isEmpty_localStorage(id, max = false) {
-    console.log("id : " + id);
     if (max) id = "max_" + id
+    console.log("id : " + id);
     if (localStorage.getItem(id) == null) {
         return 0;
     }

@@ -1,3 +1,14 @@
+$primary-color: #47dff0;
+$secondary-color: #2f2a86;
+$margin: 16px;
+$accentColor: #d2213c;
+$backgroundColor: #efefef;
+$buttonWidth: 75vw;
+$buttonHeight: 2rem;
+$buttonPadding: 1.2rem;
+$buttonFontSize: 0.75rem;
+$buttonLetterSpacing: 0.05rem;
+
 html {
     //slider=document.getElementById("slider");: 10px;
 }
@@ -21,3 +32,228 @@ body {
 @media screen and (max-width: 480px) {
 }
 
+
+
+.highlight {
+    border-color: $primary-color;
+    color: $secondary-color;
+}
+
+h2 {
+    span {
+        margin: calc($margin / 2);
+    }
+
+    color: $secondary-color;
+}
+
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.quiz {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 20%;
+}
+#progressbar {
+    background-color: black;
+    border-radius: 13px;
+    padding: 3px;
+
+    >div {
+        background-color: $accentColor;
+        height: 10px;
+        border-radius: 10px;
+    }
+}
+
+#hid {
+    display: display;
+}
+
+html,
+body {
+    font-family: arial;
+    border: 1px solid $secondary-color;
+    margin: 0;
+    height: 100%;
+    font-size: min(4vh, 1rem);
+    background-color: $backgroundColor;
+    color: $secondary-color;
+}
+
+
+
+.answerblock {
+    display: grid;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.questionblock {
+    max-width: 90vw;
+}
+
+input {
+    width: 30vw;
+}
+
+button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    width: $buttonWidth;
+    height: $buttonHeight;
+    cursor: pointer;
+    font-size: $buttonFontSize;
+    font-weight: bold;
+    letter-spacing: $buttonLetterSpacing;
+    border: 1px solid $secondary-color;
+    padding: $buttonPadding;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 531.28 200'%3E%3Cdefs%3E%3Cstyle%3E .shape %7B fill: #$accentColor; %7D %3C/style%3E%3C/defs%3E%3Cg id='Layer_2' data-name='Layer 2'%3E%3Cg id='Layer_1-2' data-name='Layer 1'%3E%3Cpolygon class='shape' points='415.81 200 0 200 115.47 0 531.28 0 415.81 200' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E%0A");
+    background-color: $secondary-color;
+    background-size: 200%;
+    background-position: 200%;
+    background-repeat: no-repeat;
+    transition: 0.3s ease-in-out;
+    transition-property: background-position, border, color;
+    z-index: 1;
+
+    &:hover {
+        background-color: $accentColor;
+        color: white;
+        background-position: 40%;
+    }
+}
+
+.button-borders {
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    margin: 0.75rem;
+
+    &:before,
+    &:after {
+        content: "";
+        position: absolute;
+        width: calc(100% + 0.5em);
+        height: 50%;
+        left: -0.3em;
+        border: 1px solid $secondary-color;
+        z-index: 0;
+    }
+
+    &:before {
+        top: -0.3em;
+        border-bottom: 0px;
+    }
+
+    &:after {
+        bottom: -0.3em;
+        border-top: 0px;
+    }
+}
+
+.shape {
+    fill: $secondary-color;
+}
+
+/*progress bar*/
+.close {
+    font-size: 45px;
+    font-weight: 600;
+    right: 0px;
+}
+
+button[disabled]:hover {
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+}
+
+button[disabled] {
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+}
+#progress {
+    width: 5vw;
+    /*margin-right: 5vw;*/
+}
+
+/* ---------- MAP ----------*/
+#slider-parcours {
+    button {
+            width: 25vw;
+            margin-left: 5vw;
+        }
+}
+
+
+/* Markers */
+.custom-div-icon {
+    position: relative;
+    text-align: center;
+}
+
+.marker-background {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: $accentColor;
+    border-radius: 50% 50% 50% 0%;
+    transform: rotate(-45deg);
+}
+
+.marker-image {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: auto;
+    height: 34px;
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    transform: rotate(45deg);
+}
+
+
+#map {
+    height: 100vh;
+    z-index: 1;
+    /* Ajoutez cette ligne pour définir le z-index de la carte */
+}
+
+#slider {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40vh;
+    background-color: $backgroundColor;
+    color: $secondary-color;
+    padding: 10px;
+    box-sizing: border-box;
+    cursor: pointer;
+    z-index: 102;
+    display: flex;
+    visibility: hidden;
+}
+
+#slider img {
+    width: 50%;
+    height: 50%;
+    object-fit: cover;
+}
+
+.parcours-done::after {
+    content: "✓";
+    margin-left: 10px;
+}

@@ -5,17 +5,17 @@
   text-align: center;
 }
 
+#progressbar {
+  background-color: black;
+  border-radius: 13px;
+  padding: 3px;
+}
+
 /*progress bar*/
 .close {
   font-size: 45px;
   font-weight: 600;
   right: 0px;
-}
-
-#progressbar {
-  background-color: black;
-  border-radius: 13px;
-  padding: 3px;
 }
 
 button[disabled]:hover {
