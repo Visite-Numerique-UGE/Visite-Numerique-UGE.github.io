@@ -6,30 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <!--<link rel="icon" type="image/svg+xml" href="favicon.svg" />-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="./src/css/map.css" />
     <title>Quiz</title>
     <link defer rel="stylesheet" href="./src/css/temp.css" />
   </head>
   <body>
     <div id="app" x-data="App()">
       <!-- APP -->
-      <div x-data="console.log(App()._quiz)"></div>
+
+      <div x-data="console.log(await App().data)"></div>
       <div x-data="{quizFun : Alpine.raw(App())._quiz}">
         <div x-data="{dataFun : Alpine.raw(App())._data}">
-          <div x-data="{id_parcours : 4}">
+          <div x-data="{id_parcours : quizFun.getQuiz()}">
+            <!-- TODO: à voir si besoin au début {id_parcours : save('actual_quiz', isEmpty_localStorage('actual_quiz'))}-->
             <div x-data="{state : dataFun.isEmpty_localStorage('state')}">
               <!-- TODO: ENLEVER DEBUG-->
+              STATE :
               <div x-text="state"></div>
+              id_parcours :
+              <div x-text="id_parcours"></div>
+              <!-- TODO: ENLEVER DEBUG-->
               <div x-data="{ step: dataFun.isEmpty_localStorage(id_parcours)}">
                 <div x-data="{ count: dataFun.isEmpty_localStorage(id_parcours) }" x-modelable="count" x-model="step">
                   <!-- MAP -->
-
-                  <div class="center" id="map" x-data="(quizFun.map(state))"></div>
+                  <div class="" id="map_" x-data="(quizFun.map(state))"></div>
                   <!-- FIN MAP -->
-                  <!-- TODO: au début {id_parcours : save('actual_quiz', isEmpty_localStorage('actual_quiz'))}
-                       TODO: en sélectionnant un parcours save('actual_quiz', new_ID)
-                       TODO: id_parcours = quizFun.getQuiz() récupérer id selectionné 
-                       TODO: fin de parcours : id_parcours = 0 -->
+
                   <!-- QUIZ -->
                   <div class="center quiz">
                     <div x-data="{ max_step: dataFun.isEmpty_localStorage(id_parcours, true)}">
@@ -40,8 +44,8 @@
                     </div>
                   </div>
                   <!-- FIN QUIZ -->
-                  <!-- PAGE FIN QUIZ-->
 
+                  <!-- PAGE FIN QUIZ-->
                   <div class="center" id="endPage" x-data="quizFun.endPage(id_parcours, state)"></div>
                   <!-- FIN PAGE FIN QUIZ-->
                 </div>
@@ -53,6 +57,8 @@
       <!-- fin quiz-->
     </div>
 
+    <script type="module" src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script type="module" src="./src/js/slider.js"></script>
     <script type="module" src="./main.js"></script>
   </body>
 </html>

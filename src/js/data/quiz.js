@@ -81,6 +81,8 @@ function question(id_parcours, step, state) {
     return;
   }
 
+
+
   _data_.save(id_parcours, step, true)
   let nb = nbQuestion(id_parcours)
   let progress = _data_.isEmpty_localStorage(id_parcours, true);
@@ -93,7 +95,9 @@ function question(id_parcours, step, state) {
       button_progress += `<button ` + disabled + ` id="progress" @click="(count=` + i + `, App().page(id_parcours, count, state) )">` + (i + 1) + ` </button>\n`
     }
 
-    let _html = button_progress + `
+
+    let btn_close = `<div class="close" @click="(state=0, App().page(id_parcours, count, state) )">&times;</div>`
+    let _html = btn_close + button_progress + `
 <template x-if="await dataFun.getField(1,id_parcours, count, 3)=='lieu' ">
                       <h2 x-data="{ message: 'Lieu' }" x-text="message"></h2>
 </template>
@@ -177,7 +181,7 @@ function endPage(id_parcours, state) {
   }
   let _html = `<h1>Bravo !</h1>
 
-<button @click="((count = 0, state = 0) , App().page(id_parcours, count, state) )">Retourner sur la carte</button>`
+<button @click="((count = 0, state = 0, id_parcours = quizFun.getQuiz() ) , App().page(id_parcours, count, state) )">Retourner sur la carte</button>`
 
   endPage.innerHTML = _html
 
@@ -186,14 +190,34 @@ function endPage(id_parcours, state) {
 //TODO: Déplacer dans map
 function map(state) {
 
-  let map = document.getElementById('map');
+  let map = document.getElementById('map_');
+
   map.innerHTML = "";
   if (state != 0) {
     return;
   }
-  let _html = `<h1>MAP !</h1>
-<button @click="((count = 0, state = 1) , App().page(id_parcours, count, state) )">Aller au parcours</button>`
 
+
+
+  let _html = `<main>
+                    <div id="map" x-data="App()">
+                      <div style='opacity:0;' x-html="data.map"></div>
+                    </div>
+                    <div id="slider">
+                      <div id="slider-content">
+                        <img id="slider-img" src="" />
+                        <h1 id="slider-name"></h1>
+                        <p id="slider-description"></p>
+                        <div id="slider-parcours"></div>
+                        <div id="slider-parcours-second"></div>
+                        <button id="slider-close">Fermer</button>
+                      </div>
+                    </div>
+                  </main>`
+  /*
+let _html = `<h1>MAP !</h1>
+<button @click="((count = 0, state = 1) , App().page(id_parcours, count, state) )">Aller au parcours</button>`
+*/
   map.innerHTML = _html
 }
 

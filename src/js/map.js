@@ -1,6 +1,8 @@
 import L from 'leaflet';
 import { parcours_liste } from "./parcours.js";
 import { places } from "./place.js";
+import * as _quiz_ from "./data/quiz.js"
+import * as _data_ from "./data/data.js"
 
 export default () => {
   return {
@@ -11,9 +13,11 @@ export default () => {
       map: '',
       i18n: {},
       places: [],
-      parcours: [], 
-      slider : ''
+      parcours: [],
+      slider: ''
     },
+    _quiz: _quiz_,
+    _data: _data_,
     async init() {
       this.data.map = L.map('map', { zoomControl: false }).setView([48.839623875988806, 2.588503717609941], 17);
 
@@ -46,8 +50,15 @@ export default () => {
       });
 
       await this.getData();
-      await this.placeMarkers();    
-      return this.data.map;
+      await this.placeMarkers();
+    }, page(id_parcours, step, state) {
+
+      _data_.save("state", state)
+      _quiz_.map(state);
+      _quiz_.question(id_parcours, step, state)
+      _quiz_.answer(id_parcours, step, state)
+      _quiz_.endPage(id_parcours, state)
+
     },
     async getData() {
       this.data.places = await places();
@@ -75,6 +86,6 @@ export default () => {
     //get the map 
     getMap() {
       return this.data.map;
-    },  
+    },
   };
 };
