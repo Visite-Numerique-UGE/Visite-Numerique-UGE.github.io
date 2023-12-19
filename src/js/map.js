@@ -1,8 +1,11 @@
 import L from 'leaflet';
+import 'leaflet-routing-machine';
+import 'lrm-graphhopper';
 import { parcours_liste } from "./parcours.js";
 import { places } from "./place.js";
 import * as _quiz_ from "./data/quiz.js"
 import * as _data_ from "./data/data.js"
+import { getUserLocation } from "./location.js"
 
 export default () => {
   return {
@@ -14,7 +17,7 @@ export default () => {
       i18n: {},
       places: [],
       parcours: [],
-      slider: ''
+      //slider: ''
     },
     _quiz: _quiz_,
     _data: _data_,
@@ -23,7 +26,7 @@ export default () => {
 
       L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        minZoom: 16,
+        minZoom: 1,
         maxZoom: 18,
       }).addTo(this.data.map);
 
@@ -48,7 +51,6 @@ export default () => {
           this.data.map.panInsideBounds(bounds, { animate: false });
         }
       });
-
       await this.getData();
       await this.placeMarkers();
     }, page(id_parcours, step, state) {
@@ -79,13 +81,59 @@ export default () => {
 
         L.marker([place.c[5].v, place.c[4].v], { icon: customIcon }).addTo(this.data.map).on('click', (e) => {
           this.data.map.setView([e.latlng.lat - 0.001, e.latlng.lng], 18);
+          getUserLocation((userLocation) => {
+            console.log(L.Routing.control);
+            L.Routing.control({
+              waypoints: [
+                  L.latLng(userLocation.lat, userLocation.lng), // Utilisez la géolocalisation comme point de départ
+                  L.latLng(place.c[5].v, place.c[4].v) // Exemple de point d'arrivée
+              ],
+              routeWhileDragging: false,
+              alternativeRoutes: false,
+              addWaypoints: false,  // Empêche l'ajout manuel de waypoints
+              draggableWaypoints: false,
+                            router: L.Routing.graphHopper('f8d3f7cb-8512-4c60-b0c5-e7ac1096fcb8', {
+                  urlParameters: {
+                      vehicle: 'foot'
+                  }
+              }),
+              itineraryFormatter: function (data) {
+                    var time = Math.round(data.routes[0].summary.totalTime % 3600 / 60) + ' min';
+                    var distance = Math.round(data.routes[0].summary.totalDistance / 100) / 10 + ' km';
+                    var instructions = '<h2>Itinéraire</h2><p>Temps : ' + time + '</p><p>Distance : ' + distance + '</p>';
+                    return instructions;
+                  },
+                  createMarker: function(i, wp, nWps) {
+                    if (i === nWps - 1) {
+                        // Point d'arrivée, définissez l'opacité à 0
+                        return L.marker(wp.latLng, {
+                            icon: L.divIcon({ className: ''})
+                        });
+                    } else {
+                        // Les autres points (départ et intermédiaires) utilisent le marquer par défaut
+                        return L.marker(wp.latLng, {
+                            draggable: true
+                        });
+                    }
+                }
+
+          }).addTo(this.data.map);
+          var instructionsDiv = document.querySelector('.leaflet-routing-container');
+          if (instructionsDiv) {
+              instructionsDiv.style.display = 'none';
+          }
+          
+      
+          });
         }
         );
       });
+      
     },
+    
     //get the map 
     getMap() {
       return this.data.map;
     },
-  };
+  }
 };

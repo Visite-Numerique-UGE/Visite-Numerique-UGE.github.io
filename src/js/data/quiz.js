@@ -213,8 +213,9 @@ function map(state) {
                         <p id="slider-description"></p>
                         <div id="slider-parcours"></div>
                         <div id="slider-parcours-second"></div>
+                        <button>Y aller</button>
                       </div>
-                    </div>
+                  </div>
                   </main>`
   /*
 let _html = `<h1>MAP !</h1>
