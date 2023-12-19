@@ -1,4 +1,5 @@
-$primary-color: #47dff0;
+/*
+
 $secondary-color: #2f2a86;
 $margin: 16px;
 $accentColor: #d2213c;
@@ -8,22 +9,38 @@ $buttonHeight: 2rem;
 $buttonPadding: 1.2rem;
 $buttonFontSize: 0.75rem;
 $buttonLetterSpacing: 0.05rem;
+*/
+$primary-color: #47dff0;
+$margin: 16px;
+$white: #ffffff;
+$accentColor: #b5a7d7;
+$backgroundColor: #e9e9e9;
+$first-color: #2e3494;
+$secondary-color: #94b4c3;
+$buttonWidth: 75vw;
+$buttonHeight: 2rem;
+$buttonPadding: 1.2;
+$buttonFontSize: 0.75rem;
+$buttonLetterSpacing: 0.05rem;
+
+.hid {
+  display: block;
+}
 
 html {
-    //slider=document.getElementById("slider");: 10px;
+  //slider=document.getElementById("slider");: 10px;
 }
 body {
-    header {
-        h1 {
-            font-size: 3rem;
-            color: blue;
-        }
+  header {
+    h1 {
+      font-size: 3rem;
+      color: blue;
     }
-    main {
-        //font-size: 2rem;
-    }
+  }
+  main {
+    //font-size: 2rem;
+  }
 }
-
 
 // Media Queries
 @media screen and (min-width: 1200px) {
@@ -32,211 +49,258 @@ body {
 @media screen and (max-width: 480px) {
 }
 
-
-
-.highlight {
-    border-color: $primary-color;
-    color: $secondary-color;
-}
-
 h2 {
-    span {
-        margin: calc($margin / 2);
-    }
+  span {
+    margin: calc($margin / 2);
+  }
 
-    color: $secondary-color;
+  color: $first-color;
 }
-
 
 .center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
+
+.vertical-center {
+  height: 100%;
+  line-height: 75%;
+  text-align: center;
+}
+
 .quiz {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    padding-top: 20%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 20%;
 }
 #progressbar {
-    background-color: black;
-    border-radius: 13px;
-    padding: 3px;
+  background-color: $backgroundColor;
+  border-radius: 13px;
+  padding: 1px;
+  border: 1px solid $accentColor;
 
-    >div {
-        background-color: $accentColor;
-        height: 10px;
-        border-radius: 10px;
-    }
-}
-
-#hid {
-    display: display;
+  > div {
+    background-color: $accentColor;
+    height: 10px;
+    border-radius: 10px;
+  }
 }
 
 html,
 body {
-    font-family: arial;
-    border: 1px solid $secondary-color;
-    margin: 0;
-    height: 100%;
-    font-size: min(4vh, 1rem);
-    background-color: $backgroundColor;
-    color: $secondary-color;
+  font-family: tahoma;
+  margin: 0;
+  height: 100%;
+  font-size: min(4vh, 1rem);
+  background-color: $backgroundColor;
+  color: $first-color;
 }
 
+/* QUIZ */
 
+.top-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 7.5%;
+  background-color: $first-color;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.right {
+  margin-right: 5vw;
+  margin-left: auto;
+}
+
+.left-image {
+  max-width: 120px;
+  max-height: 50px;
+  margin-right: 2px;
+}
+
+.right-image {
+  max-width: 80px;
+  max-height: 40px;
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.bottom-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  height: 7.5%;
+  background-color: $first-color;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.bottom-image {
+  max-width: 80px;
+  max-height: 40px;
+  position: absolute;
+  right: 50%;
+  transform: translateX(50%);
+  top: 50%;
+  transform: translateY(-50%);
+}
 
 .answerblock {
-    display: grid;
-    align-items: center;
-    margin-top: 20px;
+  display: grid;
+  align-items: center;
+  margin-top: 20px;
 }
 
 .questionblock {
-    max-width: 90vw;
+  max-width: 90vw;
 }
 
 input {
-    width: 30vw;
+  width: 30vw;
 }
 
 button {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    width: $buttonWidth;
-    height: $buttonHeight;
-    cursor: pointer;
-    font-size: $buttonFontSize;
-    font-weight: bold;
-    letter-spacing: $buttonLetterSpacing;
-    border: 1px solid $secondary-color;
-    padding: $buttonPadding;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 531.28 200'%3E%3Cdefs%3E%3Cstyle%3E .shape %7B fill: #$accentColor; %7D %3C/style%3E%3C/defs%3E%3Cg id='Layer_2' data-name='Layer 2'%3E%3Cg id='Layer_1-2' data-name='Layer 1'%3E%3Cpolygon class='shape' points='415.81 200 0 200 115.47 0 531.28 0 415.81 200' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E%0A");
-    background-color: $secondary-color;
-    background-size: 200%;
-    background-position: 200%;
-    background-repeat: no-repeat;
-    transition: 0.3s ease-in-out;
-    transition-property: background-position, border, color;
-    z-index: 1;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  width: $buttonWidth;
+  height: $buttonHeight;
+  cursor: pointer;
+  font-size: $buttonFontSize;
+  font-weight: bold;
+  letter-spacing: $buttonLetterSpacing;
+  border: 1px solid $secondary-color;
+  padding: $buttonPadding;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 531.28 200'%3E%3Cdefs%3E%3Cstyle%3E .shape %7B fill: #$accentColor; %7D %3C/style%3E%3C/defs%3E%3Cg id='Layer_2' data-name='Layer 2'%3E%3Cg id='Layer_1-2' data-name='Layer 1'%3E%3Cpolygon class='shape' points='415.81 200 0 200 115.47 0 531.28 0 415.81 200' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E%0A");
+  background-color: $secondary-color;
+  background-size: 200%;
+  background-position: 200%;
+  background-repeat: no-repeat;
+  transition: 0.3s ease-in-out;
+  transition-property: background-position, border, color;
+  z-index: 1;
 
-    &:hover {
-        background-color: $accentColor;
-        color: white;
-        background-position: 40%;
-    }
+  &:hover {
+    background-color: $accentColor;
+    color: white;
+    background-position: 40%;
+  }
 }
 
 .button-borders {
-    position: relative;
-    width: fit-content;
-    height: fit-content;
-    margin: 0.75rem;
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+  margin: 0.75rem;
 
-    &:before,
-    &:after {
-        content: "";
-        position: absolute;
-        width: calc(100% + 0.5em);
-        height: 50%;
-        left: -0.3em;
-        border: 1px solid $secondary-color;
-        z-index: 0;
-    }
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    width: calc(100% + 0.5em);
+    height: 50%;
+    left: -0.3em;
+    border: 1px solid $secondary-color;
+    z-index: 0;
+  }
 
-    &:before {
-        top: -0.3em;
-        border-bottom: 0px;
-    }
+  &:before {
+    top: -0.3em;
+    border-bottom: 0px;
+  }
 
-    &:after {
-        bottom: -0.3em;
-        border-top: 0px;
-    }
+  &:after {
+    bottom: -0.3em;
+    border-top: 0px;
+  }
 }
 
 .shape {
-    fill: $secondary-color;
+  fill: $secondary-color;
 }
 
 /*progress bar*/
 .close {
-    font-size: 45px;
-    font-weight: 600;
-    right: 0px;
+@extend #slider-name;
+  font-size: 5vh;
+  margin: auto;
+  font-weight: 600;
+  color: $primary-color;
 }
 
 button[disabled]:hover {
-    border: 1px solid #999999;
-    background-color: #cccccc;
-    color: #666666;
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
 }
 
 button[disabled] {
-    border: 1px solid #999999;
-    background-color: #cccccc;
-    color: #666666;
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
 }
 #progress {
-    width: 5vw;
-    /*margin-right: 5vw;*/
+  width: 5vw;
+  /*margin-right: 5vw;*/
 }
 
 /* ---------- MAP ----------*/
-#slider-parcours {
-    button {
-            width: 25vw;
-            margin-left: 5vw;
-        }
-}
-
 
 /* Markers */
 .custom-div-icon {
-    position: relative;
-    text-align: center;
+  position: relative;
+  text-align: center;
 }
 
 .marker-background {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    background-color: $accentColor;
-    border-radius: 50% 50% 50% 0%;
-    transform: rotate(-45deg);
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-color: $accentColor;
+  border-radius: 50% 50% 50% 0%;
+  transform: rotate(-45deg);
 }
 
 .marker-image {
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    width: auto;
-    height: 34px;
-    aspect-ratio: 1/1;
-    border-radius: 100%;
-    transform: rotate(45deg);
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: auto;
+  height: 34px;
+  aspect-ratio: 1/1;
+  border-radius: 100%;
+  transform: rotate(45deg);
 }
-
 
 #map {
-    height: 100vh;
-    z-index: 1;
-    /* Ajoutez cette ligne pour définir le z-index de la carte */
+  height: 100vh;
+  z-index: 1;
+  /* Ajoutez cette ligne pour définir le z-index de la carte */
 }
 
+/*
 #slider {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 40vh;
+    height: 90%;
     background-color: $backgroundColor;
     color: $secondary-color;
     padding: 10px;
@@ -245,15 +309,130 @@ button[disabled] {
     z-index: 102;
     display: flex;
     visibility: hidden;
-}
+}*/
 
-#slider img {
-    width: 50%;
-    height: 50%;
-    object-fit: cover;
+/* -------- SLIDER -------- */
+#slider {
+  width: 100%;
+  height: 70%;
+  box-sizing: border-box;
+  z-index: 102;
+  display: flex;
+  visibility: hidden;
+
+  position: absolute;
+  bottom: 0;
+  background-color: $backgroundColor; //rgba(255, 255, 255, 1);
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+
+  background: #fff;
+  flex-direction: row;
+
+
+  & > div {
+    width: 100%;
+  }
+
+
+  &-name {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+
+  &-content {
+    align-items: center;
+    text-align: center;
+    max-height: 75%;
+  }
+
+  &-description {
+    overflow-y: auto;
+  }
+
+  &-show {
+    width: 100%;
+    display: flex;
+    overflow-y: scroll;
+  }
+  &-parcours {
+    &-list {
+      width: 75%;
+      text-align: right;
+      & > div {
+        width: 100%;
+      }
+    }
+  }
+  button {
+    width: 90%;
+    margin-bottom: 1rem;
+  }
+
+  .top-card {
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
 }
 
 .parcours-done::after {
-    content: "✓";
-    margin-left: 10px;
+  content: "✓";
+  margin-left: 10px;
 }
+
+
+
+.card {
+    background: #fff;
+    max-width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+
+    h2 {
+        margin: 0;
+        padding: 0 1rem;
+      }
+
+      #slider-name {
+        padding: 1rem;
+        text-align: right;
+        color:$first-color;
+        font-weight: bold;
+        font-size: 1rem;
+      }
+      #slider-description {
+        padding: 0.5rem 1rem;
+        font-size: 12px;
+      }
+      &-text {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+      }
+      .img-avatar {
+        width: 7.5vh;
+        height: 7.5vh;
+        position:relative;
+        border-radius: 50%;
+        border: 6px solid white;
+        background-image: linear-gradient(-60deg, $first-color 0%, #16a085 100%);
+        top: 10%;
+        @extend .center;
+            margin: 0 80%;
+            position: relative;
+        
+      }
+      .img-container {
+            
+        
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        background-position: bottom center;
+        background-size: cover;
+      }
+  }
+

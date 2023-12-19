@@ -3,9 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="robots" content="noindex,nofollow" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="theme-color"
+      content="#ffffff"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#111111"
+      media="(prefers-color-scheme: dark)"
+    />
     <!--<link rel="icon" type="image/svg+xml" href="favicon.svg" />-->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <title>Quiz</title>
@@ -22,27 +33,51 @@
             <!-- TODO: à voir si besoin au début {id_parcours : save('actual_quiz', isEmpty_localStorage('actual_quiz'))}-->
             <div x-data="{state : dataFun.isEmpty_localStorage('state')}">
               <div x-data="{ step: dataFun.isEmpty_localStorage(id_parcours)}">
-                <div x-data="{ count: dataFun.isEmpty_localStorage(id_parcours) }" x-modelable="count" x-model="step">
+                <div
+                  x-data="{ count: dataFun.isEmpty_localStorage(id_parcours) }"
+                  x-modelable="count"
+                  x-model="step"
+                >
                   <!-- MAP -->
                   <div class="" id="map_" x-data="(quizFun.map(state))"></div>
                   <!-- FIN MAP -->
 
                   <!-- QUIZ -->
-                  <div id="hid">
+                  <div class="hid">
                     <div class="center quiz">
-                      <div x-data="{ max_step: dataFun.isEmpty_localStorage(id_parcours, true)}">
+                      <div
+                        x-data="{ max_step: dataFun.isEmpty_localStorage(id_parcours, true)}"
+                      >
                         <br />
                         <br />
-                        <div id="question" x-data="quizFun.question(id_parcours, count, state)"></div>
-                        <div id="answer" x-data="quizFun.answer(id_parcours, count,state)"></div>
+                        <div
+                          id="question"
+                          x-data="quizFun.question(id_parcours, count, state)"
+                        ></div>
+                        <div
+                          id="answer"
+                          x-data="quizFun.answer(id_parcours, count,state)"
+                        ></div>
                       </div>
                     </div>
                     <!-- FIN QUIZ -->
 
                     <!-- PAGE FIN QUIZ-->
-                    <div class="center" id="endPage" x-data="quizFun.endPage(id_parcours, state)"></div>
+                    <div
+                      class="center"
+                      id="endPage"
+                      x-data="quizFun.endPage(id_parcours, state)"
+                    ></div>
                     <!-- FIN PAGE FIN QUIZ-->
                   </div>
+                  <div class="top-banner">
+                    <img src="./images/Logo-Université-Gustave-Eiffel.jpg" alt="Image Gauche" class="left-image" />
+                    <div class="close hid right vertical-center" @click="(state=0, App().page(id_parcours, count, state) )">&times;</div>
+                    </div>
+                  <!--<div x-data="{data: getData(2)}" class="center quiz">
+                  </div>-->
+                  
+    </div>
                 </div>
               </div>
             </div>
@@ -50,9 +85,14 @@
         </div>
       </div>
       <!-- fin quiz-->
-    </div>
-
-    <script type="module" src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  
+    <div class="bottom-banner">
+      <img src="./images/logo-map.png" alt="Image Gauche" class="bottom-image" />
+    </div> 
+    <script
+      type="module"
+      src="https://unpkg.com/leaflet/dist/leaflet.js"
+    ></script>
     <script type="module" src="./src/js/slider.js"></script>
     <script type="module" src="./main.js"></script>
   </body>
