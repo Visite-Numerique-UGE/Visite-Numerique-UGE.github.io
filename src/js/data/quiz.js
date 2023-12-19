@@ -209,39 +209,28 @@ function map(state) {
 
 
                       
-  <div id="slider-content">
-    <div class="test">
+  <div class="slider-content">
+    <div class="container">
+      <div class="card">
+        <h2 id="slider-name">Batiment Perault</h2>
+        <img id="slider-img" src="" />
 
-    </div>
-    
-    <div class="card">
-    
-
-
-      <div class="card-text">
-        <div class="img-container">
-          <img id="slider-img" src="" />
-        </div>
-        
-        <div class="title-total"> 
-        <div class="close" id="slider-close">&times;</div>
-          <div id="slider-name"></div>
-          <div id="slider-description"></div>
-          
-          <div id="slider-parcours-list">
-            <div id="slider-parcours"></div>
-            <div id="slider-parcours-second"></div>
-          </div>  
-        </div>
-
-      
+        <button class="close" id="slider-close">&times;</button>
       </div>
 
+      <div class="card-desc">
+        <p id="slider-description">une description vraiment au pif</p>
+
+        <button>></button>
+      </div>
+
+      <div id="slider-parcours-list">
+        <div id="slider-parcours"></div>
+        <div id="slider-parcours-second"></div>
+      </div>
     </div>
-    
-
-
   </div>
+
 
 </div>
 </main>`;

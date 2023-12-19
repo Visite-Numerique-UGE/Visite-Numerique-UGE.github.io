@@ -1,0 +1,112 @@
+$bg-color: #e6e5e1;
+$shdow-gray: #d3d3d5;
+$orange: #da4d1d;
+$blue: #2b26c3;
+$img-url: "https://images.unsplash.com/photo-1525543907410-b2562b6796d6?ixlib=rb-0.3.5&s=9ff8e5e718a6a40cbd0e1471235912f4&auto=format&fit=crop&w=3452&q=80";
+$img-url2: "https://images.unsplash.com/photo-1528785198459-ec50485704c7?ixlib=rb-0.3.5&s=3a2fc3039516555bbb2e9cd2967bd321&auto=format&fit=crop&w=1537&q=80";
+
+body {
+    background-color: red;
+    width: 100vw;
+    height: 100vh;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h2 {
+    pointer-events: none;
+}
+
+.slider-content {
+    background-color: pink;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    bottom: 7.5%;
+    height: max-content;
+    position: absolute;
+
+    .container {
+        border: 1px solid gray;
+    }
+    .card {
+        position: relative;
+        width: 500px;
+        height: 200px;
+        background-color: #fff;
+        overflow: hidden;
+        border-bottom: 1px solid gray;
+
+        &-desc {
+            @extend .card;
+
+            p {
+                z-index: 99;
+                position: absolute;
+                margin: 5vh;
+                color: #333;
+                opacity: 0.7;
+                font-size: 10hv;
+                letter-spacing: 1px;
+            }
+
+            button {
+                position: absolute;
+                right: 14px;
+                bottom: 14px;
+                width: min(10vh, 50px);
+                height: min(10vh, 50px);
+                border: none;
+                cursor: pointer;
+                background-color: transparent;
+                font-size: 40px;
+                font-weight: 700;
+                color: black;
+                //outline:none;
+            }
+        }
+
+        h2 {
+            z-index: 99;
+            font-family: "Poppins", sans-serif;
+            position: absolute;
+            bottom: 0;
+            margin-left: 20px;
+            font-size: 60px;
+            font-weight: 700;
+            color: #fff;
+            mix-blend-mode: hard-light;
+        }
+
+        .pic {
+            z-index: 100;
+            height: 200px;
+            background-image: url($img-url);
+            background-size: 100% 100%;
+        }
+        button {
+            position: absolute;
+            right: 14px;
+            bottom: 14px;
+            width: min(10vh, 50px);
+            height: min(10vh, 50px);
+            border: none;
+            cursor: pointer;
+            background-color: transparent;
+            font-size: 40px;
+            font-weight: 700;
+            //outline:none;
+        }
+
+        .close {
+            color: white;
+            top: 14px;
+        }
+    }
+}

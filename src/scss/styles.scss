@@ -236,13 +236,6 @@ button {
 }
 
 /*progress bar*/
-.close {
-@extend #slider-name;
-  font-size: 5vh;
-  margin: auto;
-  font-weight: 600;
-  color: $primary-color;
-}
 
 button[disabled]:hover {
   border: 1px solid #999999;
@@ -313,66 +306,21 @@ button[disabled] {
 
 /* -------- SLIDER -------- */
 #slider {
-  width: 100%;
-  height: 70%;
   box-sizing: border-box;
   z-index: 102;
-  display: flex;
   visibility: hidden;
 
+  background: $white;
+  width: 100%;
+  display: flex;
+  height: max-content;
   position: absolute;
-  bottom: 0;
+  bottom: 7.5%;
   background-color: $backgroundColor; //rgba(255, 255, 255, 1);
   transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 
-  background: #fff;
-  flex-direction: row;
-
-
   & > div {
     width: 100%;
-  }
-
-
-  &-name {
-    margin: 0 auto;
-    text-align: center;
-  }
-
-
-  &-content {
-    align-items: center;
-    text-align: center;
-    max-height: 75%;
-  }
-
-  &-description {
-    overflow-y: auto;
-  }
-
-  &-show {
-    width: 100%;
-    display: flex;
-    overflow-y: scroll;
-  }
-  &-parcours {
-    &-list {
-      width: 75%;
-      text-align: right;
-      & > div {
-        width: 100%;
-      }
-    }
-  }
-  button {
-    width: 90%;
-    margin-bottom: 1rem;
-  }
-
-  .top-card {
-    display: flex;
-    align-items: center;
-    text-align: center;
   }
 }
 
@@ -381,58 +329,106 @@ button[disabled] {
   margin-left: 10px;
 }
 
+.slider-content {
+  background-color: pink;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  bottom: 7.5%;
+  height: max-content;
+  position: absolute;
 
-
-.card {
-    background: #fff;
-    max-width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    position: relative;
-
-    h2 {
-        margin: 0;
-        padding: 0 1rem;
-      }
-
-      #slider-name {
-        padding: 1rem;
-        text-align: right;
-        color:$first-color;
-        font-weight: bold;
-        font-size: 1rem;
-      }
-      #slider-description {
-        padding: 0.5rem 1rem;
-        font-size: 12px;
-      }
-      &-text {
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-      }
-      .img-avatar {
-        width: 7.5vh;
-        height: 7.5vh;
-        position:relative;
-        border-radius: 50%;
-        border: 6px solid white;
-        background-image: linear-gradient(-60deg, $first-color 0%, #16a085 100%);
-        top: 10%;
-        @extend .center;
-            margin: 0 80%;
-            position: relative;
-        
-      }
-      .img-container {
-            
-        
-      }
-      img {
-        width: 100%;
-        height: 100%;
-        background-position: bottom center;
-        background-size: cover;
-      }
+  & > div {
+    width: 100%;
   }
 
+  .container {
+    border: 1px solid gray;
+  }
+  .card {
+    position: relative;
+    height: 200px;
+    background-color: #fff;
+    overflow: hidden;
+    border-bottom: 1px solid gray;
+
+    &-desc {
+      @extend .card;
+
+      height: 250px;
+      padding: 23px;
+      //height: fit-content;
+
+      #slider-description {
+        max-height: 224px;
+        overflow: auto;
+        background: #fff;
+      }
+
+      p {
+        z-index: 99;
+        position: absolute;
+        color: #333;
+        opacity: 0.7;
+        font-size: 10hv;
+        letter-spacing: 1px;
+      }
+
+      button {
+        position: absolute;
+        right: 14px;
+        bottom: 14px;
+        width: min(10vh, 50px);
+        height: min(10vh, 50px);
+        border: none;
+        cursor: pointer;
+        background-color: transparent;
+        font-size: 40px;
+        font-weight: 700;
+        color: black;
+        //outline:none;
+      }
+    }
+
+    h2 {
+      pointer-events: none;
+      z-index: 99;
+      font-family: "Poppins", sans-serif;
+      position: absolute;
+      bottom: 0;
+      margin-left: 20px;
+      font-size: 40px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    #slider-img {
+      z-index: 100;
+
+      width: 100%;
+      //background-image: url($img-url);
+      background-size: 100% 100%;
+    }
+    button {
+      position: absolute;
+      right: 0px;
+      bottom: 14px;
+      width: min(10vh, 50px);
+      height: min(10vh, 50px);
+      border: none;
+      cursor: pointer;
+      background-color: transparent;
+      font-size: 40px;
+      font-weight: 700;
+      //outline:none;
+    }
+
+    .close {
+      right: 0px;
+      color: white;
+      top: 14px;
+    }
+  }
+}
