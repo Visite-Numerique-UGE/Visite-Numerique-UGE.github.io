@@ -5,6 +5,7 @@
     <title>Titre de la page</title>
     <meta name="description" content="Description de la page">
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <link defer rel="stylesheet" href="quiz.css" />
 </head>
 <body x-data="{ isChecked: false, showDiv2: false, isCheckedDiv3: false }">
     <center>
@@ -15,14 +16,14 @@
         </div>
 
         <template x-if="isChecked">
-            <div class="2" x-show="isChecked && !showDiv2"
+            <div class="popup" x-show="isChecked && !showDiv2"
                  style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border: 1px solid black;">
                 <h2>Réponse</h2>
                 <p>Bien joué ! La réponse était des moutons. En effet 4 moutons sont présent pour tondre la pelouse aux abords de la MDE</p>
                 <button @click="showDiv2 = true">Suivant</button>
             </div>
         </template>
-
+       
         <div class="3" x-show="showDiv2" x-cloak>
             <h2>Maintenant vas dans la cour de la MDE</h2>
             <input type="checkbox" x-model="isCheckedDiv3" x-init="isCheckedDiv3 = false">

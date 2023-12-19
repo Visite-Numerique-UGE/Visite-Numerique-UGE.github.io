@@ -56,14 +56,24 @@
                   </button>
                 </div>
               </template>
-              <!--
+              
           <template x-if="await andMore(data,id_parcours, step)">
             <button @click="count=0">Fini</button>
           </template>
--->
               <template x-if="await getFieldData(data,id_parcours, step, 3)=='lieu' ">
                 <button @click="await andMore(data,id_parcours, step) ? count=0:count++">J'y suis</button>
               </template>
+
+              <div class="top-banner">
+                <img src="./Logo-Université-Gustave-Eiffel.jpg" alt="Image Gauche" class="left-image" />
+                <img src="./accueil.png" alt="Image Gauche" class="right-image" />
+              </div>
+              <div x-data="{data: getData(2)}" class="center quiz">
+              </div>
+            
+              <div class="bottom-banner">
+                <img src="./logo-map.png" alt="Image Gauche" class="bottom-image" />
+              </div> 
             </div>
             <br />
           </div>
