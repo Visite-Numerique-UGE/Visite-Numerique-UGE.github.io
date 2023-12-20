@@ -102,8 +102,6 @@ function question(id_parcours, step, state) {
         ` </button>\n`;
     }
 
-    let btn_close = `
-    <div class="top-banner"> <div class="close right-image " @click="(state=0, App().page(id_parcours, count, state) )">&times;</div></div>`;
     let _html =
       button_progress +
       `
@@ -115,7 +113,7 @@ function question(id_parcours, step, state) {
                       <h2 x-data="{ message: 'Question' }" x-text="message"></h2>
 </template>
 
- <h3 x-text="await dataFun.getField(1, id_parcours, count, 2)"></h3>`;
+ <p x-text="await dataFun.getField(1, id_parcours, count, 2)"></p>`;
 
     question.innerHTML = _html;
   });
@@ -152,8 +150,9 @@ function answer(id_parcours, step, state) {
                         </button>
                       </div>`;
     } else if (field == "lieu" || field == "anecdote") {
+      let text = field == "lieu" ? "J'y suis" : " > "
       type = `<button @click="( (await quizFun.andMore(id_parcours, count) ? (count = 0, state = 2): count++), console.log('count : ' +count) , App().page(id_parcours, count, state) )">
-                        J'y suis
+                        `+ text + `
                       </button>
                     </template `;
     }
@@ -210,7 +209,6 @@ function map(state) {
 
                       
   <div class="slider-content">
-    <div class="container">
       <div class="card">
         <h2 id="slider-name">Batiment Perault</h2>
         <img id="slider-img" src="" />
@@ -218,39 +216,37 @@ function map(state) {
         <button class="close" id="slider-close">&times;</button>
       </div>
 
+        
+      
+      <div class="menu center">
+            <button class="show" id="show-description"> Description </button>
+            <button class="show" id="show-parcours"> Parcours </button>
+            <button class="show" id="show-event"> Evènement </button>
+      </div>
+
       <div class="card-desc">
-        <p id="slider-description">une description vraiment au pif</p>
+        <div id="slider-description" class="card-item show-description">une description vraiment au pif</div>
+        
+        
+        <div id="slider-parcours-list" class="card-item show-parcours vertical-center">
+          <div id="slider-parcours"></div>
+          <div id="slider-parcours-second"></div>
+        </div>
 
-        <button>></button>
-      </div>
 
-      <div id="slider-parcours-list">
-        <div id="slider-parcours"></div>
-        <div id="slider-parcours-second"></div>
+        <div id="slider-event" class="card-item show-event">Pas d'évènement</div>
       </div>
-    </div>
+      
+
+      
   </div>
 
 
 </div>
 </main>`;
-  /*
-let _html = `<h1>MAP !</h1>
-<button @click="((count = 0, state = 1) , App().page(id_parcours, count, state) )">Aller au parcours</button>`
-*/
   map.innerHTML = _html;
 }
 
-/*
-function setVisibility() {
-  let disp = document.getElementById("hid").style.display;
-  console.log("vis");
-  console.log(disp);
-  console.log("plusvis");
-  document.getElementById("hid").style.display =
-    disp == "contents" ? "none" : "contents";
-}
-*/
 
 export {
   quiz,

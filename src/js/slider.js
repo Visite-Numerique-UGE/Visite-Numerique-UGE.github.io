@@ -38,14 +38,20 @@ document.addEventListener('click', function (e) {
     if (e.target.id == 'slider-close' || e.target.id == 'map') {
         slider.style.visibility = "hidden";
     }
+    else if (e.target.className == 'show') {
+        console.log(e.target.id)
+        let show = document.getElementsByClassName('card-item')
+        console.log(show)
+        for (let item of show) {
+            item.style.display = 'none';
+        }
+        document.getElementsByClassName(e.target.id)[0].style.display = 'block';
+    }
 
     else if (e.target.className == 'parcours' || e.target.className == 'parcours-done') {
 
-
-        console.log(e.target.id)
         save("actual_quiz", e.target.id)
         save(e.target.id, 0)
-        //window.location.replace('quiz.html')
 
 
     }

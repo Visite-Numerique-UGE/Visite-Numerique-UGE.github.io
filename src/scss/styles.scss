@@ -1,60 +1,98 @@
-/*
-
-$secondary-color: #2f2a86;
-$margin: 16px;
-$accentColor: #d2213c;
-$backgroundColor: #efefef;
-$buttonWidth: 75vw;
-$buttonHeight: 2rem;
-$buttonPadding: 1.2rem;
-$buttonFontSize: 0.75rem;
-$buttonLetterSpacing: 0.05rem;
-*/
-$primary-color: #47dff0;
+$primary-color: #1eafd0;
+$primary-color-border: #0097d7;
 $margin: 16px;
 $white: #ffffff;
-$accentColor: #b5a7d7;
+$accentColor: #92c56e;
+$accentColor-border: #00936e;
 $backgroundColor: #e9e9e9;
 $first-color: #2e3494;
 $secondary-color: #94b4c3;
 $buttonWidth: 75vw;
-$buttonHeight: 2rem;
-$buttonPadding: 1.2;
+$buttonHeight: 10%;
+$buttonPadding: 1.2em;
 $buttonFontSize: 0.75rem;
 $buttonLetterSpacing: 0.05rem;
 
-.hid {
-  display: block;
+$generalPadding: 20px;
+$heightSlider: 60vh;
+$heightBanner: min(200px, 15vh);
+$heightNotBanner: calc($heightSlider - $heightBanner);
+
+button {
+  border: 1px solid $primary-color-border;
+  background-color: $primary-color;
+  color: $white;
+  width: 5vw;
+
+  &:not(.hid button) {
+    display: inline;
+    position: relative;
+    color: $white;
+    padding: 5px;
+    margin-top: 15px;
+    width: 25%;
+  }
+
+  &.close {
+    top: 0;
+    right: 0;
+    margin-right: 100px;
+    position: absolute;
+    background-color: transparent;
+    display: block;
+    border: none;
+    cursor: pointer;
+    font-size: 40px;
+    font-weight: 700;
+    //outline:none;
+  }
+}
+#slider-close {
+  top: 0;
+  right: 0px;
+  margin-right: 0px;
+  position: absolute;
 }
 
-html {
-  //slider=document.getElementById("slider");: 10px;
-}
-body {
-  header {
-    h1 {
-      font-size: 3rem;
-      color: blue;
+.hid {
+  display: block;
+
+  .button-borders {
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    margin: 0.75rem;
+
+    button {
+      height: 5vh;
     }
-  }
-  main {
-    //font-size: 2rem;
+
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      width: calc(100% + 0.5em);
+      height: 50%;
+      left: -0.3em;
+      border: 1px solid $secondary-color;
+      z-index: 0;
+    }
+
+    &:before {
+      top: -0.3em;
+      border-bottom: 0px;
+    }
+
+    &:after {
+      bottom: -0.3em;
+      border-top: 0px;
+    }
   }
 }
 
 // Media Queries
-@media screen and (min-width: 1200px) {
-}
 
 @media screen and (max-width: 480px) {
-}
-
-h2 {
-  span {
-    margin: calc($margin / 2);
-  }
-
-  color: $first-color;
 }
 
 .center {
@@ -78,27 +116,15 @@ h2 {
   align-items: center;
   padding-top: 20%;
 }
-#progressbar {
-  background-color: $backgroundColor;
-  border-radius: 13px;
-  padding: 1px;
-  border: 1px solid $accentColor;
-
-  > div {
-    background-color: $accentColor;
-    height: 10px;
-    border-radius: 10px;
-  }
-}
 
 html,
 body {
   font-family: tahoma;
-  margin: 0;
-  height: 100%;
+  height: 100vh;
   font-size: min(4vh, 1rem);
   background-color: $backgroundColor;
   color: $first-color;
+  margin: 0;
 }
 
 /* QUIZ */
@@ -107,7 +133,7 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 7.5%;
   background-color: $first-color;
   z-index: 9999;
@@ -136,99 +162,53 @@ body {
   transform: translateY(-50%);
 }
 
-.bottom-banner {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-
-  height: 7.5%;
-  background-color: $first-color;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  padding-left: 20px;
-}
-
-.bottom-image {
-  max-width: 80px;
-  max-height: 40px;
-  position: absolute;
-  right: 50%;
-  transform: translateX(50%);
-  top: 50%;
-  transform: translateY(-50%);
-}
-
 .answerblock {
   display: grid;
   align-items: center;
   margin-top: 20px;
+
+  button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    width: $buttonWidth;
+    height: $buttonHeight;
+    cursor: pointer;
+    font-size: $buttonFontSize;
+    font-weight: bold;
+    letter-spacing: $buttonLetterSpacing;
+    border: 1px solid $secondary-color;
+    padding: $buttonPadding;
+    background-color: $primary-color;
+    border: 1px solid $primary-color-border;
+    z-index: 1;
+    &:hover {
+      background-color: $accentColor;
+      border: 1px solid $accentColor-border;
+      color: white;
+      background-position: 40%;
+    }
+  }
 }
 
 .questionblock {
   max-width: 90vw;
 }
 
+#question {
+  button[disabled] {
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+  }
+}
+
+#answer {
+}
+
 input {
   width: 30vw;
-}
-
-button {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  width: $buttonWidth;
-  height: $buttonHeight;
-  cursor: pointer;
-  font-size: $buttonFontSize;
-  font-weight: bold;
-  letter-spacing: $buttonLetterSpacing;
-  border: 1px solid $secondary-color;
-  padding: $buttonPadding;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 531.28 200'%3E%3Cdefs%3E%3Cstyle%3E .shape %7B fill: #$accentColor; %7D %3C/style%3E%3C/defs%3E%3Cg id='Layer_2' data-name='Layer 2'%3E%3Cg id='Layer_1-2' data-name='Layer 1'%3E%3Cpolygon class='shape' points='415.81 200 0 200 115.47 0 531.28 0 415.81 200' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E%0A");
-  background-color: $secondary-color;
-  background-size: 200%;
-  background-position: 200%;
-  background-repeat: no-repeat;
-  transition: 0.3s ease-in-out;
-  transition-property: background-position, border, color;
-  z-index: 1;
-
-  &:hover {
-    background-color: $accentColor;
-    color: white;
-    background-position: 40%;
-  }
-}
-
-.button-borders {
-  position: relative;
-  width: fit-content;
-  height: fit-content;
-  margin: 0.75rem;
-
-  &:before,
-  &:after {
-    content: "";
-    position: absolute;
-    width: calc(100% + 0.5em);
-    height: 50%;
-    left: -0.3em;
-    border: 1px solid $secondary-color;
-    z-index: 0;
-  }
-
-  &:before {
-    top: -0.3em;
-    border-bottom: 0px;
-  }
-
-  &:after {
-    bottom: -0.3em;
-    border-top: 0px;
-  }
 }
 
 .shape {
@@ -237,17 +217,6 @@ button {
 
 /*progress bar*/
 
-button[disabled]:hover {
-  border: 1px solid #999999;
-  background-color: #cccccc;
-  color: #666666;
-}
-
-button[disabled] {
-  border: 1px solid #999999;
-  background-color: #cccccc;
-  color: #666666;
-}
 #progress {
   width: 5vw;
   /*margin-right: 5vw;*/
@@ -265,7 +234,7 @@ button[disabled] {
   position: absolute;
   width: 40px;
   height: 40px;
-  background-color: $accentColor;
+  background-color: $primary-color;
   border-radius: 50% 50% 50% 0%;
   transform: rotate(-45deg);
 }
@@ -287,40 +256,122 @@ button[disabled] {
   /* Ajoutez cette ligne pour définir le z-index de la carte */
 }
 
-/*
-#slider {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 90%;
-    background-color: $backgroundColor;
-    color: $secondary-color;
-    padding: 10px;
-    box-sizing: border-box;
-    cursor: pointer;
-    z-index: 102;
-    display: flex;
-    visibility: hidden;
-}*/
+/* */
 
-/* -------- SLIDER -------- */
+/* ------------------------ SLIDER ------------------------ */
 #slider {
   box-sizing: border-box;
   z-index: 102;
   visibility: hidden;
-
   background: $white;
   width: 100%;
-  display: flex;
-  height: max-content;
+  height: $heightSlider;
   position: absolute;
-  bottom: 7.5%;
-  background-color: $backgroundColor; //rgba(255, 255, 255, 1);
+  bottom: 0;
+  background-color: $white; //rgba(255, 255, 255, 1);
   transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 
   & > div {
     width: 100%;
+
+    height: 100%;
+  }
+
+  .slider-content {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+
+    *:not(button) {
+      position: relative;
+      width: 100%;
+      display: block;
+    }
+
+    .card {
+      top: 0;
+      height: $heightBanner;
+      background-color: $first-color;
+      overflow: hidden;
+
+      border-radius: 10px 10px 0px 0px;
+
+      &-desc {
+        border-radius: 0px;
+        height: calc($heightNotBanner - (4 * $generalPadding) - 4 * 5px);
+        display: block;
+
+        overflow-y: scroll;
+
+        border-bottom: $generalPadding solid white;
+
+        border-top: $generalPadding solid white;
+        .card-item {
+          display: none;
+        }
+
+        p {
+          color: #333;
+          opacity: 0.9;
+          font-size: 10hv;
+          letter-spacing: 1px;
+        }
+      }
+
+      h2 {
+        position: absolute;
+        pointer-events: none;
+        z-index: 99;
+        font-family: "Poppins", sans-serif;
+        bottom: -20px;
+        margin-left: 20px;
+        font-size: 30px;
+        font-weight: 700;
+        color: #fff;
+      }
+    }
+
+    .parcours {
+      width: 90%;
+      justify-content: center;
+      align-items: center;
+
+      &-done {
+        @extend .parcours;
+      }
+    }
+  }
+  &-description {
+    margin: 0;
+    top: 0px;
+    background: #fff;
+    padding: 0px calc(2 * $generalPadding);
+    max-width: calc(100% - 4 * $generalPadding);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &-parcours-list {
+    @extend #slider-description;
+
+    button {
+      width: calc(100% - $generalPadding * 2);
+    }
+  }
+
+  &-event {
+    @extend #slider-description;
+    display: none;
+  }
+
+  &-img {
+    position: absolute;
+    top: -100px;
+    width: 100%;
+    //background-size: 100% 100%;
   }
 }
 
@@ -329,106 +380,37 @@ button[disabled] {
   margin-left: 10px;
 }
 
-.slider-content {
-  background-color: pink;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  bottom: 7.5%;
-  height: max-content;
-  position: absolute;
+@media screen and (min-width: 1200px) {
+  $heightSlider: 100vh;
+  $heightNotBanner: calc($heightSlider - $heightBanner);
+  #slider {
+    max-width: 450px;
+    background-color: $white;
+    height: calc($heightNotBanner + 7.5%);
 
-  & > div {
-    width: 100%;
-  }
-
-  .container {
-    border: 1px solid gray;
-  }
-  .card {
-    position: relative;
-    height: 200px;
-    background-color: #fff;
-    overflow: hidden;
-    border-bottom: 1px solid gray;
-
-    &-desc {
-      @extend .card;
-
-      height: 250px;
-      padding: 23px;
-      //height: fit-content;
-
-      #slider-description {
-        max-height: 224px;
-        overflow: auto;
-        background: #fff;
-      }
-
-      p {
-        z-index: 99;
-        position: absolute;
-        color: #333;
-        opacity: 0.7;
-        font-size: 10hv;
-        letter-spacing: 1px;
-      }
-
-      button {
-        position: absolute;
-        right: 14px;
-        bottom: 14px;
-        width: min(10vh, 50px);
-        height: min(10vh, 50px);
-        border: none;
-        cursor: pointer;
-        background-color: transparent;
-        font-size: 40px;
-        font-weight: 700;
-        color: black;
-        //outline:none;
+    * {
+      &:not(#slider-close, .menu > *) {
+        width: 100%;
       }
     }
 
-    h2 {
-      pointer-events: none;
-      z-index: 99;
-      font-family: "Poppins", sans-serif;
-      position: absolute;
-      bottom: 0;
-      margin-left: 20px;
-      font-size: 40px;
-      font-weight: 700;
-      color: #fff;
+    &-description {
+      max-width: calc(100% - 2 * $generalPadding);
     }
 
-    #slider-img {
-      z-index: 100;
-
+    &-img {
+      position: relative;
+      top: -150px;
       width: 100%;
-      //background-image: url($img-url);
-      background-size: 100% 100%;
+      //background-size: 100% 100%;
     }
-    button {
-      position: absolute;
-      right: 0px;
-      bottom: 14px;
-      width: min(10vh, 50px);
-      height: min(10vh, 50px);
-      border: none;
-      cursor: pointer;
-      background-color: transparent;
-      font-size: 40px;
-      font-weight: 700;
-      //outline:none;
-    }
+  }
 
-    .close {
-      right: 0px;
-      color: white;
-      top: 14px;
+  .slider-content {
+    top: 0px;
+
+    .card {
+      border-radius: 0px 0px 0px 0px;
     }
   }
 }
