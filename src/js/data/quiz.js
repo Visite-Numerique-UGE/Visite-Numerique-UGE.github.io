@@ -213,7 +213,7 @@ function map(state) {
                         <p id="slider-description"></p>
                         <div id="slider-parcours"></div>
                         <div id="slider-parcours-second"></div>
-                        <button>Y aller</button>
+                        <div id="slider-go-div"></div>
                       </div>
                   </div>
                   </main>`

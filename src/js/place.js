@@ -1,4 +1,6 @@
-export const places = async () => {
+let places = getPlaces();
+
+async function getPlaces(){
     try {
         let SHEET_ID = "1ENhL6EfZIEraeUmJafmKlN-FIYWMvw920LFmcIa5Hp8";
         let SHEET_TITLE = "place";
@@ -14,3 +16,7 @@ export const places = async () => {
         throw error;
       }
     };
+
+export{
+    places
+}
