@@ -9,21 +9,39 @@ $first-color: #2e3494;
 $secondary-color: #94b4c3;
 $buttonWidth: 75vw;
 $buttonHeight: 10%;
-$buttonPadding: 1.2em;
+$buttonPadding: 3svh;
 $buttonFontSize: 0.75rem;
 $buttonLetterSpacing: 0.05rem;
 
 $generalPadding: 20px;
-$heightSlider: 60vh;
-$heightBanner: min(200px, 15vh);
+$heightSlider: 60svh;
+$heightBanner: min(200px, 15svh);
 $heightNotBanner: calc($heightSlider - $heightBanner);
+html,
+body {
+  font-family: tahoma;
+  height: 90svh;
+  font-size: min(4svh, 1rem);
+  background-color: $backgroundColor;
+  color: $first-color;
+  margin: 0;
+  padding: 0;
+  height: 100svh;
+}
 
 button {
   border: 1px solid $primary-color-border;
   background-color: $primary-color;
   color: $white;
   width: 5vw;
+  width: fit-content;
   border-radius: 3px;
+  &:hover {
+    background-color: $accentColor;
+    border: 1px solid $accentColor-border;
+    color: white;
+    background-position: 40%;
+  }
 
   &:not(.hid button) {
     display: inline;
@@ -65,7 +83,7 @@ button {
     margin: 0.75rem;
 
     button {
-      height: 5vh;
+      height: 5svh;
     }
 
     &:before,
@@ -111,23 +129,54 @@ button {
 
 .quiz {
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  display: grid;
+  place-items: center;
   align-items: center;
-  padding-top: 10%;
+
+  .progress {
+    display: table;
+    max-width: 80vw;
+    position: absolute;
+    text-align: center;
+    top: 10%;
+    button {
+      width: 50%;
+      display: table-cell;
+    }
+  }
+
+  .questionblock {
+    max-width: 80vw;
+    text-align: center;
+  }
+
+  .title-quiz {
+    position: fixed;
+    top: 22.5svh;
+    width: 80vw;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .question-quiz {
+    @extend .title-quiz;
+    width: 70vw;
+
+    margin-right: 5vw;
+    margin-left: 5vw;
+    top: 30svh;
+    p {
+      text-align: justify;
+    }
+  }
 }
 
-html,
-body {
-  font-family: tahoma;
-  height: 100vh;
-  font-size: min(4vh, 1rem);
-  background-color: $backgroundColor;
-  color: $first-color;
-  margin: 0;
+#endPage {
+  @extend .quiz;
 }
-
 /* QUIZ */
 
 .top-banner {
@@ -165,8 +214,8 @@ body {
 
 .answerblock {
   display: grid;
-  align-items: center;
-  margin-top: 20px;
+  margin-top: 30svh;
+  bottom: 0px;
 
   button {
     display: inline-flex;
@@ -180,7 +229,7 @@ body {
     font-weight: bold;
     letter-spacing: $buttonLetterSpacing;
     border: 1px solid $secondary-color;
-    padding: $buttonPadding;
+    padding: $buttonPadding calc($buttonPadding / 2);
     background-color: $primary-color;
     border: 1px solid $primary-color-border;
     z-index: 1;
@@ -190,12 +239,6 @@ body {
       color: white;
       background-position: 40%;
     }
-  }
-}
-
-.questionblock {
-  max-width: 80vw;
-  progresss {
   }
 }
 
@@ -256,7 +299,7 @@ input {
 }
 
 #map {
-  height: 100vh;
+  height: 100svh;
   z-index: 1;
   /* Ajoutez cette ligne pour définir le z-index de la carte */
 }
@@ -284,6 +327,7 @@ input {
   background-color: $white; //rgba(255, 255, 255, 1);
   transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 
+  overflow: hidden;
   & > div {
     width: 100%;
 
@@ -306,7 +350,7 @@ input {
     .card {
       top: 0;
       height: $heightBanner;
-      background-color: $first-color;
+      background-color: black;
       overflow: hidden;
 
       border-radius: 10px 10px 0px 0px;
@@ -385,6 +429,9 @@ input {
     top: -100px;
     width: 100%;
     //background-size: 100% 100%;
+    & {
+      -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 90%);
+    }
   }
 }
 
@@ -394,7 +441,7 @@ input {
 }
 
 @media screen and (min-width: 1200px) {
-  $heightSlider: 100vh;
+  $heightSlider: 100svh;
   $heightNotBanner: calc($heightSlider - $heightBanner);
   #slider {
     max-width: 450px;

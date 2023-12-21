@@ -89,7 +89,7 @@ function question(id_parcours, step, state) {
   let progress = Math.max(_data_.isEmpty_localStorage(id_parcours, true), step);
 
   nb.then((nb) => {
-    let button_progress = "";
+    let button_progress = `<div class="progress">`;
     for (let i = 0; i < nb; i++) {
       let disabled = progress >= i ? "" : "disabled";
       button_progress +=
@@ -101,18 +101,22 @@ function question(id_parcours, step, state) {
         (i + 1) +
         ` </button>\n`;
     }
+    button_progress += `</div>`;
     let _html =
       button_progress +
-      `
+      `<div class="title-quiz">
 <template x-if="await dataFun.getField(1,id_parcours, count, 3)=='lieu' ">
-                      <h2 x-data="{ message: 'Lieu' }" x-text="message"></h2>
+                      <h2 class="center" x-data="{ message: 'Lieu' }" x-text="message"></h2>
 </template>
 
 <template x-if="await dataFun.getField(1,id_parcours, count, 3)=='multiple' || await dataFun.getField(1,id_parcours, count, 3)=='saisie' " >
                       <h2 class="center" x-data="{ message: 'Question' }" x-text="message"></h2>
-</template>
+</template></div>
 
- <p class="center" x-text="await dataFun.getField(1, id_parcours, count, 2)"></p>`;
+ <div class="question-quiz"> 
+ <p class="center" x-text="await dataFun.getField(1, id_parcours, count, 2)"></p>
+ 
+ </div>`;
 
     question.innerHTML = `<div class="questionblock">` + _html + `</div>`;
   });
@@ -130,7 +134,7 @@ function answer(id_parcours, step, state) {
       type = `<!-- CAS CHOIX MULTIPLE-->
                   <template x-for="i in 4">
                         <div class="button-borders">
-                          <button
+                          <button  class="answer-quiz" :id="$id('text-input')"
                             x-text="await quizFun.randomAnswer(id_parcours, count, (await dataFun.getField(1,id_parcours, count, 3)=='multiple') ? i : -1, true)"
                             @click="if(await quizFun.verification(quizFun.randomAnswer(id_parcours, count, (await dataFun.getField(1,id_parcours, count, 3)=='multiple') ? i : -1),  id_parcours, count))
                             ( (await quizFun.andMore(id_parcours, count) ? (count = 0, state = 2): count++) , App().page(id_parcours, count, state) )"
@@ -150,7 +154,8 @@ function answer(id_parcours, step, state) {
                       </div>`;
     } else if (field == "lieu" || field == "anecdote") {
       let text = field == "lieu" ? "J'y suis" : " > "
-      type = `<button @click="( (await quizFun.andMore(id_parcours, count) ? (count = 0, state = 2): count++), console.log('count : ' +count) , App().page(id_parcours, count, state) )">
+      type = `<button style="
+    margin: 0.75rem;" @click="( (await quizFun.andMore(id_parcours, count) ? (count = 0, state = 2): count++), console.log('count : ' +count) , App().page(id_parcours, count, state) )">
                         `+ text + `
                       </button>
                     </template `;
@@ -173,13 +178,17 @@ function answer(id_parcours, step, state) {
 function endPage(id_parcours, state) {
   let endPage = document.getElementById("endPage");
   endPage.innerHTML = "";
+  endPage.style.visibility = "hidden"
   if (state != 2) {
     return;
   }
 
-  let _html = `<h1>Bravo !</h1>
+  endPage.style.visibility = "visible";
 
-<button @click="((count = 0, state = 0, id_parcours = quizFun.getQuiz() ) , App().page(id_parcours, count, state) )">Retourner sur la carte</button>`;
+  let _html = `<div class="center"><h1>Bravo !</h1></div><br>
+<div class="center">
+<button @click="((count = 0, state = 0, id_parcours = quizFun.getQuiz() ) , App().page(id_parcours, count, state) )">Retourner sur la carte</button>
+</div>`;
 
   endPage.innerHTML = _html;
 }
@@ -209,8 +218,8 @@ function map(state) {
                       
   <div class="slider-content">
       <div class="card">
-        <h2 id="slider-name">Batiment Perault</h2>
-        <img id="slider-img" src="" />
+        <h2 id="slider-name"></h2>
+        <img id="slider-img" src="" alt=""/>
 
         <button class="close" id="slider-close">&times;</button>
       </div>
@@ -246,6 +255,17 @@ function map(state) {
 </main>`;
   map.innerHTML = _html;
 }
+
+document.addEventListener('click', function (e) {
+
+  console.log("LISTEN")
+  if (e.target.className == 'answer-quiz') {
+    console.log("TROUVE")
+    let button = document.getElementById(e.target.id);
+    button.style.backgroundColor = "rgb(210, 33, 60)";
+    console.log(e.target.id)
+  }
+}, false);
 
 
 export {

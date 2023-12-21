@@ -8,8 +8,7 @@
     <meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)" />
     <!--<link rel="icon" type="image/svg+xml" href="favicon.svg" />-->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <title>Quiz</title>
-    <!--<link defer rel="stylesheet" href="./src/css/temp.css" />-->
+    <title>UG Explorer</title>
   </head>
   <body>
     <div id="app" x-data="App()">
@@ -40,12 +39,19 @@
                     <!-- FIN QUIZ -->
 
                     <!-- PAGE FIN QUIZ-->
-                    <div class="center" id="endPage" x-data="quizFun.endPage(id_parcours, state)"></div>
+                    <div id="endPage" x-data="quizFun.endPage(id_parcours, state)"></div>
                     <!-- FIN PAGE FIN QUIZ-->
                   </div>
                   <div class="top-banner">
-                    <img src="./images/Logo-Université-Gustave-Eiffel.jpg" alt="Image Gauche" class="left-image" />
-                    <span class="hid"><button class="close" @click="(state=0, App().page(id_parcours, count, state) )">&times;</button></span>
+                    <img
+                      src="./images/Logo-Université-Gustave-Eiffel.jpg"
+                      alt="Image Gauche"
+                      class="left-image"
+                      @click="(App().page(id_parcours, count, state) )"
+                    />
+                    <span class="hid"
+                      ><img src="./images/accueil.png" class="right-image" @click="(state=0, App().page(id_parcours, count, state) )"
+                    /></span>
                   </div>
                   <!--<div x-data="{data: getData(2)}" class="center quiz">
                   </div>-->
