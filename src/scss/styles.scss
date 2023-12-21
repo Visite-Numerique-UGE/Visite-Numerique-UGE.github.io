@@ -9,19 +9,19 @@ $first-color: #2e3494;
 $secondary-color: #94b4c3;
 $buttonWidth: 75vw;
 $buttonHeight: 10%;
-$buttonPadding: 3vh;
+$buttonPadding: 3svh;
 $buttonFontSize: 0.75rem;
 $buttonLetterSpacing: 0.05rem;
 
 $generalPadding: 20px;
-$heightSlider: 60vh;
-$heightBanner: min(200px, 15vh);
+$heightSlider: 60svh;
+$heightBanner: min(200px, 15svh);
 $heightNotBanner: calc($heightSlider - $heightBanner);
 html,
 body {
   font-family: tahoma;
-  height: 90vh;
-  font-size: min(4vh, 1rem);
+  height: 90svh;
+  font-size: min(4svh, 1rem);
   background-color: $backgroundColor;
   color: $first-color;
   margin: 0;
@@ -83,7 +83,7 @@ button {
     margin: 0.75rem;
 
     button {
-      height: 5vh;
+      height: 5svh;
     }
 
     &:before,
@@ -155,7 +155,7 @@ button {
 
   .title-quiz {
     position: fixed;
-    top: 22.5vh;
+    top: 22.5svh;
     width: 80vw;
     margin-right: auto;
     margin-left: auto;
@@ -167,7 +167,7 @@ button {
 
     margin-right: 5vw;
     margin-left: 5vw;
-    top: 30vh;
+    top: 30svh;
     p {
       text-align: justify;
     }
@@ -214,7 +214,7 @@ button {
 
 .answerblock {
   display: grid;
-  margin-top: 30vh;
+  margin-top: 30svh;
   bottom: 0px;
 
   button {
@@ -299,7 +299,7 @@ input {
 }
 
 #map {
-  height: 100vh;
+  height: 100svh;
   z-index: 1;
   /* Ajoutez cette ligne pour définir le z-index de la carte */
 }
@@ -441,7 +441,7 @@ input {
 }
 
 @media screen and (min-width: 1200px) {
-  $heightSlider: 100vh;
+  $heightSlider: 100svh;
   $heightNotBanner: calc($heightSlider - $heightBanner);
   #slider {
     max-width: 450px;
