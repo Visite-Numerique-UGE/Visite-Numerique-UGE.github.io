@@ -143,10 +143,10 @@ function answer(id_parcours, step, state) {
                       </template >`;
     } else if (field == "saisie") {
       type = `<!-- CAS SAISIE -->
-                      <div x-data="{ res: '' }">
-                        <input type="text" x-model="res" />
+                      <div style="margin: 0.75rem;" x-data="{ res: '' }">
+                        <input  type="text" x-model="res" />
                         <br /><br />
-                        <button
+                        <button 
                           @click="if(await quizFun.verification(res,  id_parcours, count))
                           ( (await quizFun.andMore(id_parcours, count) ? (count = 0, state = 2): count++) , App().page(id_parcours, count, state) )">
                           Valider
@@ -229,7 +229,7 @@ function map(state) {
       <div class="menu center">
             <button class="show" id="show-description"> Description </button>
             <button class="show" id="show-parcours"> Parcours </button>
-            <button class="show" id="show-event"> Evènement </button>
+            <button class="show" id="show-event"> Événements </button>
           <div id="slider-go-div"></div>
       </div>
 

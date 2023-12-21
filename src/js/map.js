@@ -44,7 +44,7 @@ export default () => {
         L.latLng(48.844, 2.595)
       );
 
-      __map.setMaxBounds(bounds);
+      //__map.setMaxBounds(bounds);
 
       __map.on("drag", () => {
         let currentBounds = __map.getBounds();

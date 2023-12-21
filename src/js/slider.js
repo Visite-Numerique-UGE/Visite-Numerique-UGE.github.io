@@ -72,7 +72,8 @@ document.addEventListener('click', function (e) {
         if (e.target.className == 'marker-background') {
             e.target.style.backgroundColor = "#d2213c";
         }
-        else bgColor = e.target.parentNode.style.backgroundColor = "#d2213c";
+        else if (e.target.className == 'marker-image')
+            bgColor = e.target.parentNode.style.backgroundColor = "#d2213c";
     }
 }, false);
 
