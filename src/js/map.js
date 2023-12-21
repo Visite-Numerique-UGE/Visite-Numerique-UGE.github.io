@@ -35,7 +35,7 @@ export default () => {
           attribution:
             '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
           minZoom: 16,
-          maxZoom: 18,
+          maxZoom: 18,  
         }
       ).addTo(__map);
 
@@ -43,9 +43,6 @@ export default () => {
         L.latLng(48.836, 2.572),
         L.latLng(48.844, 2.595)
       );
-
-     __map.setMaxBounds(bounds);
-
       __map.on("drag", () => {
         let currentBounds = __map.getBounds();
         if (!bounds.contains(currentBounds)) {
@@ -53,6 +50,18 @@ export default () => {
         }
       });
       this.placeMarkers();
+
+    var maskPolygonCoords  = L.polygon([
+      [48.84234454154177, 2.573352561582853],
+      [48.84102153853708, 2.573803663663745],
+      [48.84161530792168, 2.582230061848677],
+      [48.83491529836199, 2.5837269669108083],
+      [48.833856638925006, 2.593346563406754],
+      [48.84254497446358, 2.595501110303805],
+      [48.843383768473544, 2.5888857410083177],
+      [48.843403739598976, 2.5831807436851104]
+  ]).addTo(__map);
+
     },
     page(id_parcours, step, state) {
       _data_.save("state", state);
