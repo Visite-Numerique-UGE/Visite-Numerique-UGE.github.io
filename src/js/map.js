@@ -51,16 +51,16 @@ export default () => {
       });
       this.placeMarkers();
 
-    var maskPolygonCoords  = L.polygon([
-      [48.84234454154177, 2.573352561582853],
-      [48.84102153853708, 2.573803663663745],
-      [48.84161530792168, 2.582230061848677],
-      [48.83491529836199, 2.5837269669108083],
-      [48.833856638925006, 2.593346563406754],
-      [48.84254497446358, 2.595501110303805],
-      [48.843383768473544, 2.5888857410083177],
-      [48.843403739598976, 2.5831807436851104]
-  ]).addTo(__map);
+  //   var maskPolygonCoords  = L.polygon([
+  //     [48.84234454154177, 2.573352561582853],
+  //     [48.84102153853708, 2.573803663663745],
+  //     [48.84161530792168, 2.582230061848677],
+  //     [48.83491529836199, 2.5837269669108083],
+  //     [48.833856638925006, 2.593346563406754],
+  //     [48.84254497446358, 2.595501110303805],
+  //     [48.843383768473544, 2.5888857410083177],
+  //     [48.843403739598976, 2.5831807436851104]
+  // ]).addTo(__map);
 
     },
     page(id_parcours, step, state) {
@@ -92,8 +92,11 @@ export default () => {
           L.marker([place.c[5].v, place.c[4].v], { icon: customIcon })
             .addTo(__map)
             .on("click", (e) => {
-              __map.setView([e.latlng.lat - 0.001, e.latlng.lng], 18);
+              __map.setView([e.latlng.lat - 0.00075, e.latlng.lng], 18);
               if (route != null) __map.removeControl(route);
+              //marker color change
+              let markers = document.querySelectorAll(".marker-background");
+              e.className = "marker-background-active";
             })
             .addTo(__map);
         });
