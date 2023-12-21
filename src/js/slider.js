@@ -2,6 +2,7 @@ import { parcours_liste } from "./parcours.js";
 import { places } from "./place.js";
 import { isEmpty_localStorage, save } from "./data/data.js"
 import { getUserLocation } from "./location.js"
+import { marker } from "leaflet";
 
 let slider = document.getElementById("slider");
 let data_parcours = await parcours_liste();
@@ -35,9 +36,11 @@ function fillSlider() {
 
 //eventListener pour afficher le slider
 document.addEventListener('click', function (e) {
-    slider = document.getElementById("slider");
+    slider = document.getElementById("slider");  
     if (e.target.id == 'slider-close' || e.target.id == 'map') {
         slider.style.visibility = "hidden";
+        changeMarkersColor();
+        
     }
     else if (e.target.className == 'show') {
         console.log(e.target.id)
@@ -55,8 +58,13 @@ document.addEventListener('click', function (e) {
 
 
     }
-    else if (e.target.className == 'marker-image' || e.target.id != 'map') {
+    else if (e.target.className == 'marker-image' || e.target.id != 'map' || e.target.className == 'marker-background') {
         fillSlider();
+        changeMarkersColor();
+        if (e.target.className == 'marker-background') {
+                 e.target.style.backgroundColor = "#d2213c";
+             }
+        else bgColor = e.target.parentNode.style.backgroundColor = "#d2213c";
     }
 }, false);
 
@@ -70,6 +78,13 @@ function isInMap(p) {
             sliderGo.style.display = "none";
         }
     });
+}
+
+function changeMarkersColor() {
+    let markers = document.querySelectorAll(".marker-background");
+        for (let marker of markers) {
+            marker.style.backgroundColor = "#1eafd0";
+        }
 }
 
 
