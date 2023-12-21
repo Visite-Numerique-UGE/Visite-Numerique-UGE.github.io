@@ -134,7 +134,7 @@ function answer(id_parcours, step, state) {
       type = `<!-- CAS CHOIX MULTIPLE-->
                   <template x-for="i in 4">
                         <div class="button-borders">
-                          <button
+                          <button  class="answer-quiz" :id="$id('text-input')"
                             x-text="await quizFun.randomAnswer(id_parcours, count, (await dataFun.getField(1,id_parcours, count, 3)=='multiple') ? i : -1, true)"
                             @click="if(await quizFun.verification(quizFun.randomAnswer(id_parcours, count, (await dataFun.getField(1,id_parcours, count, 3)=='multiple') ? i : -1),  id_parcours, count))
                             ( (await quizFun.andMore(id_parcours, count) ? (count = 0, state = 2): count++) , App().page(id_parcours, count, state) )"
@@ -255,6 +255,17 @@ function map(state) {
 </main>`;
   map.innerHTML = _html;
 }
+
+document.addEventListener('click', function (e) {
+
+  console.log("LISTEN")
+  if (e.target.className == 'answer-quiz') {
+    console.log("TROUVE")
+    let button = document.getElementById(e.target.id);
+    button.style.backgroundColor = "rgb(210, 33, 60)";
+    console.log(e.target.id)
+  }
+}, false);
 
 
 export {

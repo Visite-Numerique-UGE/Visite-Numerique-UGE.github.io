@@ -161,8 +161,14 @@ button {
 
   .question-quiz {
     @extend .title-quiz;
+    width: 70vw;
 
+    margin-right: 5vw;
+    margin-left: 5vw;
     top: 30vh;
+    p {
+      text-align: justify;
+    }
   }
 }
 
@@ -206,7 +212,6 @@ button {
 
 .answerblock {
   display: grid;
-  align-items: center;
   margin-top: 30vh;
   bottom: 0px;
 
