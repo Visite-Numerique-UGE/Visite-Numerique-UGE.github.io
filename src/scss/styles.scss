@@ -9,7 +9,7 @@ $first-color: #2e3494;
 $secondary-color: #94b4c3;
 $buttonWidth: 75vw;
 $buttonHeight: 10%;
-$buttonPadding: 1.2em;
+$buttonPadding: 3vh;
 $buttonFontSize: 0.75rem;
 $buttonLetterSpacing: 0.05rem;
 
@@ -25,6 +25,9 @@ body {
   background-color: $backgroundColor;
   color: $first-color;
   margin: 0;
+  padding: 0;
+  width: 100vh;
+  height: 100vh;
 }
 
 button {
