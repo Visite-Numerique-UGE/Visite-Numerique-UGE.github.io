@@ -115,7 +115,7 @@ button {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding-top: 10%;
+  margin-top: 10%;
 }
 
 html,
@@ -307,7 +307,7 @@ input {
     .card {
       top: 0;
       height: $heightBanner;
-      background-color: $first-color;
+      background-color: black;
       overflow: hidden;
 
       border-radius: 10px 10px 0px 0px;
@@ -386,6 +386,9 @@ input {
     top: -100px;
     width: 100%;
     //background-size: 100% 100%;
+    & {
+      -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 90%);
+    }
   }
 }
 
