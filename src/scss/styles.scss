@@ -115,7 +115,7 @@ button {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding-top: 20%;
+  padding-top: 10%;
 }
 
 html,
@@ -194,7 +194,9 @@ body {
 }
 
 .questionblock {
-  max-width: 90vw;
+  max-width: 80vw;
+  progresss {
+  }
 }
 
 #question {
@@ -219,7 +221,9 @@ input {
 /*progress bar*/
 
 #progress {
-  width: 5vw;
+  width: 10vw;
+  padding: 2.5px;
+  margin: 2.5px;
   /*margin-right: 5vw;*/
 }
 
@@ -401,7 +405,7 @@ input {
 
     &-img {
       position: relative;
-      top: -150px;
+      top: -50px;
       width: 100%;
       //background-size: 100% 100%;
     }

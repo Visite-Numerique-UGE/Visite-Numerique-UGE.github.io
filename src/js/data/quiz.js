@@ -101,7 +101,6 @@ function question(id_parcours, step, state) {
         (i + 1) +
         ` </button>\n`;
     }
-
     let _html =
       button_progress +
       `
@@ -110,12 +109,12 @@ function question(id_parcours, step, state) {
 </template>
 
 <template x-if="await dataFun.getField(1,id_parcours, count, 3)=='multiple' || await dataFun.getField(1,id_parcours, count, 3)=='saisie' " >
-                      <h2 x-data="{ message: 'Question' }" x-text="message"></h2>
+                      <h2 class="center" x-data="{ message: 'Question' }" x-text="message"></h2>
 </template>
 
- <p x-text="await dataFun.getField(1, id_parcours, count, 2)"></p>`;
+ <p class="center" x-text="await dataFun.getField(1, id_parcours, count, 2)"></p>`;
 
-    question.innerHTML = _html;
+    question.innerHTML = `<div class="questionblock">` + _html + `</div>`;
   });
 }
 
