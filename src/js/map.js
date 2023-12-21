@@ -6,7 +6,7 @@ import * as _quiz_ from "./data/quiz.js";
 import * as _data_ from "./data/data.js";
 import { getUserLocation } from "./location.js";
 
-let __map ;
+let __map;
 let route = null;
 
 export default () => {
@@ -24,7 +24,7 @@ export default () => {
     _quiz: _quiz_,
     _data: _data_,
     init() {
-  
+
       __map = L.map("map", { zoomControl: false }).setView(
         [48.839623875988806, 2.588503717609941],
         17
@@ -44,7 +44,7 @@ export default () => {
         L.latLng(48.844, 2.595)
       );
 
-     __map.setMaxBounds(bounds);
+      __map.setMaxBounds(bounds);
 
       __map.on("drag", () => {
         let currentBounds = __map.getBounds();
@@ -83,7 +83,7 @@ export default () => {
           L.marker([place.c[5].v, place.c[4].v], { icon: customIcon })
             .addTo(__map)
             .on("click", (e) => {
-              __map.setView([e.latlng.lat - 0.001, e.latlng.lng], 18);
+              __map.setView([e.latlng.lat - 0.00075, e.latlng.lng], 18);
               if (route != null) __map.removeControl(route);
             })
             .addTo(__map);
@@ -132,7 +132,7 @@ export default () => {
           }).addTo(__map);
           //set view at the center between the user and the place
           console.log();
-          __map.setView([(Number(userLocation.lat) + Number(place.c[5].v))/2,(Number(userLocation.lng) + Number(place.c[4].v))/2], 10);
+          __map.setView([(Number(userLocation.lat) + Number(place.c[5].v)) / 2, (Number(userLocation.lng) + Number(place.c[4].v)) / 2], 10);
         });
       });
     },

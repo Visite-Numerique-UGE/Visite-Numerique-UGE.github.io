@@ -30,6 +30,14 @@ function fillSlider() {
         sliderDescription.innerHTML = p.c[2].v;
         sliderImage.src = p.c[6].v;
         slider.style.visibility = "visible";
+
+        let show = document.getElementsByClassName('card-item')
+        console.log(show)
+        for (let item of show) {
+            item.style.display = 'none';
+        }
+
+        document.getElementById("slider-description").style.display = 'block';
     });
 }
 

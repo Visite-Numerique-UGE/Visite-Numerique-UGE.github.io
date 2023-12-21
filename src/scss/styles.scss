@@ -278,12 +278,13 @@ input {
   visibility: hidden;
   background: $white;
   width: 100%;
-  //height: $heightSlider;
+  height: $heightSlider;
   position: absolute;
   bottom: 0;
   background-color: $white; //rgba(255, 255, 255, 1);
   transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 
+  overflow: hidden;
   & > div {
     width: 100%;
 
