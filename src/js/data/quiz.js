@@ -177,9 +177,10 @@ function endPage(id_parcours, state) {
     return;
   }
 
-  let _html = `<h1>Bravo !</h1>
-
-<button @click="((count = 0, state = 0, id_parcours = quizFun.getQuiz() ) , App().page(id_parcours, count, state) )">Retourner sur la carte</button>`;
+  let _html = `<div class="center"><h1>Bravo !</h1></div><br>
+<div class="center">
+<button @click="((count = 0, state = 0, id_parcours = quizFun.getQuiz() ) , App().page(id_parcours, count, state) )">Retourner sur la carte</button>
+</div>`;
 
   endPage.innerHTML = _html;
 }
