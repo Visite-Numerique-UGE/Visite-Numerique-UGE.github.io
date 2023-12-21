@@ -23,6 +23,7 @@ button {
   background-color: $primary-color;
   color: $white;
   width: 5vw;
+  border-radius: 3px;
 
   &:not(.hid button) {
     display: inline;
@@ -395,7 +396,7 @@ input {
     }
 
     &-description {
-      max-width: calc(100% - 2 * $generalPadding);
+      max-width: calc(100% - 4 * $generalPadding);
     }
 
     &-img {
