@@ -8,8 +8,7 @@
     <meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)" />
     <!--<link rel="icon" type="image/svg+xml" href="favicon.svg" />-->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <title>Quiz</title>
-    <!--<link defer rel="stylesheet" href="./src/css/temp.css" />-->
+    <title>UG Explorer</title>
   </head>
   <body>
     <div id="app" x-data="App()">
@@ -44,7 +43,12 @@
                     <!-- FIN PAGE FIN QUIZ-->
                   </div>
                   <div class="top-banner">
-                    <img src="./images/Logo-Université-Gustave-Eiffel.jpg" alt="Image Gauche" class="left-image" />
+                    <img
+                      src="./images/Logo-Université-Gustave-Eiffel.jpg"
+                      alt="Image Gauche"
+                      class="left-image"
+                      @click="(App().page(id_parcours, count, state) )"
+                    />
                     <span class="hid"
                       ><img src="./images/accueil.png" class="close right-image" @click="(state=0, App().page(id_parcours, count, state) )"
                     /></span>

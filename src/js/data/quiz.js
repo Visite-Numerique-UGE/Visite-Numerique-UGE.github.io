@@ -210,7 +210,7 @@ function map(state) {
   <div class="slider-content">
       <div class="card">
         <h2 id="slider-name">Batiment Perault</h2>
-        <img id="slider-img" src="" />
+        <img id="slider-img" src="" alt=""/>
 
         <button class="close" id="slider-close">&times;</button>
       </div>
