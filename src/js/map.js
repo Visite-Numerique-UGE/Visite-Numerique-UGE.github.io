@@ -6,7 +6,8 @@ import * as _quiz_ from "./data/quiz.js";
 import * as _data_ from "./data/data.js";
 import { getUserLocation } from "./location.js";
 
-var __map ;
+let __map ;
+let route = null;
 
 export default () => {
   return {
@@ -14,10 +15,10 @@ export default () => {
       locale: document.querySelector("html").getAttribute("lang"),
     },
     data: {
-      map: null,
+      //map: null,
       i18n: {},
-      places: [],
-      parcours: [],
+      //places: [],
+      //parcours: [],
       //slider: ''
     },
     _quiz: _quiz_,
@@ -38,23 +39,15 @@ export default () => {
         }
       ).addTo(__map);
 
-      var bounds = L.latLngBounds(
+      let bounds = L.latLngBounds(
         L.latLng(48.836, 2.572),
         L.latLng(48.844, 2.595)
       );
 
-      __map.setMaxBounds(bounds);
-
-      __map.on("zoomend", () => {
-        if (__map.getZoom() == 16) {
-          __map.dragging.disable();
-        } else {
-          __map.dragging.enable();
-        }
-      });
+     __map.setMaxBounds(bounds);
 
       __map.on("drag", () => {
-        var currentBounds = __map.getBounds();
+        let currentBounds = __map.getBounds();
         if (!bounds.contains(currentBounds)) {
           __map.panInsideBounds(bounds, { animate: false });
         }
@@ -72,7 +65,7 @@ export default () => {
     placeMarkers() {
       places.then((places) => {
         places.forEach((place) => {
-          var customIcon = L.divIcon({
+          let customIcon = L.divIcon({
             className: place.c[0].v,
             id: place.c[0].v,
             html:
@@ -91,6 +84,7 @@ export default () => {
             .addTo(__map)
             .on("click", (e) => {
               __map.setView([e.latlng.lat - 0.001, e.latlng.lng], 18);
+              if (route != null) __map.removeControl(route);
             })
             .addTo(__map);
         });
@@ -104,9 +98,10 @@ export default () => {
 
     navigation(id) {
       places.then((p) => {
-        var place = p.find((element) => element.c[0].v == id);
+        let place = p.find((element) => element.c[0].v == id);
         getUserLocation((userLocation) => {
-          L.Routing.control({
+          if (route != null) __map.removeControl(route);
+          route = L.Routing.control({
             waypoints: [
               L.latLng(userLocation.lat, userLocation.lng),
               L.latLng(place.c[5].v, place.c[4].v),
@@ -123,21 +118,6 @@ export default () => {
                 },
               }
             ),
-            itineraryFormatter: function (data) {
-              var time =
-                Math.round((data.routes[0].summary.totalTime % 3600) / 60) +
-                " min";
-              var distance =
-                Math.round(data.routes[0].summary.totalDistance / 100) / 10 +
-                " km";
-              var instructions =
-                "<h2>Itinéraire</h2><p>Temps : " +
-                time +
-                "</p><p>Distance : " +
-                distance +
-                "</p>";
-              return instructions;
-            },
             createMarker: function (i, wp, nWps) {
               if (i === nWps - 1) {
                 return L.marker(wp.latLng, {
@@ -150,6 +130,9 @@ export default () => {
               }
             },
           }).addTo(__map);
+          //set view at the center between the user and the place
+          console.log();
+          __map.setView([(Number(userLocation.lat) + Number(place.c[5].v))/2,(Number(userLocation.lng) + Number(place.c[4].v))/2], 10);
         });
       });
     },

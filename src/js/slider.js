@@ -3,26 +3,25 @@ import { places } from "./place.js";
 import { isEmpty_localStorage, save } from "./data/data.js"
 import {getUserLocation} from "./location.js"
 
-var slider = document.getElementById("slider");
-var data_places = places;
-var data_parcours = await parcours_liste();
-var sliderGo = document.getElementById('slider-go-div');
+let slider = document.getElementById("slider");
+let data_parcours = await parcours_liste();
+let sliderGo = document.getElementById('slider-go-div');
 
 //remplir le slider avec les données du lieu cliqué
 function fillSlider() {
     slider = document.getElementById("slider");
-    var sliderTitle = document.getElementById('slider-name');
-    var sliderDescription = document.getElementById('slider-description');
-    var sliderParcours = document.getElementById('slider-parcours');
-    var sliderImage = document.getElementById('slider-img');
+    let sliderTitle = document.getElementById('slider-name');
+    let sliderDescription = document.getElementById('slider-description');
+    let sliderParcours = document.getElementById('slider-parcours');
+    let sliderImage = document.getElementById('slider-img');
      places.then((place) => {
-        var p = place.find(place => place.c[0].v == event.target.id);
+        let p = place.find(place => place.c[0].v == event.target.id);
          //si l'utilisateur est dans la zone de jeu, on affiche le bouton y aller
-        var parcours = data_parcours.filter(place => place.c[4].v == event.target.id);
-        var first_parcours_html = ""
+        let parcours = data_parcours.filter(place => place.c[4].v == event.target.id);
+        let first_parcours_html = ""
         isInMap(p);
         parcours.forEach((_parcours) => {
-            var css = isEmpty_localStorage("fin_parcours_" + _parcours.c[0].v) == true ? "parcours-done" : "parcours";
+            let css = isEmpty_localStorage("fin_parcours_" + _parcours.c[0].v) == true ? "parcours-done" : "parcours";
             first_parcours_html += `<button class = '` + css + `' @click="((count = 0, state = 1, id_parcours = ` + _parcours.c[0].v + `) , App().page(` + _parcours.c[0].v + `, count, state))" id='` + _parcours.c[0].v + `'class='parcours'>` + _parcours.c[1].v + `</button>`;
         });
 
