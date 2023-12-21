@@ -17,6 +17,15 @@ $generalPadding: 20px;
 $heightSlider: 60vh;
 $heightBanner: min(200px, 15vh);
 $heightNotBanner: calc($heightSlider - $heightBanner);
+html,
+body {
+  font-family: tahoma;
+  height: 100vh;
+  font-size: min(4vh, 1rem);
+  background-color: $backgroundColor;
+  color: $first-color;
+  margin: 0;
+}
 
 button {
   border: 1px solid $primary-color-border;
@@ -25,6 +34,12 @@ button {
   width: 5vw;
   width: fit-content;
   border-radius: 3px;
+  &:hover {
+    background-color: $accentColor;
+    border: 1px solid $accentColor-border;
+    color: white;
+    background-position: 40%;
+  }
 
   &:not(.hid button) {
     display: inline;
@@ -111,25 +126,49 @@ button {
 }
 
 .quiz {
-  height: 75%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  display: grid;
+  place-items: center;
   align-items: center;
-  margin-top: 20%;
-  overflow: hidden;
+
+  .progress {
+    display: table;
+    max-width: 80vw;
+    position: absolute;
+    text-align: center;
+    top: 10%;
+    button {
+      width: 50%;
+      display: table-cell;
+    }
+  }
+
+  .questionblock {
+    max-width: 80vw;
+    text-align: center;
+  }
+
+  .title-quiz {
+    position: fixed;
+    top: 22.5vh;
+    width: 80vw;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .question-quiz {
+    @extend .title-quiz;
+
+    top: 30vh;
+  }
 }
 
-html,
-body {
-  font-family: tahoma;
-  height: 100vh;
-  font-size: min(4vh, 1rem);
-  background-color: $backgroundColor;
-  color: $first-color;
-  margin: 0;
+#endPage {
+  @extend .quiz;
 }
-
 /* QUIZ */
 
 .top-banner {
@@ -168,7 +207,8 @@ body {
 .answerblock {
   display: grid;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 30vh;
+  bottom: 0px;
 
   button {
     display: inline-flex;
@@ -192,12 +232,6 @@ body {
       color: white;
       background-position: 40%;
     }
-  }
-}
-
-.questionblock {
-  max-width: 80vw;
-  progresss {
   }
 }
 

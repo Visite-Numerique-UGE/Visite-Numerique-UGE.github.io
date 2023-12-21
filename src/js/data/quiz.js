@@ -89,7 +89,7 @@ function question(id_parcours, step, state) {
   let progress = Math.max(_data_.isEmpty_localStorage(id_parcours, true), step);
 
   nb.then((nb) => {
-    let button_progress = "";
+    let button_progress = `<div class="progress">`;
     for (let i = 0; i < nb; i++) {
       let disabled = progress >= i ? "" : "disabled";
       button_progress +=
@@ -101,18 +101,22 @@ function question(id_parcours, step, state) {
         (i + 1) +
         ` </button>\n`;
     }
+    button_progress += `</div>`;
     let _html =
       button_progress +
-      `
+      `<div class="title-quiz">
 <template x-if="await dataFun.getField(1,id_parcours, count, 3)=='lieu' ">
-                      <h2 x-data="{ message: 'Lieu' }" x-text="message"></h2>
+                      <h2 class="center" x-data="{ message: 'Lieu' }" x-text="message"></h2>
 </template>
 
 <template x-if="await dataFun.getField(1,id_parcours, count, 3)=='multiple' || await dataFun.getField(1,id_parcours, count, 3)=='saisie' " >
                       <h2 class="center" x-data="{ message: 'Question' }" x-text="message"></h2>
-</template>
+</template></div>
 
- <p class="center" x-text="await dataFun.getField(1, id_parcours, count, 2)"></p>`;
+ <div class="question-quiz"> 
+ <p class="center" x-text="await dataFun.getField(1, id_parcours, count, 2)"></p>
+ 
+ </div>`;
 
     question.innerHTML = `<div class="questionblock">` + _html + `</div>`;
   });
@@ -150,7 +154,8 @@ function answer(id_parcours, step, state) {
                       </div>`;
     } else if (field == "lieu" || field == "anecdote") {
       let text = field == "lieu" ? "J'y suis" : " > "
-      type = `<button @click="( (await quizFun.andMore(id_parcours, count) ? (count = 0, state = 2): count++), console.log('count : ' +count) , App().page(id_parcours, count, state) )">
+      type = `<button style="
+    margin: 0.75rem;" @click="( (await quizFun.andMore(id_parcours, count) ? (count = 0, state = 2): count++), console.log('count : ' +count) , App().page(id_parcours, count, state) )">
                         `+ text + `
                       </button>
                     </template `;
@@ -173,9 +178,12 @@ function answer(id_parcours, step, state) {
 function endPage(id_parcours, state) {
   let endPage = document.getElementById("endPage");
   endPage.innerHTML = "";
+  endPage.style.visibility = "hidden"
   if (state != 2) {
     return;
   }
+
+  endPage.style.visibility = "visible";
 
   let _html = `<div class="center"><h1>Bravo !</h1></div><br>
 <div class="center">
@@ -210,7 +218,7 @@ function map(state) {
                       
   <div class="slider-content">
       <div class="card">
-        <h2 id="slider-name">Batiment Perault</h2>
+        <h2 id="slider-name"></h2>
         <img id="slider-img" src="" alt=""/>
 
         <button class="close" id="slider-close">&times;</button>

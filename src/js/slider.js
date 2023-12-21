@@ -63,7 +63,8 @@ document.addEventListener('click', function (e) {
 
 
     }
-    else if (e.target.className == 'marker-image' || e.target.id != 'map') {
+    else if (e.target.className == 'marker-image') {
+        //|| e.target.id != 'map'
         fillSlider();
     }
 }, false);
