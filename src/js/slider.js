@@ -1,7 +1,7 @@
 import { parcours_liste } from "./parcours.js";
 import { places } from "./place.js";
 import { isEmpty_localStorage, save } from "./data/data.js"
-import {getUserLocation} from "./location.js"
+import { getUserLocation } from "./location.js"
 
 let slider = document.getElementById("slider");
 let data_parcours = await parcours_liste();
@@ -14,9 +14,9 @@ function fillSlider() {
     let sliderDescription = document.getElementById('slider-description');
     let sliderParcours = document.getElementById('slider-parcours');
     let sliderImage = document.getElementById('slider-img');
-     places.then((place) => {
+    places.then((place) => {
         let p = place.find(place => place.c[0].v == event.target.id);
-         //si l'utilisateur est dans la zone de jeu, on affiche le bouton y aller
+        //si l'utilisateur est dans la zone de jeu, on affiche le bouton y aller
         let parcours = data_parcours.filter(place => place.c[4].v == event.target.id);
         let first_parcours_html = ""
         isInMap(p);
@@ -39,23 +39,34 @@ document.addEventListener('click', function (e) {
     if (e.target.id == 'slider-close' || e.target.id == 'map') {
         slider.style.visibility = "hidden";
     }
+    else if (e.target.className == 'show') {
+        console.log(e.target.id)
+        let show = document.getElementsByClassName('card-item')
+        console.log(show)
+        for (let item of show) {
+            item.style.display = 'none';
+        }
+        document.getElementsByClassName(e.target.id)[0].style.display = 'block';
+    }
 
     else if (e.target.className == 'parcours' || e.target.className == 'parcours-done') {
         save("actual_quiz", e.target.id)
         save(e.target.id, 0)
-        }
-    else if (e.target.className == 'marker-image') {
+
+
+    }
+    else if (e.target.className == 'marker-image' || e.target.id != 'map') {
         fillSlider();
     }
 }, false);
 
-function isInMap(p){
+function isInMap(p) {
     getUserLocation((userLocation) => {
-        if (!(userLocation < 48.836 || userLocation > 48.844 || userLocation < 2.572 || userLocation > 2.595)){
+        if (!(userLocation < 48.836 || userLocation > 48.844 || userLocation < 2.572 || userLocation > 2.595)) {
             sliderGo.style.display = "block";
-            sliderGo.innerHTML = `<button id='slider-go' @click="App().navigation('` + p.c[0].v +`')">Y aller</button>`;
+            sliderGo.innerHTML = `<button id='slider-go' @click="App().navigation('` + p.c[0].v + `')">Y aller</button>`;
         }
-         else {
+        else {
             sliderGo.style.display = "none";
         }
     });

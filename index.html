@@ -28,8 +28,8 @@
                   <!-- FIN MAP -->
 
                   <!-- QUIZ -->
-                  <div id="hid">
-                    <div class="center quiz">
+                  <div class="hid">
+                    <div class="quiz">
                       <div x-data="{ max_step: dataFun.isEmpty_localStorage(id_parcours, true)}">
                         <br />
                         <br />
@@ -43,14 +43,20 @@
                     <div class="center" id="endPage" x-data="quizFun.endPage(id_parcours, state)"></div>
                     <!-- FIN PAGE FIN QUIZ-->
                   </div>
+                  <div class="top-banner">
+                    <img src="./images/Logo-Université-Gustave-Eiffel.jpg" alt="Image Gauche" class="left-image" />
+                    <span class="hid"><button class="close" @click="(state=0, App().page(id_parcours, count, state) )">&times;</button></span>
+                  </div>
+                  <!--<div x-data="{data: getData(2)}" class="center quiz">
+                  </div>-->
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <!-- fin quiz-->
     </div>
+    <!-- fin quiz-->
 
     <script type="module" src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script type="module" src="./src/js/slider.js"></script>
