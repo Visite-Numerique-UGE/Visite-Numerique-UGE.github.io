@@ -71,7 +71,7 @@ document.addEventListener('click', function (e) {
 
 function isInMap(p) {
     getUserLocation((userLocation) => {
-        if (!(userLocation < 48.836 || userLocation > 48.844 || userLocation < 2.572 || userLocation > 2.595)) {
+        if ((userLocation < 48.836 || userLocation > 48.844 || userLocation < 2.572 || userLocation > 2.595)) {
             sliderGo.style.display = "block";
             sliderGo.innerHTML = `<button id='slider-go' @click="App().navigation('` + p.c[0].v + `')">Y aller</button>`;
         }
