@@ -258,11 +258,10 @@ function map(state) {
 
 document.addEventListener('click', function (e) {
 
-  console.log("LISTEN")
   if (e.target.className == 'answer-quiz') {
-    console.log("TROUVE")
     let button = document.getElementById(e.target.id);
     button.style.backgroundColor = "rgb(210, 33, 60)";
+    button.style.borderColor = "rgb(239, 125, 0)";
     console.log(e.target.id)
   }
 }, false);
