@@ -1,14 +1,13 @@
 <template>
-  <!-- <Lego/> -->
-  <LegoGallery/>
+  <Map></Map>
 </template>
 
 <script>
-import LegoCard from '@/components/LegoCard.vue'
-import LegoGallery from '@/components/LegoGallery.vue'
+import Map from '@/components/Map.vue'
+
 export default {
   name: "main",
-  components: {LegoCard, LegoGallery}
+  components: {Map}
 }
 
 </script>

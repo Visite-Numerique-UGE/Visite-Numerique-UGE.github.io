@@ -1,4 +1,5 @@
-let API_URL = "https://rebrickable.com/api/v3/lego";
-let API_KEY = "7f4cd5d4b9e4e8c2f2079a978f7eb6e8";
+let SHEET_ID = "1ENhL6EfZIEraeUmJafmKlN-FIYWMvw920LFmcIa5Hp8";
+let PARCOURS = "parcours";
+let PLACE = "place";
 
-export { API_URL, API_KEY };
+export {SHEET_ID, PARCOURS, PLACE}

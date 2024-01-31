@@ -1,0 +1,90 @@
+<template>
+    <div id="mapContainer"></div>
+  </template>
+  
+  <script>
+  import "leaflet/dist/leaflet.css";
+  import L from "leaflet";
+
+  import {getData} from "@/api/getData.js"
+  
+  export default {
+    name: "Map",
+    data() {
+      return {
+        map: null,
+        data: null,
+      };
+    },
+    created: function() {
+        this.retrieveSetData();
+    },
+    mounted() {
+      this.map = L.map("mapContainer", { zoomControl: false }).setView(
+        [48.839623875988806, 2.588503717609941],
+        17
+      );
+      L.tileLayer(
+        "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png",
+        {
+          attribution:
+            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+          minZoom: 16,
+          maxZoom: 18,
+        }).addTo(this.map);
+        let bounds = L.latLngBounds(
+        L.latLng(48.836, 2.572),
+        L.latLng(48.844, 2.595)
+      );
+     this.map.setMaxBounds(bounds);
+      this.map.on("drag", () => {
+        let currentBounds = this.map.getBounds();
+        if (!bounds.contains(currentBounds)) {
+          this.map.panInsideBounds(bounds, { animate: false });
+        }
+      });
+      this.data.forEach((place) => {
+                console.log(place)
+            let customIcon = L.divIcon({
+                className: place.c[0].v,
+                id: place.c[0].v,
+                html:
+                "<div id = '" +
+                place.c[0].v +
+                "'class='marker-background'><img id = '" +
+                place.c[0].v +
+                "'class='marker-image' src='" +
+                place.c[6].v +
+                "' alt='Image'></div>",
+                iconSize: [50, 50],
+                iconAnchor: [15, 30],
+                popupAnchor: [0, -30],
+            });
+            L.marker([place.c[5].v, place.c[4].v], { icon: customIcon })
+                .addTo(this.map)
+                .on("click", (e) => {
+                this.map.setView([e.latlng.lat - 0.001, e.latlng.lng], 18);
+                if (route != null) this.map.removeControl(route);
+                })
+                .addTo(this.map);
+            });
+    },
+    beforeDestroy() {
+      if (this.map) {
+        this.map.remove();
+      }
+    }, 
+    methods: {
+        async retrieveSetData() {
+            this.data = await getData();
+        }
+    },
+  };
+  </script>
+  
+  <style scoped>
+  #mapContainer {
+    width: 100vw;
+    height: 100vh;
+  }
+  </style>
