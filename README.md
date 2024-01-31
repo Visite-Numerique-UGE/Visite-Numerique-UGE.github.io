@@ -1,20 +1,29 @@
-# ugecampus-app
-Vite PWA boilerplate
+# projet-web
 
-# Features
+This template should help get you started developing with Vue 3 in Vite.
 
-- Vite
-- AlpineJS
-- SASS
+## Recommended IDE Setup
 
-# Usage
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
-## Local dev
+## Customize configuration
 
-    npm run dev
+See [Vite Configuration Reference](https://vitejs.dev/config/).
 
-## Build for deploy
+## Project Setup
 
-    npm run build
+```sh
+npm install
+```
 
-Output can be found in `/dist` and deployed as static anywhere.
+### Compile and Hot-Reload for Development
+
+```sh
+npm run dev
+```
+
+### Compile and Minify for Production
+
+```sh
+npm run build
+```
