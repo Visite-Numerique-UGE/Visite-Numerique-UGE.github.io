@@ -1,13 +1,11 @@
 <template>
     <div id="mapContainer"></div>
-  </template>
-  
+</template>
+
   <script>
   import "leaflet/dist/leaflet.css";
   import L from "leaflet";
-
   import {getData} from "@/api/getData.js"
-  
   export default {
     name: "Map",
     data() {
@@ -15,9 +13,6 @@
         map: null,
         data: null,
       };
-    },
-    created: function() {
-        this.retrieveSetData();
     },
     mounted() {
       this.map = L.map("mapContainer", { zoomControl: false }).setView(
@@ -43,8 +38,19 @@
           this.map.panInsideBounds(bounds, { animate: false });
         }
       });
-      this.data.forEach((place) => {
-                console.log(place)
+      this.retrieveSetData();
+    },
+    beforeDestroy() {
+      if (this.map) {
+        this.map.remove();
+      }
+    }, 
+    methods: {
+       async retrieveSetData() {
+        this.data = await getData();
+        console.log(this.data);
+        this.data.forEach((place) => {
+          console.log(place);
             let customIcon = L.divIcon({
                 className: place.c[0].v,
                 id: place.c[0].v,
@@ -68,16 +74,7 @@
                 })
                 .addTo(this.map);
             });
-    },
-    beforeDestroy() {
-      if (this.map) {
-        this.map.remove();
       }
-    }, 
-    methods: {
-        async retrieveSetData() {
-            this.data = await getData();
-        }
     },
   };
   </script>
