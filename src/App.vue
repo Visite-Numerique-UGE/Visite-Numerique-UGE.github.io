@@ -1,18 +1,31 @@
 <template>
+  <button @click="doStuff">toggle</button>
+  <Slider v-show="this.slider"></Slider>
   <Map></Map>
 </template>
 
 <script>
 import Map from '@/components/Map.vue'
+import Slider from "@/components/Slider.vue"
 
 export default {
   name: "main",
-  components: {Map}
-}
+  components: {Map, Slider},
+  data() {
+    return {
+      slider: false
+    }
+  },
+  methods: {
+    doStuff : function() {
+      this.slider = !this.slider;
+      Slider.methods.fillSlider(0);
+    }
+  }
+  };
 </script>
 
 <style>
-  /* Markers */
   .custom-div-icon {
   position: relative;
   text-align: center;

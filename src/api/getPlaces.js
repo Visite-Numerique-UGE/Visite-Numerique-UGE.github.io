@@ -1,6 +1,6 @@
 import { SHEET_ID, PLACE } from "@/constants";
 
-const getData = async () => {
+const getPlaces = async () => {
     try {
         let SHEET_RANGE = "A:G";
         let FULL_URL = "https://docs.google.com/spreadsheets/d/" + SHEET_ID + "/gviz/tq?sheet=" + PLACE + "&range=" + SHEET_RANGE;
@@ -15,4 +15,4 @@ const getData = async () => {
       }
     };
 
-export { getData };
+export { getPlaces };

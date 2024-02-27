@@ -5,13 +5,14 @@
   <script>
   import "leaflet/dist/leaflet.css";
   import L from "leaflet";
-  import {getData} from "@/api/getData.js"
+  import {getPlaces} from "@/api/getPlaces.js"
   export default {
     name: "Map",
     data() {
       return {
         map: null,
-        data: null,
+        data: [],
+        markers : [],
       };
     },
     mounted() {
@@ -38,7 +39,7 @@
           this.map.panInsideBounds(bounds, { animate: false });
         }
       });
-      this.retrieveSetData();
+      this.retrieveData();
     },
     beforeDestroy() {
       if (this.map) {
@@ -46,11 +47,9 @@
       }
     }, 
     methods: {
-       async retrieveSetData() {
-        this.data = await getData();
-        console.log(this.data);
+       async retrieveData() {
+        this.data = await getPlaces();
         this.data.forEach((place) => {
-          console.log(place);
             let customIcon = L.divIcon({
                 className: place.c[0].v,
                 id: place.c[0].v,
@@ -66,16 +65,17 @@
                 iconAnchor: [15, 30],
                 popupAnchor: [0, -30],
             });
+            this.markers.push(
             L.marker([place.c[5].v, place.c[4].v], { icon: customIcon })
                 .addTo(this.map)
                 .on("click", (e) => {
                 this.map.setView([e.latlng.lat - 0.001, e.latlng.lng], 18);
-                if (route != null) this.map.removeControl(route);
-                })
-                .addTo(this.map);
-            });
-      }
+                }).addTo(this.map)
+            );
+        });
+      },
     },
+    
   };
   </script>
   
