@@ -1,7 +1,12 @@
-import './assets/main.css'
+import './assets/main.scss'
 
 import { createApp } from 'vue'
 import App from './App.vue'
+import router from './router'
 import 'leaflet/dist/leaflet.css';
 
-createApp(App).mount('#app')
+const app = createApp(App)
+
+app.use(router)
+
+app.mount('#app')
