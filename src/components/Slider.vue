@@ -1,14 +1,17 @@
 <template>
   <div id="slider-content">
-    <img pictureUrl="" v-bind:src="this.mainImage" />
-    <h2>{{ this.placeName }}</h2>
-    <p>{{ this.placeDescription }}</p>
-    <div class="menu center">
-      <button class="show" id="show-description">Description</button>
-      <button class="show" id="show-parcours">Parcours</button>
-      <button class="show" id="show-event">Evènements</button>
+    <div class="card">
+      <div class="halftone-image">
+        <img pictureUrl="" v-bind:src="this.mainImage" class="banner halftone" alt="" />
+      </div>
+      <p class="name">{{ this.placeName }}</p>
+      <p>{{ this.placeDescription }}</p>
+      <div class="actions">
+        <a>Parcours</a>
+        <a href="#" title="">Evénement</a>
+        <a href="#" title="">Y aller</a>
+      </div>
     </div>
-    <button v-for="parcours in this.parcoursList" :key="parcours.id" :name="parcours.name"></button>
   </div>
 </template>
 
@@ -29,13 +32,20 @@ export default {
   created() {
     this.retrieveData();
   },
+  mounted() {
+    console.log("here");
+    console.log(this.$route.params.id);
+    console.log("plus here");
+    if (this.$route.params.id === undefined) {
+      //document.getElementById("slider-content").style.display = "none";
+      document.getElementById("slider-content").style.display = "none";
+    }
+  },
   methods: {
     async retrieveData() {
       this.parcoursList = await getParcours();
       if (this.$route.params.id !== undefined) {
-        console.log("here\n");
         console.log(this.$route.params.id);
-        await this.fillSlider(this.$route.params.id);
       }
     },
     async fillSlider(placeID) {
@@ -50,6 +60,26 @@ export default {
       console.log(this.mainImage);
       console.log(this.placeName);
       console.log(this.placeDescription);
+    },
+  },
+  watch: {
+    "$route.params.id": {
+      async handler(id) {
+        // do stuff
+        console.log("id :");
+        console.log(id);
+        console.log(this.placeName);
+        if (id !== undefined) {
+          await this.fillSlider(this.$route.params.id);
+          document.getElementById("slider-content").style.display = "block";
+        } else {
+          this.mainImage = "";
+          this.placeName = "";
+          this.placeDescription = "";
+          document.getElementById("slider-content").style.display = "none";
+        }
+      },
+      immediate: true,
     },
   },
 };

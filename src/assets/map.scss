@@ -1,0 +1,249 @@
+@import url(//fonts.googleapis.com/css?family=Patrick+Hand+SC|Bangers|Happy+Monkey);
+
+$primary-color: #1eafd0;
+$primary-color-border: #0097d7;
+$margin: 16px;
+$white: #ffffff;
+$accentColor: #92c56e;
+$accentColor-border: #00936e;
+$backgroundColor: #e9e9e9;
+$first-color: #2e3494;
+$secondary-color: #94b4c3;
+$buttonWidth: 75vw;
+$buttonHeight: 10%;
+$buttonPadding: 1.2em;
+$buttonFontSize: 0.75rem;
+$buttonLetterSpacing: 0.05rem;
+
+$generalPadding: 20px;
+$heightSlider: 60vh;
+$heightBanner: min(200px, 15vh);
+$heightNotBanner: calc($heightSlider - $heightBanner);
+
+button {
+  border: 1px solid $primary-color-border;
+  background-color: $primary-color;
+  color: $white;
+  width: 5vw;
+  border-radius: 3px;
+
+  &:not(.hid button) {
+    display: inline;
+    position: relative;
+    color: $white;
+    padding: 5px;
+    margin-top: 15px;
+    width: 25%;
+  }
+
+  &.close {
+    top: 0;
+    right: 0;
+    margin-right: 100px;
+    position: absolute;
+    background-color: transparent;
+    display: block;
+    border: none;
+    cursor: pointer;
+    font-size: 40px;
+    font-weight: 700;
+    //outline:none;
+  }
+}
+#slider-close {
+  top: 0;
+  right: 0px;
+  margin-right: 0px;
+  position: absolute;
+}
+
+.hid {
+  display: block;
+
+  .button-borders {
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    margin: 0.75rem;
+
+    button {
+      height: 5vh;
+    }
+
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      width: calc(100% + 0.5em);
+      height: 50%;
+      left: -0.3em;
+      border: 1px solid $secondary-color;
+      z-index: 0;
+    }
+
+    &:before {
+      top: -0.3em;
+      border-bottom: 0px;
+    }
+
+    &:after {
+      bottom: -0.3em;
+      border-top: 0px;
+    }
+  }
+}
+
+// Media Queries
+
+@media screen and (max-width: 480px) {
+}
+
+/* QUIZ */
+
+/* ---------- MAP ----------*/
+
+/* Markers */
+.custom-div-icon {
+  position: relative;
+  text-align: center;
+}
+
+.marker-background {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-color: $primary-color;
+  border-radius: 50% 50% 50% 0%;
+  transform: rotate(-45deg);
+}
+
+.marker-image {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: auto;
+  height: 34px;
+  aspect-ratio: 1/1;
+  border-radius: 100%;
+  transform: rotate(45deg);
+}
+
+#map {
+  height: 100vh;
+  z-index: 1;
+  /* Ajoutez cette ligne pour définir le z-index de la carte */
+}
+
+.leaflet-control-container {
+  display: none;
+}
+
+#slider-go-div {
+  z-index: 9999;
+}
+
+/* */
+
+/********* 
+COMPONENT *********/
+.slider-content {
+  /**/
+}
+
+.halftone-image {
+  display: inline-flex;
+  overflow: hidden;
+  filter: contrast(1000%);
+  mix-blend-mode: hard-light;
+  mix-blend-mode: multiply;
+  /*    opacity: 0.7;*/
+}
+
+.halftone-image:before {
+  content: "";
+  position: absolute;
+  top: -550%;
+  left: -50%;
+  bottom: -50%;
+  right: -50%;
+  background: radial-gradient(circle at center, hsl(0, 0%, 10%), hsl(0, 0%, 110%));
+  background-size: 5px 5px;
+  transform: rotate(45deg);
+}
+
+.halftone-image img {
+  filter: brightness(95%) contrast(45%);
+  mix-blend-mode: hard-light;
+  display: block;
+}
+
+.card {
+  img {
+    width: calc(min(75lvw, 600px) + 40px);
+    padding: -30px;
+    height: 15lvh;
+    object-fit: cover;
+    border-radius: 5px 5px 0px 0px;
+    border-bottom: 5px solid black;
+  }
+
+  z-index: 999;
+  position: absolute;
+  background: #fff;
+  top: 70lvh;
+
+  width: calc(min(75lvw, 600px) + 40px);
+  height: 30lvh;
+  text-align: center;
+  border-radius: 8px;
+
+  opacity: 1;
+  transition: all 0.5s ease;
+  pointer-events: all;
+  position: absolute;
+  left: 50%;
+
+  border: 1px solid black;
+  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 1), 8px 8px 0px 0px rgba(0, 0, 0, 1);
+  transform: translate(-50%, -50%);
+  p {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 17px;
+    margin: 2px 0;
+
+    &.name {
+      position: absolute;
+
+      color: #f4c816;
+      font-family: "Bangers";
+      font-size: 3em;
+      float: left;
+      text-shadow: -1px -1px #ce5331, 1px 1px #ce5331, 4px 4px #ce5331;
+
+      font-weight: 600;
+
+      margin-top: -2.5rem;
+      padding: 0.4em 0.5em;
+      background-color: black;
+
+      transform: skewX(-10deg) rotate(-2deg) translate(-50px, -15lvh);
+      text-align: center;
+    }
+  }
+
+  .actions {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    a {
+      float: left;
+      width: 33%;
+      text-align: center;
+      line-height: 40px;
+      text-decoration: none;
+    }
+  }
+}

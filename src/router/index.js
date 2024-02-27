@@ -1,5 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import MapView from '../views/MapView.vue'
+import MapView from '../views/MapView.vue';
+import QuizView from '../views/QuizView.vue';
+import HomeView from '../views/HomeView.vue';
+import EventView from '../views/EventView.vue';
+import CourseView from '../views/CourseView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,7 +11,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: MapView
+      component: HomeView
     },
     {
       path: '/about',
@@ -26,6 +30,21 @@ const router = createRouter({
       path: '/map/:id',
       name: 'map-slider',
       component: MapView
+    },
+    {
+      path: '/quiz:id',
+      name: 'quiz',
+      component: QuizView
+    },
+    {
+      path: '/quiz/',
+      name: 'course',
+      component: CourseView
+    },
+    {
+      path: '/event/',
+      name: 'event',
+      component: EventView
     }
   ]
 })
