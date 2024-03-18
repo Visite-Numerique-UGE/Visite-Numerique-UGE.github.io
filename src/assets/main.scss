@@ -1,14 +1,32 @@
 /* @import "./base.css"; */
+@import url("https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
 @import "./map.scss";
+@import "./home.scss";
+
+p,
+div {
+  font-family: "Courier Prime", monospace;
+  font-weight: 200;
+  color: rgb(38, 40, 92);
+}
 
 html,
 body {
+  overflow-y: hidden;
   font-family: tahoma;
   height: 100vh;
   font-size: min(4vh, 1rem);
-  background-color: $backgroundColor;
+  background-color: #f4c816;
   color: $first-color;
   margin: 0;
+  background-image: radial-gradient(ellipse farthest-corner, transparent 0%, transparent 35%, #fff 30%, #fff 40%, transparent 90%),
+    radial-gradient(ellipse farthest-corner at 0px 0px, transparent 0%, transparent 20%, #fff 15%, #fff 20%, transparent 50%),
+    radial-gradient(ellipse farthest-corner at 8px 8px, transparent 0%, transparent 20%, #fff 15%, #fff 20%, transparent 50%),
+    radial-gradient(ellipse farthest-corner at 0px 8px, transparent 0%, transparent 20%, #fff 15%, #fff 20%, transparent 40%),
+    radial-gradient(ellipse farthest-corner at 8px 0px, transparent 0%, transparent 20%, #fff 15%, #fff 20%, transparent 50%),
+    linear-gradient(40deg, #bda310 0, #f4d02f 30%, #ffc251 50%, #f4b92f 70%, #bd2d10 100%);
+  background-size: 8px 8px, 8px 8px, 8px 8px, 8px 8px, 8px 8px, 100% 100%;
 }
 #app {
   margin: 0px;
@@ -50,12 +68,12 @@ body {
 }
 .top-banner {
   z-index: 99999;
-  top: 82.5lvh;
+  bottom: 0lvh;
   position: fixed;
   background-color: white;
   display: flex;
-  padding: 20px;
-  width: min(75lvw, 600px);
+  padding: 15px;
+  width: min(70lvw, 400px);
   margin: 5% auto;
   left: 0;
   right: 0;
@@ -80,4 +98,12 @@ nav a {
   text-decoration: none;
   padding-left: 15px;
   padding-right: 15px;
+}
+
+.icon {
+  max-width: 40px;
+  max-height: 40px;
+
+  border-radius: 15px;
+  border: 2.5px solid black;
 }

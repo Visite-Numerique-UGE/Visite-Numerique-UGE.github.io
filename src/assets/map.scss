@@ -163,9 +163,9 @@ COMPONENT *********/
   content: "";
   position: absolute;
   top: -550%;
-  left: -50%;
+  left: -100%;
   bottom: -50%;
-  right: -50%;
+  right: -100%;
   background: radial-gradient(circle at center, hsl(0, 0%, 10%), hsl(0, 0%, 110%));
   background-size: 5px 5px;
   transform: rotate(45deg);
@@ -179,21 +179,31 @@ COMPONENT *********/
 
 .card {
   img {
-    width: calc(min(75lvw, 600px) + 40px);
+    width: calc(min(70lvw, 400px) + 40px);
     padding: -30px;
     height: 15lvh;
     object-fit: cover;
     border-radius: 5px 5px 0px 0px;
     border-bottom: 5px solid black;
   }
+  .icon {
+    border-bottom: 0px solid black;
+    border-radius: 15px;
+    border: 2.5px solid black;
+  }
 
   z-index: 999;
   position: absolute;
   background: #fff;
-  top: 70lvh;
 
-  width: calc(min(75lvw, 600px) + 40px);
-  height: 30lvh;
+  top: 45.5lvh;
+
+  /* padding: 20px; */
+
+  width: calc(min(70lvw, 400px) + 40px);
+  margin: 20px auto;
+
+  height: 55lvh;
   text-align: center;
   border-radius: 8px;
 
@@ -217,7 +227,7 @@ COMPONENT *********/
 
       color: #f4c816;
       font-family: "Bangers";
-      font-size: 3em;
+      font-size: 2em;
       float: left;
       text-shadow: -1px -1px #ce5331, 1px 1px #ce5331, 4px 4px #ce5331;
 
@@ -237,7 +247,7 @@ COMPONENT *********/
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 50px;
+    height: 75px;
     a {
       float: left;
       width: 33%;
@@ -245,5 +255,11 @@ COMPONENT *********/
       line-height: 40px;
       text-decoration: none;
     }
+  }
+  .desc {
+    height: 22.5lvh;
+    overflow-y: scroll;
+    text-align: left;
+    margin: 13.5px;
   }
 }

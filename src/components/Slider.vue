@@ -2,14 +2,15 @@
   <div id="slider-content">
     <div class="card">
       <div class="halftone-image">
-        <img pictureUrl="" v-bind:src="this.mainImage" class="banner halftone" alt="" />
+        <!-- <img pictureUrl="" v-bind:src="this.mainImage" class="banner halftone" alt="" /> -->
+        <img :src="'src/assets/building/' + this.mainImage + '.jpg'" />
       </div>
       <p class="name">{{ this.placeName }}</p>
-      <p>{{ this.placeDescription }}</p>
+      <p class="desc">{{ this.placeDescription }}</p>
       <div class="actions">
-        <a>Parcours</a>
-        <a href="#" title="">Evénement</a>
-        <a href="#" title="">Y aller</a>
+        <a><img class="icon" :src="parcours" /> </a>
+        <a href="#" title=""><img class="icon" :src="event" /></a>
+        <a href="#" title=""><img class="icon" :src="path" /></a>
       </div>
     </div>
   </div>
@@ -18,6 +19,10 @@
 <script>
 import { getParcours } from "@/api/getParcours.js";
 import { getPlaces } from "@/api/getPlaces";
+import parcours_selected from "@/assets/icon/parcours_selected.png";
+import event_selected from "@/assets/icon/event_selected.png";
+import path_selected from "@/assets/icon/path_selected.png";
+
 export default {
   name: "Slider",
   data() {
@@ -27,6 +32,9 @@ export default {
       mainImage: "",
       placeName: "",
       placeDescription: "",
+      event: event_selected,
+      path: path_selected,
+      parcours: parcours_selected,
     };
   },
   created() {
@@ -54,7 +62,7 @@ export default {
         console.log(place.c[0].v == placeID);
         return place.c[0].v == placeID;
       })[0];
-      this.mainImage = tmp.c[6].v;
+      this.mainImage = tmp.c[0].v;
       this.placeName = tmp.c[1].v;
       this.placeDescription = tmp.c[2].v;
       console.log(this.mainImage);

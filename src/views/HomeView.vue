@@ -1,7 +1,5 @@
 <script setup>
 import TheWelcome from "../components/TheWelcome.vue";
-import Map from "@/components/Map.vue";
-import Slider from "@/components/Slider.vue";
 </script>
 
 <template>
@@ -13,18 +11,9 @@ import Slider from "@/components/Slider.vue";
 <script>
 export default {
   name: "main",
-  components: { Map, Slider },
-  data() {
-    return {
-      slider: false,
-    };
-  },
-  methods: {
-    doStuff: function () {
-      this.slider = !this.slider;
-      Slider.methods.fillSlider(0);
-    },
-  },
+  components: {},
+  data() {},
+  methods: {},
 };
 </script>
 

@@ -56,8 +56,10 @@ export default {
             place.c[0].v +
             "'class='marker-background'><img id = '" +
             place.c[0].v +
-            "'class='marker-image' src='" +
-            place.c[6].v +
+            "'class='marker-image' src='src/assets/building/" +
+            place.c[0].v +
+            ".jpg" /* +
+            place.c[6].v */ +
             "' alt='Image'></div>",
           iconSize: [50, 50],
           iconAnchor: [15, 30],
