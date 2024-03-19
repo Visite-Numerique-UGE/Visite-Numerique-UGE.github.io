@@ -1,0 +1,21 @@
+$mainColor: #a4bfe9;
+
+$primary-color: $mainColor;
+$primary-color-border: $mainColor;
+$margin: 16px;
+$white: #ffffff;
+$accentColor: #92c56e;
+$accentColor-border: #00936e;
+$backgroundColor: #e9e9e9;
+$first-color: #2458a0 /* #2e3494 */;
+$secondary-color: #45699b;
+$buttonWidth: 75vw;
+$buttonHeight: 10%;
+$buttonPadding: 1.2em;
+$buttonFontSize: 0.75rem;
+$buttonLetterSpacing: 0.05rem;
+
+$generalPadding: 20px;
+$heightSlider: 60vh;
+$heightBanner: min(200px, 15vh);
+$heightNotBanner: calc($heightSlider - $heightBanner);

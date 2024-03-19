@@ -3,6 +3,7 @@
 
 @import "./map.scss";
 @import "./home.scss";
+@import "./variable.scss";
 
 p,
 div {
@@ -17,7 +18,7 @@ body {
   font-family: tahoma;
   height: 100vh;
   font-size: min(4vh, 1rem);
-  background-color: #f4c816;
+  background-color: $mainColor;
   color: $first-color;
   margin: 0;
   background-image: radial-gradient(ellipse farthest-corner, transparent 0%, transparent 35%, #fff 30%, #fff 40%, transparent 90%),
@@ -25,7 +26,7 @@ body {
     radial-gradient(ellipse farthest-corner at 8px 8px, transparent 0%, transparent 20%, #fff 15%, #fff 20%, transparent 50%),
     radial-gradient(ellipse farthest-corner at 0px 8px, transparent 0%, transparent 20%, #fff 15%, #fff 20%, transparent 40%),
     radial-gradient(ellipse farthest-corner at 8px 0px, transparent 0%, transparent 20%, #fff 15%, #fff 20%, transparent 50%),
-    linear-gradient(40deg, #bda310 0, #f4d02f 30%, #ffc251 50%, #f4b92f 70%, #bd2d10 100%);
+    radial-gradient(circle at 50% 50%, rgba(164, 191, 233, 1) 57%, rgba(69, 105, 155, 1) 100%);
   background-size: 8px 8px, 8px 8px, 8px 8px, 8px 8px, 8px 8px, 100% 100%;
 }
 #app {
@@ -86,7 +87,7 @@ body {
 }
 
 a {
-  color: #f4c816;
+  color: $mainColor;
   text-transform: uppercase;
   font-size: 1.2em;
   font-weight: 500;
@@ -109,7 +110,7 @@ nav a {
   border: 2.5px solid black;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 850px) {
   .visibledevice {
     display: contents;
   }
@@ -118,7 +119,7 @@ nav a {
   }
 }
 
-@media (min-width: 750px) {
+@media (min-width: 850px) {
   .visibledevice {
     display: none;
   }
@@ -147,6 +148,88 @@ button.arrow {
   /* top: 70lvh;
   left: 50%; */
   &:hover {
-    color: #f4b92f;
+    color: $mainColor;
   }
+}
+
+.column {
+  .filter {
+    width: 62px;
+    height: 62px;
+  }
+}
+
+.top-banner {
+  .filter {
+    width: 43px;
+    height: 43px;
+  }
+}
+
+.visibledesktop {
+  .filter {
+    width: 43px;
+    height: 43px;
+  }
+}
+
+.filter {
+  z-index: 9999;
+  background-color: $mainColor;
+
+  background-image: linear-gradient(to right, transparent, $mainColor), radial-gradient($first-color 1px, transparent 0),
+    radial-gradient($first-color 1px, transparent 0);
+  background-size: auto, 6px 6px, 6px 6px;
+  background-position: 0 0, 0 0, 3px 3px;
+  animation: scroll-background 1s linear infinite;
+
+  border-radius: 15px;
+}
+
+.filter:hover {
+  background-image: linear-gradient(to right, transparent, $mainColor), radial-gradient(white 1px, transparent 0),
+    radial-gradient(white 1px, transparent 0);
+  background-size: auto, 6px 6px, 6px 6px;
+  background-position: 0 0, 0 0, 3px 3px;
+  animation: scroll-background 1s linear infinite;
+}
+img.icon {
+  z-index: 9998;
+  mix-blend-mode: hard-light;
+  mix-blend-mode: multiply;
+}
+
+.halftone-image {
+  display: inline-flex;
+  overflow: hidden;
+  filter: contrast(200%); //1000
+  mix-blend-mode: hard-light;
+  mix-blend-mode: multiply;
+  /*    opacity: 0.7;*/
+}
+
+.halftone-image:before {
+  content: "";
+  position: absolute;
+  top: -1550%;
+  left: -550%;
+  bottom: -50%;
+  right: -100%;
+  background: radial-gradient(circle at center, hsl(0, 0%, 10%), hsl(0, 0%, 110%));
+  background-size: 5px 5px;
+  transform: rotate(45deg);
+
+  background-image: linear-gradient(to right, transparent, hsla(0, 0%, 10%, 0.239)), radial-gradient(hsl(0, 0%, 10%) 1px, transparent 0),
+    radial-gradient(hsla(0, 5%, 24%, 0.392) 1px, transparent 0);
+
+  background-size: auto, 6px 6px, 6px 6px;
+  background-position: 0 0, 0 0, 3px 3px;
+  mix-blend-mode: unset;
+  animation: scroll-background 1s linear infinite;
+}
+
+.halftone-image img {
+  filter: brightness(120%) contrast(55%);
+  mix-blend-mode: hard-light;
+  display: block;
 }

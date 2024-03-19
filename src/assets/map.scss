@@ -1,25 +1,7 @@
 @import url(//fonts.googleapis.com/css?family=Patrick+Hand+SC|Bangers|Happy+Monkey);
 
-$primary-color: #1eafd0;
-$primary-color-border: #0097d7;
-$margin: 16px;
-$white: #ffffff;
-$accentColor: #92c56e;
-$accentColor-border: #00936e;
-$backgroundColor: #e9e9e9;
-$first-color: #2e3494;
-$secondary-color: #94b4c3;
-$buttonWidth: 75vw;
-$buttonHeight: 10%;
-$buttonPadding: 1.2em;
-$buttonFontSize: 0.75rem;
-$buttonLetterSpacing: 0.05rem;
-
-$generalPadding: 20px;
-$heightSlider: 60vh;
-$heightBanner: min(200px, 15vh);
-$heightNotBanner: calc($heightSlider - $heightBanner);
-
+@import "./variable.scss";
+@import "./animation.scss";
 button {
   /*   border: 1px solid $primary-color-border;
   background-color: $primary-color;
@@ -150,33 +132,6 @@ COMPONENT *********/
   /**/
 }
 
-.halftone-image {
-  display: inline-flex;
-  overflow: hidden;
-  filter: contrast(1000%);
-  mix-blend-mode: hard-light;
-  mix-blend-mode: multiply;
-  /*    opacity: 0.7;*/
-}
-
-.halftone-image:before {
-  content: "";
-  position: absolute;
-  top: -550%;
-  left: -100%;
-  bottom: -50%;
-  right: -100%;
-  background: radial-gradient(circle at center, hsl(0, 0%, 10%), hsl(0, 0%, 110%));
-  background-size: 5px 5px;
-  transform: rotate(45deg);
-}
-
-.halftone-image img {
-  filter: brightness(95%) contrast(45%);
-  mix-blend-mode: hard-light;
-  display: block;
-}
-
 .card {
   img {
     width: calc(min(70lvw, 400px));
@@ -223,11 +178,11 @@ COMPONENT *********/
     &.name {
       position: absolute;
 
-      color: #f4c816;
+      color: $mainColor;
       font-family: "Bangers";
       font-size: 2em;
       float: left;
-      text-shadow: -1px -1px #ce5331, 1px 1px #ce5331, 4px 4px #ce5331;
+      text-shadow: -1px -1px $first-color, 1px 1px $first-color, 4px 4px $first-color;
 
       font-weight: 600;
 
@@ -241,18 +196,23 @@ COMPONENT *********/
   }
 
   .actions {
+    display: flex;
     /* 
     position: absolute; */
-    left: 0;
     bottom: 0;
     width: 100%;
     height: 75px;
     a {
-      float: left;
       width: 33%;
       text-align: center;
-      line-height: 40px;
       text-decoration: none;
+    }
+
+    .filter {
+      margin-left: auto;
+      margin-right: auto;
+      width: 43px;
+      height: 43px;
     }
   }
   .desc {
@@ -261,4 +221,7 @@ COMPONENT *********/
     text-align: left;
     margin: 13.5px;
   }
+}
+img.filtered {
+  /* filter: sepia(100%) hue-rotate(190deg) saturate(200%); */
 }

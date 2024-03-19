@@ -1,17 +1,4 @@
-<script setup>
-/* let card = [1, 2, 3];
-let pos = 0;
-function changeCard(step) {
-  document.getElementById("column-1").style.display = "none";
-  document.getElementById("column-2").style.display = "none";
-  document.getElementById("column-3").style.display = "none";
-  pos += step;
-  pos %= this.card.length;
-  const name = "column-" + card.at(pos);
-  console.log(name);
-  document.getElementById(name).style.display = "block";
-} */
-</script>
+<script setup></script>
 
 <template>
   <div class="container">
@@ -24,7 +11,9 @@ function changeCard(step) {
       <div class="desc">Perdu sur le campus ? Retrouve facilement ce qu'il te faut sur la carte interactive</div>
       <div class="home_arrow"></div>
       <div class="home_button">
-        <RouterLink to="/map"><img class="icon" id="_map" src="../assets/icon/map_selected.png" /></RouterLink>
+        <RouterLink to="/map">
+          <div class="filter"><img class="icon" id="_map" src="../assets/icon/map.png" /></div
+        ></RouterLink>
       </div>
     </div>
 
@@ -37,7 +26,9 @@ function changeCard(step) {
       <div class="desc">Envie de découvrir le campus. Grâce à ces parcours, le campus n'aura plus aucun secret pour toi !</div>
       <div class="home_arrow"></div>
       <div class="home_button">
-        <RouterLink to="/quiz"><img class="icon" src="../assets/icon/parcours_selected.png" /></RouterLink>
+        <RouterLink to="/quiz"
+          ><div class="filter"><img class="icon" src="../assets/icon/parcours.png" /></div
+        ></RouterLink>
       </div>
     </div>
 
@@ -50,7 +41,9 @@ function changeCard(step) {
       <div class="desc">Tu ne sais pas quoi faire prochainement ? Retrouve la liste de tous les évènements du campus.</div>
       <div class="home_arrow"></div>
       <div class="home_button">
-        <RouterLink to="/event"><img class="icon" src="../assets/icon/event_selected.png" /></RouterLink>
+        <RouterLink to="/event"
+          ><div class="filter"><img class="icon" src="../assets/icon/event.png" /></div
+        ></RouterLink>
       </div>
     </div>
   </div>

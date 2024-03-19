@@ -54,9 +54,9 @@ export default {
           html:
             "<div id = '" +
             place.c[0].v +
-            "'class='marker-background'><img id = '" +
+            "'class='marker-background '><img id = '" +
             place.c[0].v +
-            "'class='marker-image' src='src/assets/building/" +
+            "'class='marker-image filtered' src='src/assets/building/" +
             place.c[0].v +
             ".jpg" /* +
             place.c[6].v */ +

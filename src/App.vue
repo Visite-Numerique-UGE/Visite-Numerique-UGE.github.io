@@ -20,10 +20,10 @@ import parcours_selected from "./assets/icon/parcours_selected.png";
     </nav> -->
   </header>
   <nav class="top-banner">
-    <RouterLink to="/"><img class="icon" :src="icon[0] + '.png'" /></RouterLink>
-    <RouterLink to="/map"><img class="icon" :src="icon[1] + '.png'" /></RouterLink>
-    <RouterLink to="/quiz"><img class="icon" :src="icon[2] + '.png'" /></RouterLink>
-    <RouterLink to="/event"><img class="icon" :src="icon[3] + '.png'" /></RouterLink>
+    <RouterLink to="/"><img class="icon _navbar" id="icon_home" :src="icon[0] + '.png'" /></RouterLink>
+    <RouterLink to="/map"><img class="icon _navbar" id="icon_map" :src="icon[1] + '.png'" /></RouterLink>
+    <RouterLink to="/quiz"><img class="icon _navbar" id="icon_quiz-list" :src="icon[2] + '.png'" /></RouterLink>
+    <RouterLink to="/event"><img class="icon _navbar" id="icon_event" :src="icon[3] + '.png'" /></RouterLink>
   </nav>
   <RouterView />
 </template>
@@ -41,11 +41,30 @@ export default {
     route: {
       handler: function () {
         console.log(this.route.name);
+        const route = this.route.name.split("-")[0];
         this.icon = this.icon.map((x) => x.replace("_selected", ""));
-        if (this.route.name == "home") this.icon[0] += "_selected";
+        /*         if (this.route.name == "home") this.icon[0] += "_selected";
         if (this.route.name == "map") this.icon[1] += "_selected";
         if (this.route.name == "quiz-list") this.icon[2] += "_selected";
         if (this.route.name == "event") this.icon[3] += "_selected";
+ */
+        let _filter = document.getElementById("filter");
+        console.log("_filter");
+        console.log(_filter);
+        if (_filter !== null) {
+          let childFilter = _filter.firstChild;
+          _filter.parentNode.insertBefore(childFilter, _filter);
+          _filter.parentNode.removeChild(_filter);
+        }
+        const _navbar = document.getElementsByClassName("_navbar");
+
+        const _id = "icon_" + route;
+        let wrapper = document.createElement("div");
+        wrapper.className = "filter";
+        wrapper.id = "filter";
+        let myDiv = document.getElementById(_id);
+        wrapper.appendChild(myDiv.cloneNode(true));
+        myDiv.parentNode.replaceChild(wrapper, myDiv);
       },
       deep: true, // Watch nested properties inside sort object
     },

@@ -8,9 +8,18 @@
       <p class="name">{{ this.placeName }}</p>
       <p class="desc">{{ this.placeDescription }}</p>
       <div class="actions">
-        <a><img class="icon" :src="parcours" /> </a>
-        <a href="#" title=""><img class="icon" :src="event" /></a>
-        <a href="#" title=""><img class="icon" :src="path" /></a>
+        <a
+          ><div class="filter">
+            <img class="icon" :src="'src/assets/icon/parcours.png'" /></div
+        ></a>
+        <a href="#" title=""
+          ><div class="filter">
+            <img class="icon" :src="'src/assets/icon/event.png'" /></div
+        ></a>
+        <a href="#" title=""
+          ><div class="filter">
+            <img class="icon" :src="'src/assets/icon/path.png'" /></div
+        ></a>
       </div>
     </div>
   </div>
@@ -19,9 +28,6 @@
 <script>
 import { getParcours } from "@/api/getParcours.js";
 import { getPlaces } from "@/api/getPlaces";
-import parcours_selected from "@/assets/icon/parcours_selected.png";
-import event_selected from "@/assets/icon/event_selected.png";
-import path_selected from "@/assets/icon/path_selected.png";
 
 export default {
   name: "Slider",
@@ -32,9 +38,6 @@ export default {
       mainImage: "",
       placeName: "",
       placeDescription: "",
-      event: event_selected,
-      path: path_selected,
-      parcours: parcours_selected,
     };
   },
   created() {
