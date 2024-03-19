@@ -72,8 +72,10 @@ body {
   position: fixed;
   background-color: white;
   display: flex;
-  padding: 15px;
-  width: min(70lvw, 400px);
+  padding-top: 15px;
+  padding-bottom: 15px;
+
+  width: calc(min(70lvw, 400px));
   margin: 5% auto;
   left: 0;
   right: 0;
@@ -81,7 +83,6 @@ body {
   justify-content: center !important;
   border: 1px solid black;
   border-radius: 8px;
-  font-family: "Franklin Gothic Medium";
 }
 
 a {
@@ -106,4 +107,46 @@ nav a {
 
   border-radius: 15px;
   border: 2.5px solid black;
+}
+
+@media (max-width: 750px) {
+  .visibledevice {
+    display: contents;
+  }
+  .visibledesktop {
+    display: none;
+  }
+}
+
+@media (min-width: 750px) {
+  .visibledevice {
+    display: none;
+  }
+  .visibledesktop {
+    display: contents;
+  }
+}
+
+.right_arr::before {
+  content: "▸";
+  font-size: 4em;
+  padding: 0px;
+}
+
+.left_arr::before {
+  content: "◂";
+  font-size: 4em;
+}
+
+button.arrow {
+  border-radius: 50px;
+  margin: 0px;
+  padding: 0px;
+  background-color: transparent;
+  border: transparent;
+  /* top: 70lvh;
+  left: 50%; */
+  &:hover {
+    color: #f4b92f;
+  }
 }

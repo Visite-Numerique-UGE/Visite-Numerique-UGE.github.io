@@ -3,7 +3,13 @@ import CarouselMobile from "./CarouselMobile.vue";
 import CarouselDesktop from "./CarouselDesktop.vue";
 </script>
 
-<template><CarouselDesktop /></template>
+<template>
+  <div class="visibledesktop"><CarouselDesktop /></div>
+
+  <div class="visibledevice">
+    <CarouselMobile />
+  </div>
+</template>
 
 <style scoped>
 body {
