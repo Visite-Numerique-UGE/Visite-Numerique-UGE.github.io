@@ -4,49 +4,34 @@ import { getParcours } from "@/api/getParcours.js";
 
 <template>
   <div v-for="item in this.clean_parcours" :key="item">
-    <div class="flex-container">
+    <div class="">
       <div class="list_course">
-        <div class="name">{{ item[1] }}</div>
-
-        <div class="halftone-image">
+        <div class="halftone-image child">
           <img :src="'src/assets/building/Centrif.jpg'" />
         </div>
+        <div class="content_list child">
+          <div class="name">{{ item[1] }}</div>
+          <div class="tag">tag :{{ item[3] }}</div>
+          <div v-for="place in item[4]" :key="place">
+            <div class="place">place :{{ place }}</div>
+          </div>
 
-        <div class="desc">
-          desc : {{ item[2] }}
-          <br />
-          <br />
-          tag :{{ item[3] }}
-          <br />
-          <br />
-          place :{{ item[4] }}
-          <br />
-          <br />
-          id : {{ item[0] }}
-        </div>
+          <div class="desc">desc : {{ item[2] }}</div>
 
-        <div class="home_button">
-          <RouterLink to="/map"
-            ><div class="filter">
-              <img class="icon" id="_map" src="../assets/icon/map.png" />
-            </div>
-          </RouterLink>
+          <div class="home_button">
+            <RouterLink :to="'/quiz/' + item[0]"
+              ><div class="filter">
+                <img class="icon" id="_map" src="../assets/icon/map.png" />
+              </div>
+            </RouterLink>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<style scoped>
-.flex-container {
-  /* display: flex;
-  width: 100lvw;
-  height: 100lvh; */
-
-  display: flex;
-  flex-flow: row wrap;
-}
-</style>
+<style scoped></style>
 
 <script>
 export default {

@@ -3,7 +3,7 @@ import Parcours from "../components/CourseList.vue";
 </script>
 <template>
   <h1>Liste des Parcours</h1>
-  <div class="visibledesktop"><Parcours /></div>
+  <div class="_visibledesktop"><Parcours /></div>
 </template>
 
 <style></style>
