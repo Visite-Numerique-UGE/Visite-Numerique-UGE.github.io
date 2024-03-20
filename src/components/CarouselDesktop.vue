@@ -60,9 +60,6 @@
   height: 100lvh; /* 
   background-color: red; */
 }
-.column {
-  /* display: flex; */
-}
 </style>
 
 <script>

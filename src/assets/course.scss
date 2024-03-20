@@ -4,22 +4,17 @@
   vertical-align: middle;
   flex: 1;
 }
+.course_page {
+  position: absolute;
+  padding-top: 70px;
+  height: 90%;
+  width: 100lvw;
+  overflow-y: scroll;
+}
 
 .list_course {
-  .halftone-image {
-    width: calc(min(35lvw, 175px));
-
-    height: 40lvh;
-
-    border-radius: 5px 0px 0px 5px;
-
-    border: 1px solid black;
-    box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 1), 0px 0px 0px 0px rgba(0, 0, 0, 1); /* 
-    margin-left: auto;
-    margin-right: auto; */
-    overflow: hidden;
-  }
-
+  max-height: 500px;
+  min-height: 100px;
   height: fit-content;
   width: calc(min(85lvw, 750px));
 
@@ -32,15 +27,35 @@
   border: 1px solid black;
   box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 1), 8px 8px 0px 0px rgba(0, 0, 0, 1);
 
+  .place {
+    margin-right: 20px;
+  }
+  .halftone-image {
+    width: calc(min(35lvw, 175px));
+
+    height: 21.5lvh;
+
+    border-radius: 5px 0px 0px 5px;
+
+    border: 1px solid black;
+    box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 1), 0px 0px 0px 0px rgba(0, 0, 0, 1); /* 
+    margin-left: auto;
+    margin-right: auto; */
+    overflow: hidden;
+  }
+
   .desc {
-    top: 10lvh;
-    width: calc(min(50lvw, 300px));
-    height: 15lvh;
     text-align: left;
+    height: 110px;
+    overflow-y: scroll;
   }
   .content_list {
     padding-left: 20px;
     padding-right: 20px;
+
+    overflow-x: hidden;
+
+    word-wrap: break-word;
   }
 
   .name {
@@ -59,6 +74,49 @@
     width: 42.5px;
     height: 42.5px;
     border-radius: 15px;
-    margin-left: 75%;
+    margin-left: 85%;
+  }
+}
+
+@media (max-width: 850px) {
+  .list_course {
+    display: block;
+    .halftone-image {
+      width: calc(min(85lvw, 750px));
+      padding: -30px;
+      height: 15lvh;
+      object-fit: cover;
+      border-radius: 5px 5px 0px 0px;
+      border-bottom: 5px solid black;
+    }
+
+    img {
+      width: calc(min(85lvw, 750px));
+      object-fit: cover;
+    }
+    .content_list {
+      padding-left: 20px;
+      padding-right: 20px;
+
+      width: fit-content;
+      overflow-x: hidden;
+
+      word-wrap: break-word;
+
+      height: 250px;
+    }
+    .desc {
+      height: 75px;
+      overflow-y: scroll;
+      overflow: -moz-scrollbars-vertical;
+      /* 
+      background-color: #f1f1f1; */
+    }
+    .halftone-image {
+      border-radius: 5px 5px 0px 0px;
+    }
+    .content_list {
+      width: fit-content;
+    }
   }
 }

@@ -3,8 +3,13 @@ import { getParcours } from "@/api/getParcours.js";
 </script>
 
 <template>
-  <div v-for="item in this.clean_parcours" :key="item">
-    <div class="">
+  <div class="_container">
+    <div class="title"><h1 class="back">Liste des Parcours</h1></div>
+    <div class="title"><h1>Liste des Parcours</h1></div>
+  </div>
+
+  <div class="course_page">
+    <div v-for="item in this.clean_parcours" :key="item">
       <div class="list_course">
         <div class="halftone-image child">
           <img :src="'src/assets/building/Centrif.jpg'" />
@@ -12,11 +17,11 @@ import { getParcours } from "@/api/getParcours.js";
         <div class="content_list child">
           <div class="name">{{ item[1] }}</div>
           <div class="tag">tag :{{ item[3] }}</div>
-          <div v-for="place in item[4]" :key="place">
-            <div class="place">place :{{ place }}</div>
-          </div>
+          <span v-for="place in item[4]" :key="place">
+            <span class="place">{{ place }}</span>
+          </span>
 
-          <div class="desc">desc : {{ item[2] }}</div>
+          <div class="desc">{{ item[2] }}{{ item[2] }}</div>
 
           <div class="home_button">
             <RouterLink :to="'/quiz/' + item[0]"

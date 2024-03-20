@@ -19,6 +19,7 @@ import parcours_selected from "./assets/icon/parcours_selected.png";
       
     </nav> -->
   </header>
+  <div class="banner"></div>
   <nav class="top-banner">
     <RouterLink to="/"><img class="icon _navbar" id="icon_home" :src="icon[0] + '.png'" /></RouterLink>
     <RouterLink to="/map"><img class="icon _navbar" id="icon_map" :src="icon[1] + '.png'" /></RouterLink>

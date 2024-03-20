@@ -1,4 +1,8 @@
 <template>
+  <div class="_container">
+    <div class="title"><h1 class="back">Carte</h1></div>
+    <div class="title"><h1>Carte</h1></div>
+  </div>
   <div id="mapContainer"></div>
 </template>
 

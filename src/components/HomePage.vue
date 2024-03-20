@@ -11,8 +11,4 @@ import CarouselDesktop from "./CarouselDesktop.vue";
   </div>
 </template>
 
-<style scoped>
-body {
-  background: #fff;
-}
-</style>
+<style scoped></style>

@@ -75,13 +75,6 @@ button {
   }
 }
 
-// Media Queries
-
-@media screen and (max-width: 480px) {
-}
-
-/* QUIZ */
-
 /* ---------- MAP ----------*/
 
 /* Markers */
@@ -134,7 +127,7 @@ COMPONENT *********/
 
 .card {
   img {
-    width: calc(min(70lvw, 400px));
+    width: calc(min(85lvw, 750px));
     padding: -30px;
     height: 15lvh;
     object-fit: cover;
@@ -154,7 +147,7 @@ COMPONENT *********/
 
   max-height: 55lvh;
 
-  width: calc(min(70lvw, 400px));
+  width: calc(min(85lvw, 750px));
   margin: 20px auto;
 
   text-align: center;
@@ -190,7 +183,7 @@ COMPONENT *********/
       padding: 0.4em 0.5em;
       background-color: black;
 
-      transform: skewX(-10deg) rotate(-2deg) translate(-50px, -15lvh);
+      transform: skewX(-10deg) rotate(-2deg) translate(-40px, -15lvh);
       text-align: center;
     }
   }
