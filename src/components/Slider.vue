@@ -8,14 +8,14 @@
       <p class="name">{{ this.placeName }}</p>
       <p class="desc">{{ this.placeDescription }}</p>
       <div class="actions">
-        <a
-          ><div class="filter">
+        <RouterLink :to="'/parcours/' + this.placeName">
+          <div class="filter">
             <img class="icon" :src="'src/assets/icon/parcours.png'" /></div
-        ></a>
-        <a href="#" title=""
-          ><div class="filter">
+        ></RouterLink>
+        <RouterLink :to="'/event/' + this.placeName">
+          <div class="filter">
             <img class="icon" :src="'src/assets/icon/event.png'" /></div
-        ></a>
+        ></RouterLink>
         <a href="#" title=""
           ><div class="filter">
             <img class="icon" :src="'src/assets/icon/path.png'" /></div
@@ -77,10 +77,13 @@ export default {
     "$route.params.id": {
       async handler(id) {
         // do stuff
+
         console.log("id :");
         console.log(id);
         console.log(this.placeName);
-        if (id !== undefined) {
+
+        const route = this.$route.name.split("-")[0];
+        if (id !== undefined && route == "map") {
           await this.fillSlider(this.$route.params.id);
           document.getElementById("slider-content").style.display = "block";
         } else {

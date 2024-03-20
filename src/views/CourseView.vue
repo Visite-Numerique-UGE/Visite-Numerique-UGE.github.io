@@ -1,15 +1,9 @@
+<script setup>
+import Parcours from "../components/CourseList.vue";
+</script>
 <template>
-  <div class="about">
-    <h1>Liste des Parcours</h1>
-  </div>
+  <h1>Liste des Parcours</h1>
+  <div class="visibledesktop"><Parcours /></div>
 </template>
 
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
-</style>
+<style></style>

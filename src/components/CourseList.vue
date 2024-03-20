@@ -1,0 +1,106 @@
+<script setup>
+import { getParcours } from "@/api/getParcours.js";
+</script>
+
+<template>
+  <div v-for="item in this.clean_parcours" :key="item">
+    <div class="flex-container">
+      <div class="list_course">
+        <div class="name">{{ item[1] }}</div>
+
+        <div class="halftone-image">
+          <img :src="'src/assets/building/Centrif.jpg'" />
+        </div>
+
+        <div class="desc">
+          desc : {{ item[2] }}
+          <br />
+          <br />
+          tag :{{ item[3] }}
+          <br />
+          <br />
+          place :{{ item[4] }}
+          <br />
+          <br />
+          id : {{ item[0] }}
+        </div>
+
+        <div class="home_button">
+          <RouterLink to="/map"
+            ><div class="filter">
+              <img class="icon" id="_map" src="../assets/icon/map.png" />
+            </div>
+          </RouterLink>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.flex-container {
+  /* display: flex;
+  width: 100lvw;
+  height: 100lvh; */
+
+  display: flex;
+  flex-flow: row wrap;
+}
+</style>
+
+<script>
+export default {
+  data() {
+    return {
+      parcours: [],
+      clean_parcours: [],
+    };
+  },
+  created() {
+    this.retrieveData();
+  },
+
+  mounted() {
+    console.log("this.parcours");
+    console.log(this.parcours);
+    console.log("this.clean_parcours");
+    console.log(this.clean_parcours);
+  },
+
+  methods: {
+    async retrieveData() {
+      this.parcours = await getParcours();
+
+      if (this.$route.params.id !== undefined) {
+        console.log(this.$route.params.id);
+      }
+
+      this.cleanData();
+    },
+
+    cleanData() {
+      for (let i = 0; i < this.parcours.length; i++) {
+        this.clean_parcours.push([]);
+      }
+      for (let i = 0; i < this.parcours.length; i++) {
+        this.clean_parcours[i].push(this.parcours[i].c[0].v); //id
+        this.clean_parcours[i].push(this.parcours[i].c[1].v); //nom
+        this.clean_parcours[i].push(this.parcours[i].c[2].v); //desc
+        this.clean_parcours[i].push(this.parcours[i].c[3].v); //tag
+        this.clean_parcours[i].push(this.parcours[i].c.slice(4, 16)); //id
+      }
+
+      for (let i = 0; i < this.parcours.length; i++) {
+        this.clean_parcours[i][4] = this.clean_parcours[i][4].filter((elm) => elm);
+      }
+
+      for (let i = 0; i < this.parcours.length; i++) {
+        for (let j = 0; j < this.clean_parcours[i][4].length; j++) {
+          this.clean_parcours[i][4][j] = this.clean_parcours[i][4][j].v;
+        }
+        /*  = this.clean_parcours[i][4].filter((elm) => elm); */
+      }
+    },
+  },
+};
+</script>

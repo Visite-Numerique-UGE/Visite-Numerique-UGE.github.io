@@ -1,9 +1,9 @@
 @import "./animation.scss";
 
-.column {
+.list_course {
   img {
-    height: 35lvh;
-    width: calc(min(50lvw, 300px));
+    height: 15lvh;
+    width: calc(min(50lvw, 350px));
     object-fit: cover;
     border: 1px solid black;
     box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 1), 8px 8px 0px 0px rgba(0, 0, 0, 1);
@@ -11,11 +11,11 @@
     margin-right: auto;
   }
   .halftone-image {
-    position: relative;
-    top: 5lvh;
+    margin-top: 20px;
+    margin-bottom: 20px;
 
-    width: calc(min(50lvw, 300px));
-    height: 30lvh;
+    width: calc(min(60lvw, 350px));
+    height: 15lvh;
     border-radius: 5px 5px 5px 5px;
 
     border: 1px solid black;
@@ -25,23 +25,18 @@
     overflow: hidden;
   }
 
-  height: 70lvh;
+  height: 40lvh;
   width: calc(min(70lvw, 400px));
 
   background: #fff;
   text-align: center;
   border-radius: 8px;
 
-  /* opacity: 1;
-  transition: all 0.5s ease;
-  pointer-events: all;
- */
   margin: 40px auto;
   border: 1px solid black;
   box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 1), 8px 8px 0px 0px rgba(0, 0, 0, 1);
 
   .desc {
-    position: relative;
     top: 10lvh;
     width: calc(min(50lvw, 300px));
     height: 15lvh;
@@ -51,32 +46,23 @@
     text-align: left;
   }
   .name {
-    position: relative;
-    display: block;
-
+    margin-top: 20px;
     color: $mainColor;
     font-family: "Bangers";
     font-size: 2em;
-    float: left;
-    text-shadow: -1px -1px #091b38, 1px 1px #091b38, 4px 4px $first-color;
+    text-shadow: -1px -1px #091b38, 1px 1px #091b38, 2px 2px black;
 
     font-weight: 600;
-
-    margin-top: -2.5rem;
-    padding: 0.4em 1.5em;
-    background-color: black;
     z-index: 999;
-
-    transform: skewX(-10deg) rotate(-10deg) translate(30px, 10.5lvh);
     text-align: center;
   }
   .home_button {
+    position: relative;
     width: 40px;
     /* margin-top: 10lvh; */
     text-align: right;
     border-radius: 15px;
-    position: relative;
-
+    top: 0;
     margin-left: 75%;
   }
 }

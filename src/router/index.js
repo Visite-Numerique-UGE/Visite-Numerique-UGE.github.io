@@ -24,17 +24,27 @@ const router = createRouter({
       component: MapView
     },
     {
-      path: '/quiz:id',
+      path: '/quiz/:id',
       name: 'quiz',
       component: QuizView
     },
     {
-      path: '/quiz/',
-      name: 'quiz-list',
+      path: '/parcours/:id',
+      name: 'parcours',
+      component: CourseView
+    },
+    {
+      path: '/parcours/',
+      name: 'parcours-list',
       component: CourseView
     },
     {
       path: '/event/',
+      name: 'event-list',
+      component: EventView
+    },
+    {
+      path: '/event/:id',
       name: 'event',
       component: EventView
     }

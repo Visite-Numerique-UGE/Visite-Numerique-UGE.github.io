@@ -4,6 +4,7 @@
 @import "./map.scss";
 @import "./home.scss";
 @import "./variable.scss";
+@import "./course.scss";
 
 p,
 div {
@@ -211,8 +212,10 @@ img.icon {
 .halftone-image:before {
   content: "";
   position: absolute;
-  top: -1550%;
-  left: -550%;
+  width: 1000lvh;
+  height: 1000lvh;
+  left: -1550%;
+  /* left: -550%; */
   bottom: -50%;
   right: -100%;
   background: radial-gradient(circle at center, hsl(0, 0%, 10%), hsl(0, 0%, 110%));

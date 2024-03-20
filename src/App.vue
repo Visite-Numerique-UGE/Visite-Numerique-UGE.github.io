@@ -22,7 +22,7 @@ import parcours_selected from "./assets/icon/parcours_selected.png";
   <nav class="top-banner">
     <RouterLink to="/"><img class="icon _navbar" id="icon_home" :src="icon[0] + '.png'" /></RouterLink>
     <RouterLink to="/map"><img class="icon _navbar" id="icon_map" :src="icon[1] + '.png'" /></RouterLink>
-    <RouterLink to="/quiz"><img class="icon _navbar" id="icon_quiz-list" :src="icon[2] + '.png'" /></RouterLink>
+    <RouterLink to="/parcours"><img class="icon _navbar" id="icon_parcours" :src="icon[2] + '.png'" /></RouterLink>
     <RouterLink to="/event"><img class="icon _navbar" id="icon_event" :src="icon[3] + '.png'" /></RouterLink>
   </nav>
   <RouterView />
@@ -40,14 +40,11 @@ export default {
   watch: {
     route: {
       handler: function () {
-        console.log(this.route.name);
-        const route = this.route.name.split("-")[0];
+        const route = this.$route.name.split("-")[0];
+
+        console.log("route");
+        console.log(route);
         this.icon = this.icon.map((x) => x.replace("_selected", ""));
-        /*         if (this.route.name == "home") this.icon[0] += "_selected";
-        if (this.route.name == "map") this.icon[1] += "_selected";
-        if (this.route.name == "quiz-list") this.icon[2] += "_selected";
-        if (this.route.name == "event") this.icon[3] += "_selected";
- */
         let _filter = document.getElementById("filter");
         console.log("_filter");
         console.log(_filter);
@@ -59,6 +56,9 @@ export default {
         const _navbar = document.getElementsByClassName("_navbar");
 
         const _id = "icon_" + route;
+
+        console.log("id : ");
+        console.log(_id);
         let wrapper = document.createElement("div");
         wrapper.className = "filter";
         wrapper.id = "filter";
