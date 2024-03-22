@@ -143,12 +143,10 @@ COMPONENT *********/
   z-index: 999;
   background: #fff;
 
-  
-
   max-height: min(50lvh, 450px);
-  width:$width-content;
+  width: $width-content;
   margin: O auto;
-bottom:0px;
+  bottom: 0px;
   text-align: center;
   border-radius: 8px;
 
@@ -208,7 +206,7 @@ bottom:0px;
     }
   }
   .desc {
-    margin-top:10px;
+    margin-top: 10px;
     height: 100px;
     overflow-y: scroll;
     text-align: left;
@@ -217,4 +215,9 @@ bottom:0px;
 }
 img.filtered {
   /* filter: sepia(100%) hue-rotate(190deg) saturate(200%); */
+}
+@media (min-height: 700px) {
+  .card {
+    bottom: 20px;
+  }
 }

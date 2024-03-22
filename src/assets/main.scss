@@ -6,6 +6,27 @@
 @import "./variable.scss";
 @import "./course.scss";
 
+@media (max-width: 1100px) {
+  .visibledevice {
+    display: contents;
+    height: 100lvh;
+    $font-variable: 2em;
+  }
+  .visibledesktop {
+    display: none;
+    height: 100lvh;
+  }
+}
+
+@media (min-width: 1100px) {
+  .visibledevice {
+    display: none;
+  }
+  .visibledesktop {
+    display: contents;
+  }
+}
+
 p,
 div {
   font-family: "Courier Prime", monospace;
@@ -18,7 +39,7 @@ body {
   overflow-y: hidden;
   font-family: tahoma;
   height: 100vh;
-  font-size: min(4vh, 1rem);
+  font-size: min(4vh, 10px);
   background-color: $mainColor;
   color: $first-color;
   margin: 0;
@@ -113,25 +134,6 @@ nav a {
 .container {
   height: 100lvh;
   display: flex;
-}
-@media (max-width: 1100px) {
-  .visibledevice {
-    display: contents;
-    height: 100lvh;
-  }
-  .visibledesktop {
-    display: none;
-    height: 100lvh;
-  }
-}
-
-@media (min-width: 1100px) {
-  .visibledevice {
-    display: none;
-  }
-  .visibledesktop {
-    display: contents;
-  }
 }
 
 .right_arr::before {
@@ -275,7 +277,7 @@ img.icon {
   color: $mainColor;
   font-size: 1.5em;
   text-shadow: -1px -1px #091b38, 1px 1px #091b38, 2px 2px black;
-  
+
   position: sticky;
   height: 30px;
   /* 

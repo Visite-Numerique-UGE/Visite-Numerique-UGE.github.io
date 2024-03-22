@@ -8,21 +8,21 @@ import { getParcours } from "@/api/getParcours.js";
   </div>
 
   <div class="course_page">
-    <div v-for="(item, index) in this.clean_parcours"  :key="item">
-      <div class="list_course" :class="index === (this.clean_parcours.length-1) ? 'last' : ''">
+    <div v-for="(item, index) in this.clean_parcours" :key="item">
+      <div class="list_course" :class="index === this.clean_parcours.length - 1 ? 'last' : ''">
         <div class="halftone-image child">
           <img :src="'src/assets/building/Centrif.jpg'" />
         </div>
         <div class="content_list child">
           <div class="name">{{ item[1] }}</div>
-          <div class="details">
+          <!-- <div class="details">
           <span class="tag">{{ item[3] }}</span>
           <span v-for="place in item[4]" :key="place">
             <span class="place">{{ place }}</span>
           </span>
-          </div>
+          </div> -->
 
-          <div class="desc">{{ item[2] }}{{ item[2] }}</div>
+          <div class="desc">{{ item[2] }}</div>
 
           <div class="home_button">
             <RouterLink :to="'/quiz/' + item[0]"
@@ -37,9 +37,7 @@ import { getParcours } from "@/api/getParcours.js";
   </div>
 </template>
 
-<style scoped>
-  
-</style>
+<style scoped></style>
 
 <script>
 export default {
@@ -84,7 +82,9 @@ export default {
       }
 
       for (let i = 0; i < this.clean_parcours.length; i++) {
-        this.clean_parcours[i][4] = this.clean_parcours[i][4].filter((elm) =>  {return elm });
+        this.clean_parcours[i][4] = this.clean_parcours[i][4].filter((elm) => {
+          return elm;
+        });
       }
 
       for (let i = 0; i < this.parcours.length; i++) {

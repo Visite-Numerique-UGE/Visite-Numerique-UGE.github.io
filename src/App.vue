@@ -41,7 +41,8 @@ export default {
   watch: {
     route: {
       handler: function () {
-        const route = this.$route.name.split("-")[0];
+        let route = this.$route.name.split("-")[0];
+        if (route == "quiz") route = "parcours";
 
         console.log("route");
         console.log(route);
@@ -49,6 +50,7 @@ export default {
         let _filter = document.getElementById("filter");
         console.log("_filter");
         console.log(_filter);
+
         if (_filter !== null) {
           let childFilter = _filter.firstChild;
           _filter.parentNode.insertBefore(childFilter, _filter);
