@@ -6,32 +6,57 @@
 }
 .course_page {
   position: absolute;
-  padding-top: 70px;
+  padding-top: 10px;
+  margin-bottom:150px;
   height: 90%;
   width: 100lvw;
   overflow-y: scroll;
 }
 
+
 .list_course {
-  max-height: 500px;
+  font-size:1.5em;
+  max-height: 370px;
   min-height: 100px;
   height: fit-content;
-  width: calc(min(85lvw, 750px));
+  width: $width-content;
 
   display: flex;
   background: #fff;
-  /* text-align: center; */
+
   border-radius: 8px;
 
-  margin: 40px auto;
+  margin: auto;
+  margin-top:10px;
+  margin-bottom:30px;
   border: 1px solid black;
   box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 1), 8px 8px 0px 0px rgba(0, 0, 0, 1);
 
   .place {
-    margin-right: 20px;
+    margin-right: 2px;
+    line-height: 1em;
+    margin-bottom:10px;
+    border-radius: 4px;
+    padding:2px;
+    padding-left:10px;
+    padding-right:10px;
+    background-color: $mainColor;
+  }
+  .details {
+    margin-bottom:10px;
+    width: calc($width-content - 20px);
+    word-wrap:anywhere;
+    display: inline;
+    
+  }
+  
+  .tag {
+    @extend .place;
+    background-color: $first-color;
+    color:white;
   }
   .halftone-image {
-    width: calc(min(35lvw, 175px));
+    width:  $width-content;
 
     height: 21.5lvh;
 
@@ -59,8 +84,8 @@
   }
 
   .name {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     color: $mainColor;
     font-family: "Bangers";
     font-size: 1.5em;
@@ -77,21 +102,28 @@
     margin-left: 85%;
   }
 }
+.last {
+  margin-bottom:110px;
+  
+}
 
-@media (max-width: 850px) {
+
   .list_course {
+    width: $width-content;
     display: block;
+    
     .halftone-image {
-      width: calc(min(85lvw, 750px));
+      width: $width-content;
       padding: -30px;
-      height: 15lvh;
+    height: 150px;
+  
       object-fit: cover;
       border-radius: 5px 5px 0px 0px;
       border-bottom: 5px solid black;
     }
 
     img {
-      width: calc(min(85lvw, 750px));
+      width: 400pc;
       object-fit: cover;
     }
     .content_list {
@@ -119,4 +151,4 @@
       width: fit-content;
     }
   }
-}
+

@@ -1,6 +1,6 @@
 <template>
   <div class="_container">
-    <div class="title"><h1 class="back">Carte</h1></div>
+
     <div class="title"><h1>Carte</h1></div>
   </div>
   <div id="mapContainer"></div>
@@ -100,6 +100,6 @@ export default {
 <style scoped>
 #mapContainer {
   width: 100lvw;
-  height: 100lvh;
+  height: 90lvh;
 }
 </style>

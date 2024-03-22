@@ -3,14 +3,16 @@
 .column {
   height: fit-content;
 
-  width: calc(min(85lvw, 400px));
+  max-height: 340px;
+
+  width: $width-content;
 
   background: #fff;
   text-align: center;
   border-radius: 8px;
 
-  margin: auto;
-
+  margin: auto auto;
+margin-top: 15lvh;
   border: 1px solid black;
   box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 1), 8px 8px 0px 0px rgba(0, 0, 0, 1);
 
@@ -23,10 +25,10 @@
     margin-right: auto;
   }
   .halftone-image {
-    top: 5lvh;
+    
 
     width: calc(min(50lvw, 300px));
-    height: 20lvh;
+    height: 17.5lvh;
     border-radius: 5px 5px 5px 5px;
 
     border: 1px solid black;
@@ -39,7 +41,9 @@
   .desc {
     padding-top: 30px;
     width: calc(min(50lvw, 300px));
-    height: 100px;
+    height: 70px;
+    
+    font-size:1.4em;
     margin-left: auto;
     margin-right: auto;
     text-align: left;
@@ -48,13 +52,12 @@
     position: relative;
     color: $mainColor;
     font-family: "Bangers";
-    font-size: 2em;
+    font-size: 2.6em;
     text-shadow: -1px -1px #091b38, 1px 1px #091b38, 4px 4px $first-color;
     margin-top: 0px;
     font-weight: 600;
     text-align: center;
     z-index: 999;
-
     padding-bottom: 20px;
   }
   .home_button {
@@ -72,8 +75,8 @@
   }
 
   img.icon {
-    max-width: 60px;
-    max-height: 60px;
+    max-width: 45px;
+    max-height: 45px;
   }
 }
 
@@ -85,3 +88,27 @@
     padding-top: 20px;
   }
 }
+@media (max-height: 800px) {
+  .arrow {
+    position: relative;
+    bottom: 5px;
+  }
+
+.column{
+
+  margin-top:max(35px, 0px);
+}
+}
+
+
+/*@media screen and (max-width:600px) {
+  
+.column {
+  p, div {
+    background-color: red;
+  }
+  
+}
+
+}*/
+

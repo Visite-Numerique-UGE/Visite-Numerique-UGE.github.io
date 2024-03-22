@@ -4,7 +4,7 @@ import HomePage from "../components/HomePage.vue";
 
 <template>
   <div class="_container">
-    <div class="title"><h1 class="back">UGExplorer</h1></div>
+    
     <div class="title"><h1>UGExplorer</h1></div>
   </div>
   <main>

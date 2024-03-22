@@ -6,7 +6,7 @@ import Slider from "@/components/Slider.vue";
 <template>
   <main>
     <Map></Map>
-    <Slider></Slider>
+    <div class="container"><Slider></Slider></div>
   </main>
 </template>
 

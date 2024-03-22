@@ -77,7 +77,7 @@ body {
   padding-top: 15px;
   padding-bottom: 15px;
 
-  width: calc(min(85lvw, 400px));
+  width: $width-content;
   margin: 5% auto;
   left: 0;
   right: 0;
@@ -114,7 +114,7 @@ nav a {
   height: 100lvh;
   display: flex;
 }
-@media (max-width: 1300px) {
+@media (max-width: 1100px) {
   .visibledevice {
     display: contents;
     height: 100lvh;
@@ -125,7 +125,7 @@ nav a {
   }
 }
 
-@media (min-width: 1300px) {
+@media (min-width: 1100px) {
   .visibledevice {
     display: none;
   }
@@ -160,8 +160,8 @@ button.arrow {
 
 .column {
   .filter {
-    width: 62px;
-    height: 62px;
+    width: 47px;
+    height: 47px;
   }
 }
 
@@ -268,16 +268,16 @@ img.icon {
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 35px;
+    padding-top: 15px;
 
     border-radius: 8px;
   }
   color: $mainColor;
   font-size: 1.5em;
   text-shadow: -1px -1px #091b38, 1px 1px #091b38, 2px 2px black;
-  top: 0px;
-  position: fixed;
-  height: 65px;
+  
+  position: sticky;
+  height: 30px;
   /* 
   border-radius: 8px; */
   background-color: white;

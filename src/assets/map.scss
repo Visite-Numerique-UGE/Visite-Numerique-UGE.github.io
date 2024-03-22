@@ -127,7 +127,7 @@ COMPONENT *********/
 
 .card {
   img {
-    width: calc(min(85lvw, 750px));
+    width: $width-content;
     padding: -30px;
     height: 15lvh;
     object-fit: cover;
@@ -143,13 +143,12 @@ COMPONENT *********/
   z-index: 999;
   background: #fff;
 
-  top: 45.5lvh;
+  
 
-  max-height: 55lvh;
-
-  width: calc(min(85lvw, 750px));
-  margin: 20px auto;
-
+  max-height: min(50lvh, 450px);
+  width:$width-content;
+  margin: O auto;
+bottom:0px;
   text-align: center;
   border-radius: 8px;
 
@@ -164,7 +163,7 @@ COMPONENT *********/
   transform: translate(-50%, -50%);
   p {
     font-weight: 400;
-    font-size: 12px;
+    font-size: 1.5em;
     line-height: 17px;
     margin: 2px 0;
 
@@ -209,7 +208,8 @@ COMPONENT *********/
     }
   }
   .desc {
-    height: 22.5lvh;
+    margin-top:10px;
+    height: 100px;
     overflow-y: scroll;
     text-align: left;
     margin: 13.5px;
