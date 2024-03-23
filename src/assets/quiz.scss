@@ -18,3 +18,52 @@
 .center {
   width: 100lvw;
 }
+.answer {
+  font-size: 1.5em;
+}
+
+.answer:hover {
+  background-color: $mainColor;
+  color: white;
+}
+.question {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: #091b38;
+  background-color: #a4bfe9;
+  color: hsl(219, 96%, 21%);
+  font-weight: 900;
+}
+.bottom {
+  display: block;
+  bottom: 0;
+  right: 0; /* set the right to 0 */
+}
+input {
+  margin-bottom: 20px;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: $width-content;
+  border: 1px solid black;
+  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 1), 8px 8px 0px 0px rgba(0, 0, 0, 1);
+  border-radius: 8px;
+}
+
+button:hover {
+  background-color: white;
+  color: $mainColor;
+}
+
+button {
+  background-color: $mainColor;
+  color: white;
+  font-family: "Courier Prime";
+  font-size: 1.7em;
+  padding: 10px;
+  margin-bottom: 20px;
+  width: calc($width-content + 40px);
+  border: 1px solid black;
+  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 1), 8px 8px 0px 0px rgba(0, 0, 0, 1);
+  border-radius: 8px;
+}
