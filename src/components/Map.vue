@@ -116,6 +116,7 @@ export default {
         }),
       }).addTo(this.map);
       this.map.setView([destination[0] - 0.001, destination[1]], 18);
+      let t = document.getElementsByClassName("leaflet-pane leaflet-marker-pane")[0].lastChild.remove();
     },
 
     removeRoute() {
