@@ -14,7 +14,8 @@
 }
 
 .list_course {
-  font-size: 1.5em;
+  white-space: break-spaces;
+  font-size: 1.3em;
   max-height: 370px;
   min-height: 100px;
   width: $width-content;
@@ -70,8 +71,7 @@
     position: absolute;
     width: 1000lvh;
     height: 1000lvh;
-    left: -1550%;
-    left: -550%;
+    left: -1200%;
     bottom: -50%;
     right: -100%;
   }

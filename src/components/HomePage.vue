@@ -11,4 +11,10 @@ import CarouselDesktop from "./CarouselDesktop.vue";
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.halftone-image img {
+  filter: brightness(120%) contrast(55%);
+  mix-blend-mode: hard-light;
+  display: block;
+}
+</style>

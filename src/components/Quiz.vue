@@ -84,6 +84,13 @@ import * as Quiz from "@/api/getQuiz.js";
   padding-bottom: 12.5px;
   width: min(75.5lvw, 360px);
 }
+.halftone-image:before {
+  content: "";
+  position: absolute;
+  width: 1000lvh;
+  height: 1000lvh;
+  left: -1550%;
+}
 
 .multiple {
   margin-top: 20px;

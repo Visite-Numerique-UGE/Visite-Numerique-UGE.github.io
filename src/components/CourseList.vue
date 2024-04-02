@@ -11,16 +11,17 @@ import { getParcours } from "@/api/getParcours.js";
     <div v-for="(item, index) in this.clean_parcours" :key="item">
       <div class="list_course" :class="index === this.clean_parcours.length - 1 ? 'last' : ''">
         <div class="halftone-image child">
-          <img :src="'src/assets/building/Centrif.jpg'" />
+          <img :src="item[5]" />
         </div>
         <div class="content_list child">
           <div class="name">{{ item[1] }}</div>
-          <!-- <div class="details">
-          <span class="tag">{{ item[3] }}</span>
-          <span v-for="place in item[4]" :key="place">
+          <div class="details">
+            <span class="tag">{{ item[3] }}</span>
+            <span class="place">{{ item[4] }}</span>
+            <!-- <span v-for="place in item[4]" :key="place">
             <span class="place">{{ place }}</span>
-          </span>
-          </div> -->
+          </span> -->
+          </div>
 
           <div class="desc">{{ item[2] }}</div>
 
@@ -74,25 +75,27 @@ export default {
         this.clean_parcours.push([]);
       }
       for (let i = 0; i < this.parcours.length; i++) {
+        console.log(this.parcours[i].c);
         this.clean_parcours[i].push(this.parcours[i].c[0].v); //id
         this.clean_parcours[i].push(this.parcours[i].c[1].v); //nom
         this.clean_parcours[i].push(this.parcours[i].c[2].v); //desc
         this.clean_parcours[i].push(this.parcours[i].c[3].v); //tag
-        this.clean_parcours[i].push(this.parcours[i].c.slice(4, 16)); //id
+        this.clean_parcours[i].push(this.parcours[i].c[4].v); //id
+        this.clean_parcours[i].push(this.parcours[i].c[6].v); //id
       }
 
-      for (let i = 0; i < this.clean_parcours.length; i++) {
+      /* for (let i = 0; i < this.clean_parcours.length; i++) {
         this.clean_parcours[i][4] = this.clean_parcours[i][4].filter((elm) => {
           return elm;
         });
-      }
+      } */
 
-      for (let i = 0; i < this.parcours.length; i++) {
+      /* for (let i = 0; i < this.parcours.length; i++) {
         for (let j = 0; j < this.clean_parcours[i][4].length; j++) {
           this.clean_parcours[i][4][j] = this.clean_parcours[i][4][j].v;
         }
-        /*  = this.clean_parcours[i][4].filter((elm) => elm); */
-      }
+        /*  = this.clean_parcours[i][4].filter((elm) => elm); * /
+      } */
     },
   },
 };

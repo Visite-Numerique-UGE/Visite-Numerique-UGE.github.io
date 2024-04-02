@@ -224,7 +224,7 @@ img.icon {
 .halftone-image {
   display: inline-flex;
   overflow: hidden;
-  filter: contrast(200%); //1000
+  filter: contrast(175%); //1000
   mix-blend-mode: hard-light;
   mix-blend-mode: multiply;
   /*    opacity: 0.7;*/
