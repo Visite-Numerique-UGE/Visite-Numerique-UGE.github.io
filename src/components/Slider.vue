@@ -18,7 +18,7 @@
             <img class="icon" :src="'src/assets/icon/event.png'" />
           </div>
         </RouterLink>
-        <RouterLink :to="'/navigate/' + this.placeName">
+        <RouterLink :to="'/navigate/' + this.placeID">
           <div class="filter">
             <img class="icon" :src="'src/assets/icon/path.png'" />
           </div>
@@ -40,6 +40,7 @@ export default {
       parcoursList: [],
       mainImage: "",
       placeName: "",
+      placeID: "",
       placeDescription: "",
     };
   },
@@ -66,6 +67,7 @@ export default {
       this.placesList = await getPlaces();
       let tmp = this.placesList.filter((place) => {
         console.log(place.c[0].v == placeID);
+        this.placeID = placeID;
         return place.c[0].v == placeID;
       })[0];
       this.mainImage = tmp.c[0].v;

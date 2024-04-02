@@ -87,12 +87,15 @@ export default {
           popupAnchor: [0, -30],
           /* <RouterLink to="/vocabulary/all/1">All</RouterLink> */
         });
-        let marker = L.marker([place.c[5].v, place.c[4].v], { icon: customIcon })
+        console.log(this.data);
+        let marker = L.marker([place.c[5].v, place.c[4].v], { icon: customIcon, id: place.c[0].v })
           .addTo(this.map)
           .on("click", (e) => {
             this.map.setView([e.latlng.lat - 0.001, e.latlng.lng], 18);
             console.log(place.c[0].v);
-            if (this.userPosition && this.map.getBounds().contains(L.latLng(this.userPosition))) this.calculateAndDisplayRoute(this.userPosition, [place.c[5].v, place.c[4].v]);
+
+            // if (this.userPosition /*&& this.map.getBounds().contains(L.latLng(this.userPosition))*/) this.calculateAndDisplayRoute(this.userPosition, [place.c[5].v, place.c[4].v]);
+            console.log(this.markers);
             //else alert("La position de l'utilisateur n'est pas disponible.");
             this.$router.push("/map/" + place.c[0].v);
           });
@@ -118,7 +121,6 @@ export default {
       }).addTo(this.map);
       this.map.setView([destination[0] - 0.001, destination[1]], 18);
       document.getElementsByClassName("leaflet-pane leaflet-marker-pane")[0].lastChild.remove();
-      //this.$router.push("/map/navigate/" + destination);
     },
 
     removeRoute() {
@@ -129,16 +131,18 @@ export default {
     },
   },
   watch: {
-    "$route.params.id": {
-      handler(id) {
-        // do stuff
-        console.log("id :");
-        console.log(id);
-        if (this.routeControl == null) this.id = id;
-        console.log("this.id :", this.id);
+    "$route.params": {
+      async handler(params) {
+        console.log("route name : ", this.$route.name);
+        console.log("route : ", this.$route.params.id);
+        if (this.$route.name == "navigate" && this.map.getBounds().contains(L.latLng(this.userPosition))){
+          //chopper l'élément
+          let destinationCoords = this.markers.find(marker => marker.options.id == this.$route.params.id).getLatLng();
+          this.calculateAndDisplayRoute(this.userPosition, [destinationCoords.lat, destinationCoords.lng]);
+          } 
       },
-      immediate: true,
     },
+
   },
 };
 </script>

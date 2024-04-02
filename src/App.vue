@@ -41,37 +41,36 @@ export default {
   watch: {
     route: {
       handler: function () {
-        let route = this.$route.name.split("-")[0];
-        if (route == "quiz") route = "parcours";
+        if (this.$route.name == "map") {
+          let route = this.$route.name.split("-")[0];
+          if (route == "quiz") route = "parcours";
+          this.icon = this.icon.map((x) => x.replace("_selected", ""));
+          let _filter = document.getElementById("filter");
+          console.log("_filter");
+          console.log(_filter);
 
-        console.log("route");
-        console.log(route);
-        this.icon = this.icon.map((x) => x.replace("_selected", ""));
-        let _filter = document.getElementById("filter");
-        console.log("_filter");
-        console.log(_filter);
+          if (_filter !== null) {
+            let childFilter = _filter.firstChild;
+            _filter.parentNode.insertBefore(childFilter, _filter);
+            _filter.parentNode.removeChild(_filter);
+          }
+          const _navbar = document.getElementsByClassName("_navbar");
 
-        if (_filter !== null) {
-          let childFilter = _filter.firstChild;
-          _filter.parentNode.insertBefore(childFilter, _filter);
-          _filter.parentNode.removeChild(_filter);
+          const _id = "icon_" + route;
+
+          console.log("id : ");
+          console.log(_id);
+          let wrapper = document.createElement("div");
+          wrapper.className = "filter";
+          wrapper.id = "filter";
+          let myDiv = document.getElementById(_id);
+          wrapper.appendChild(myDiv.cloneNode(true));
+          myDiv.parentNode.replaceChild(wrapper, myDiv);
         }
-        const _navbar = document.getElementsByClassName("_navbar");
-
-        const _id = "icon_" + route;
-
-        console.log("id : ");
-        console.log(_id);
-        let wrapper = document.createElement("div");
-        wrapper.className = "filter";
-        wrapper.id = "filter";
-        let myDiv = document.getElementById(_id);
-        wrapper.appendChild(myDiv.cloneNode(true));
-        myDiv.parentNode.replaceChild(wrapper, myDiv);
       },
       deep: true, // Watch nested properties inside sort object
     },
   },
-  mounted() {},
+  mounted() { },
 };
 </script>
