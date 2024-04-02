@@ -1,6 +1,8 @@
 <template>
   <div class="_container">
-    <div class="title"><h1>Carte</h1></div>
+    <div class="title">
+      <h1>Carte</h1>
+    </div>
   </div>
   <div id="mapContainer"></div>
 </template>
@@ -9,6 +11,9 @@
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { getPlaces } from "@/api/getPlaces.js";
+import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
+import 'leaflet-routing-machine';
+import "lrm-graphhopper";
 export default {
   name: "Map",
   data() {
@@ -16,9 +21,13 @@ export default {
       map: null,
       data: [],
       markers: [],
+      route: null,
+      userPosition: null,
+      id : null,
     };
   },
   mounted() {
+    // Créer la carte
     this.map = L.map("mapContainer", { zoomControl: false }).setView([48.839623875988806, 2.588503717609941], 17);
     L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png", {
       attribution:
@@ -35,12 +44,21 @@ export default {
       }
     });
 
+    // Obtenir la position de l'utilisateur
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.userPosition = [position.coords.latitude, position.coords.longitude];
+      });
+    } else {
+      alert("La position de l'utilisateur n'est pas disponible.");
+    }
+    this.retrieveData();
+
+    // Gestionnaire d'événement pour cliquer sur la carte
     this.map.on("click", () => {
       //ICI
-
       this.$router.push("/map/");
     });
-    this.retrieveData();
   },
   beforeDestroy() {
     if (this.map) {
@@ -69,18 +87,45 @@ export default {
           popupAnchor: [0, -30],
           /* <RouterLink to="/vocabulary/all/1">All</RouterLink> */
         });
-        this.markers.push(
-          L.marker([place.c[5].v, place.c[4].v], { icon: customIcon })
-            .addTo(this.map)
-            .on("click", (e) => {
-              this.map.setView([e.latlng.lat - 0.001, e.latlng.lng], 18);
-              console.log(place.c[0].v);
-
-              this.$router.push("/map/" + place.c[0].v);
-            })
-            .addTo(this.map)
-        );
+        let marker = L.marker([place.c[5].v, place.c[4].v], { icon: customIcon })
+          .addTo(this.map)
+          .on("click", (e) => {
+            this.map.setView([e.latlng.lat - 0.001, e.latlng.lng], 18);
+            console.log(place.c[0].v);
+            if (this.userPosition && this.map.getBounds().contains(L.latLng(this.userPosition))) this.calculateAndDisplayRoute(this.userPosition, [place.c[5].v, place.c[4].v]);
+            //else alert("La position de l'utilisateur n'est pas disponible.");
+            this.$router.push("/map/" + place.c[0].v);
+          });
+        this.markers.push(marker);
       });
+    },
+    calculateAndDisplayRoute(start, destination) {
+      if (this.routeControl) {
+        this.map.removeControl(this.routeControl);
+      }
+      this.routeControl = L.Routing.control({
+        waypoints: [
+          L.latLng(start),
+          this.markers.find(marker => marker.getLatLng().equals(destination)).getLatLng(),
+        ],
+        routeWhileDragging: false,
+        alternativeRoutes: false,
+        addWaypoints: false,
+        draggableWaypoints: false,
+        router: new L.Routing.GraphHopper('f8d3f7cb-8512-4c60-b0c5-e7ac1096fcb8', {
+          vehicle: 'foot',
+        }),
+      }).addTo(this.map);
+      this.map.setView([destination[0] - 0.001, destination[1]], 18);
+      document.getElementsByClassName("leaflet-pane leaflet-marker-pane")[0].lastChild.remove();
+      //this.$router.push("/map/navigate/" + destination);
+    },
+
+    removeRoute() {
+      if (this.routeControl){
+        this.map.removeControl(this.routeControl);
+        this.routeControl = null;
+      }
     },
   },
   watch: {
@@ -89,6 +134,8 @@ export default {
         // do stuff
         console.log("id :");
         console.log(id);
+        if (this.routeControl == null) this.id = id;
+        console.log("this.id :", this.id);
       },
       immediate: true,
     },
