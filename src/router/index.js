@@ -47,6 +47,11 @@ const router = createRouter({
       path: '/event/:id',
       name: 'event',
       component: EventView
+    },
+    {
+      path: '/navigate/:id',
+      name: 'navigate',
+      component: MapView
     }
   ]
 })

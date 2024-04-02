@@ -23,6 +23,7 @@ export default {
       markers: [],
       route: null,
       userPosition: null,
+      id : null,
     };
   },
   mounted() {
@@ -91,8 +92,8 @@ export default {
           .on("click", (e) => {
             this.map.setView([e.latlng.lat - 0.001, e.latlng.lng], 18);
             console.log(place.c[0].v);
-            if (this.userPosition) this.calculateAndDisplayRoute(this.userPosition, [place.c[5].v, place.c[4].v]);
-            else alert("La position de l'utilisateur n'est pas disponible.");
+            if (this.userPosition && this.map.getBounds().contains(L.latLng(this.userPosition))) this.calculateAndDisplayRoute(this.userPosition, [place.c[5].v, place.c[4].v]);
+            //else alert("La position de l'utilisateur n'est pas disponible.");
             this.$router.push("/map/" + place.c[0].v);
           });
         this.markers.push(marker);
@@ -117,10 +118,14 @@ export default {
       }).addTo(this.map);
       this.map.setView([destination[0] - 0.001, destination[1]], 18);
       document.getElementsByClassName("leaflet-pane leaflet-marker-pane")[0].lastChild.remove();
+      //this.$router.push("/map/navigate/" + destination);
     },
 
     removeRoute() {
-      if (this.routeControl) this.map.removeControl(this.routeControl);
+      if (this.routeControl){
+        this.map.removeControl(this.routeControl);
+        this.routeControl = null;
+      }
     },
   },
   watch: {
@@ -129,6 +134,8 @@ export default {
         // do stuff
         console.log("id :");
         console.log(id);
+        if (this.routeControl == null) this.id = id;
+        console.log("this.id :", this.id);
       },
       immediate: true,
     },

@@ -10,16 +10,19 @@
       <div class="actions">
         <RouterLink :to="'/parcours/' + this.placeName">
           <div class="filter">
-            <img class="icon" :src="'src/assets/icon/parcours.png'" /></div
-        ></RouterLink>
+            <img class="icon" :src="'src/assets/icon/parcours.png'" />
+          </div>
+        </RouterLink>
         <RouterLink :to="'/event/' + this.placeName">
           <div class="filter">
-            <img class="icon" :src="'src/assets/icon/event.png'" /></div
-        ></RouterLink>
-        <a href="#" title=""
-          ><div class="filter">
-            <img class="icon" :src="'src/assets/icon/path.png'" /></div
-        ></a>
+            <img class="icon" :src="'src/assets/icon/event.png'" />
+          </div>
+        </RouterLink>
+        <RouterLink :to="'/navigate/' + this.placeName">
+          <div class="filter">
+            <img class="icon" :src="'src/assets/icon/path.png'" />
+          </div>
+        </RouterLink>
       </div>
     </div>
   </div>
