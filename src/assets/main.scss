@@ -1,0 +1,288 @@
+/* @import "./base.css"; */
+@import url("https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+@import "./map.scss";
+@import "./home.scss";
+@import "./variable.scss";
+@import "./course.scss";
+
+@media (max-width: 1100px) {
+  .visibledevice {
+    display: contents;
+    height: 100lvh;
+    $font-variable: 2em;
+  }
+  .visibledesktop {
+    display: none;
+    height: 100lvh;
+  }
+}
+
+@media (min-width: 1100px) {
+  .visibledevice {
+    display: none;
+  }
+  .visibledesktop {
+    display: contents;
+  }
+}
+
+p,
+div,
+input {
+  font-family: "Roboto Slab", "Courier Prime", monospace;
+}
+
+html,
+body {
+  overflow-y: hidden; /* 
+  font-family: tahoma; */
+  height: 100vh;
+  font-size: min(4vh, 10px);
+  background-color: $mainColor;
+  color: $first-color;
+  margin: 0;
+  background-image: radial-gradient(ellipse farthest-corner, transparent 0%, transparent 35%, #fff 30%, #fff 40%, transparent 90%),
+    radial-gradient(ellipse farthest-corner at 0px 0px, transparent 0%, transparent 20%, #fff 15%, #fff 20%, transparent 50%),
+    radial-gradient(ellipse farthest-corner at 8px 8px, transparent 0%, transparent 20%, #fff 15%, #fff 20%, transparent 50%),
+    radial-gradient(ellipse farthest-corner at 0px 8px, transparent 0%, transparent 20%, #fff 15%, #fff 20%, transparent 40%),
+    radial-gradient(ellipse farthest-corner at 8px 0px, transparent 0%, transparent 20%, #fff 15%, #fff 20%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(164, 191, 233, 1) 57%, rgba(69, 105, 155, 1) 100%);
+  background-size: 8px 8px, 8px 8px, 8px 8px, 8px 8px, 8px 8px, 100% 100%;
+}
+#app {
+  margin: 0px;
+  width: 100lvw;
+  height: 100lvh;
+}
+
+.right {
+  margin-right: 5vw;
+  margin-left: auto;
+}
+
+.left-image {
+  max-width: 120px;
+  max-height: 50px;
+  margin-right: 2px;
+}
+
+.right-image {
+  max-width: 80px;
+  max-height: 40px;
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.vertical-center {
+  height: 100%;
+  line-height: 75%;
+  text-align: center;
+}
+.top-banner {
+  z-index: 99999;
+  bottom: 0lvh;
+  position: fixed;
+  background-color: white;
+  display: flex;
+  padding-top: 15px;
+  padding-bottom: 15px;
+
+  width: $width-content;
+  margin: 5% auto;
+  left: 0;
+  right: 0;
+  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 1), 8px 8px 0px 0px rgba(0, 0, 0, 1);
+  justify-content: center !important;
+  border: 1px solid black;
+  border-radius: 8px;
+}
+
+a {
+  color: $mainColor;
+  text-transform: uppercase;
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+nav a {
+  /* width: min(calc(75lvw * 75 / 100), calc(600px * 75 / 100)); */
+  text-decoration: none;
+  display: inline-block;
+  text-decoration: none;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.icon {
+  max-width: 40px;
+  max-height: 40px;
+
+  border-radius: 15px;
+  border: 2.5px solid black;
+}
+.container {
+  height: 100lvh;
+  display: flex;
+}
+
+.right_arr::before {
+  content: "▸";
+  font-size: 4em;
+  padding: 0px;
+}
+
+.left_arr::before {
+  content: "◂";
+  font-size: 4em;
+}
+
+button.arrow {
+  border-radius: 50px;
+  margin: 0px;
+  padding: 0px;
+  background-color: transparent;
+  border: transparent;
+  /* top: 70lvh;
+  left: 50%; */
+  &:hover {
+    color: $mainColor;
+  }
+}
+
+.column {
+  .filter {
+    width: 47px;
+    height: 47px;
+  }
+}
+
+.top-banner {
+  .filter {
+    width: 43px;
+    height: 43px;
+  }
+}
+
+.banner {
+  color: $mainColor;
+  font-size: 1.5em;
+  text-shadow: -1px -1px #091b38, 1px 1px #091b38, 2px 2px black;
+  bottom: 0px;
+  position: fixed;
+  height: 75px;
+  /* 
+  border-radius: 8px; */
+  background-color: white;
+  width: 100%;
+  z-index: 9999;
+  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 1), 2px 1px 0px 0px rgba(0, 0, 0, 1);
+}
+
+.visibledesktop {
+  .filter {
+    width: 43px;
+    height: 43px;
+  }
+}
+
+.filter {
+  z-index: 9999;
+  background-color: $mainColor;
+
+  background-image: linear-gradient(to right, transparent, $mainColor), radial-gradient($first-color 1px, transparent 0),
+    radial-gradient($first-color 1px, transparent 0);
+  background-size: auto, 6px 6px, 6px 6px;
+  background-position: 0 0, 0 0, 3px 3px;
+  animation: scroll-background 1s linear infinite;
+
+  border-radius: 15px;
+}
+
+.filter:hover {
+  background-image: linear-gradient(to right, transparent, $mainColor), radial-gradient(white 1px, transparent 0),
+    radial-gradient(white 1px, transparent 0);
+  background-size: auto, 6px 6px, 6px 6px;
+  background-position: 0 0, 0 0, 3px 3px;
+  animation: scroll-background 1s linear infinite;
+}
+img.icon {
+  z-index: 9998;
+  mix-blend-mode: hard-light;
+  mix-blend-mode: multiply;
+}
+
+.halftone-image {
+  display: inline-flex;
+  overflow: hidden;
+  filter: contrast(175%); //1000
+  mix-blend-mode: hard-light;
+  mix-blend-mode: multiply;
+  /*    opacity: 0.7;*/
+}
+
+.halftone-image:before {
+  content: "";
+  position: absolute;
+  width: 1000lvh;
+  height: 1000lvh;
+  left: -1550%;
+  /* left: -550%; */
+  bottom: -50%;
+  right: -100%;
+  background: radial-gradient(circle at center, hsl(0, 0%, 10%), hsl(0, 0%, 110%));
+  background-size: 5px 5px;
+  transform: rotate(45deg);
+
+  background-image: linear-gradient(to right, transparent, hsla(0, 0%, 10%, 0.239)), radial-gradient(hsl(0, 0%, 10%) 1px, transparent 0),
+    radial-gradient(hsla(0, 5%, 24%, 0.392) 1px, transparent 0);
+
+  background-size: auto, 6px 6px, 6px 6px;
+  background-position: 0 0, 0 0, 3px 3px;
+  mix-blend-mode: unset;
+  animation: scroll-background 1s linear infinite;
+}
+
+.halftone-image img {
+  filter: brightness(120%) contrast(55%);
+  mix-blend-mode: hard-light;
+  display: block;
+}
+
+.back {
+  z-index: 0;
+  padding-bottom: 10px;
+}
+.title {
+  font-family: "Bangers";
+  h1 {
+    margin-top: 0px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 15px;
+
+    border-radius: 8px;
+  }
+  color: $mainColor;
+  font-size: 1.5em;
+  text-shadow: -1px -1px #091b38, 1px 1px #091b38, 2px 2px black;
+
+  position: sticky;
+  height: 30px;
+  /* 
+  border-radius: 8px; */
+  background-color: white;
+  width: 100%;
+  z-index: 9999;
+  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 1), 2px 1px 0px 0px rgba(0, 0, 0, 1);
+}
