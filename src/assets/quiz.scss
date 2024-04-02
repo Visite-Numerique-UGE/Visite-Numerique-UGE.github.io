@@ -3,23 +3,19 @@
 .name {
   p {
     position: relative;
-    color: $mainColor;
+    color: rgb(255, 255, 255);
     font-family: "Bangers";
     text-shadow: -1px -1px #091b38, 1px 1px #091b38, 4px 4px $first-color;
     margin-top: 30px;
     font-weight: 600;
     text-align: center;
     z-index: 999;
-    font-size: 2.6em;
-    padding-bottom: 20px;
+    font-size: 3em;
   }
 }
 
 .center {
   width: 100lvw;
-}
-.answer {
-  font-size: 1.5em;
 }
 
 .answer:hover {
@@ -27,17 +23,31 @@
   color: white;
 }
 .question {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  width: min(75.5lvw, 360px);
+  padding-top: 7.5px;
+  padding-bottom: 7.5px;
   color: #091b38;
   background-color: #a4bfe9;
   color: hsl(219, 96%, 21%);
   font-weight: 900;
+  white-space: break-spaces;
 }
-.bottom {
-  display: block;
-  bottom: 0;
-  right: 0; /* set the right to 0 */
+
+#home_arrow {
+  z-index: 99999;
+  bottom: 0lvh;
+  position: fixed;
+  background-color: white;
+  display: flex;
+  bottom: 100px;
+  width: min(75.5lvw, 360px);
+  margin: 5% auto;
+  left: 0;
+  right: 0;
+  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 1), 8px 8px 0px 0px rgba(0, 0, 0, 1);
+  justify-content: center !important;
+  border: 1px solid black;
+  border-radius: 8px;
 }
 input {
   margin-bottom: 20px;
@@ -58,8 +68,8 @@ button:hover {
 button {
   background-color: $mainColor;
   color: white;
-  font-family: "Courier Prime";
-  font-size: 1.7em;
+  font-family: "Roboto Slab";
+  font-size: 1.5em;
   padding: 10px;
   margin-bottom: 20px;
   width: calc($width-content + 40px);

@@ -9,7 +9,9 @@ import * as Quiz from "@/api/getQuiz.js";
       <div class="center">
         <div class="name">
           <p>
-            {{ pos + 1 }} / {{ length }} - <span id="type">{{ type[pos] }}</span>
+            {{ pos + 1 }} / {{ length }}
+            <!-- - <span id="type">{{ type[pos] }}</span>
+          </p> -->
           </p>
         </div>
       </div>
@@ -36,10 +38,10 @@ import * as Quiz from "@/api/getQuiz.js";
       </div>
       <!-- SAISIE-->
       <div class="saisie" v-if="type[pos] == 'saisie'">
-        <div class="center">
+        <div class="center _saisie">
           <input placeholder="saisissez votre réponse.." type="text" :id="id + '-' + pos + '-' + 0" :name="id + '-' + pos + '-' + 0" />
         </div>
-        <div class="center">
+        <div class="center _saisie">
           <button @click="verifSaisie()">Envoyer</button>
         </div>
       </div>
@@ -64,7 +66,11 @@ import * as Quiz from "@/api/getQuiz.js";
     </div>
 
     <div class="center" v-if="pos == length">
-      <RouterLink :to="'/parcours/'"><button>Retour</button> </RouterLink>
+      <RouterLink :to="'/parcours/'">
+        <div class="home_arrow bottom" id="">
+          <button class="_saisie">Retour</button>
+        </div>
+      </RouterLink>
     </div>
   </div>
 </template>
@@ -74,8 +80,9 @@ import * as Quiz from "@/api/getQuiz.js";
 .answer {
   position: relative;
   margin-bottom: 20px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 12.5px;
+  padding-bottom: 12.5px;
+  width: min(75.5lvw, 360px);
 }
 
 .multiple {
@@ -85,6 +92,21 @@ import * as Quiz from "@/api/getQuiz.js";
   width: 100lvw;
   height: 100lvh;
   display: block;
+}
+._saisie {
+  width: min(85lvw, 400px);
+  margin-left: auto;
+  margin-right: auto;
+  input {
+    font-size: 1.7em;
+    padding: 10px;
+    margin-bottom: 20px;
+    width: calc(calc(min(85lvw, 400px)) + 40px);
+    border: 1px solid black;
+    box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 1), 8px 8px 0px 0px rgba(0, 0, 0, 1);
+    border-radius: 8px;
+  }
+  padding-bottom: 5.5px;
 }
 
 .desc {
@@ -97,10 +119,11 @@ import * as Quiz from "@/api/getQuiz.js";
 .column {
   padding-left: 20px;
   padding-right: 20px;
-  font-size: 1.5em;
+  font-size: 1.3em;
   margin-bottom: 20px;
   display: block;
   height: fit-content;
+  width: min(75.5lvw, 360px);
   margin-top: 0px;
 }
 </style>
@@ -167,7 +190,7 @@ export default {
       } else this.pos += step;
       this.max = Math.max(this.pos, this.max);
 
-      localStorage.setItem("pos-" + this.$route.params.id, this.max == this.length ? 0 : this.pos);
+      localStorage.setItem("pos-" + this.$route.params.id, this.pos == this.length ? 0 : this.pos);
       localStorage.setItem("max-" + this.$route.params.id, this.max);
 
       this.buttonDisable();
@@ -256,8 +279,8 @@ export default {
       }
     },
     verifSaisie() {
-      const ans = this.answers[this.pos][0];
-      const ans_value = document.getElementById(this.id + "-" + this.pos + "-" + 0).value;
+      const ans = this.answers[this.pos][0].toLowerCase();
+      const ans_value = document.getElementById(this.id + "-" + this.pos + "-" + 0).value.toLowerCase();
 
       console.log(ans_value);
       if (ans.includes(ans_value)) {

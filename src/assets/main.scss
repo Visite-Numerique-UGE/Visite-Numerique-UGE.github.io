@@ -28,15 +28,15 @@
 }
 
 p,
-div {
-  font-family: "Courier Prime", monospace;
-  font-weight: 200;
+div,
+input {
+  font-family: "Roboto Slab", "Courier Prime", monospace;
 }
 
 html,
 body {
-  overflow-y: hidden;
-  font-family: tahoma;
+  overflow-y: hidden; /* 
+  font-family: tahoma; */
   height: 100vh;
   font-size: min(4vh, 10px);
   background-color: $mainColor;
