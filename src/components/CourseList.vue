@@ -8,8 +8,8 @@ import { getParcours } from "@/api/getParcours.js";
   </div>
 
   <div class="course_page">
-    <div v-for="(item, index) in this.clean_parcours" :key="item">
-      <div class="list_course" :class="index === this.clean_parcours.length - 1 ? 'last' : ''">
+    <div v-for="(item, index) in clean_parcours" :key="item">
+      <div class="list_course" :class="index === clean_parcours.length - 1 ? 'last' : ''">
         <div class="halftone-image child">
           <img :src="item[5]" />
         </div>
@@ -28,7 +28,7 @@ import { getParcours } from "@/api/getParcours.js";
           <div class="home_button">
             <RouterLink :to="'/quiz/' + item[0]"
               ><div class="filter">
-                <img class="icon" id="_map" src="../assets/icon/map.png" />
+                <img class="icon" id="_map" src="/assets/icon/map.png" />
               </div>
             </RouterLink>
           </div>

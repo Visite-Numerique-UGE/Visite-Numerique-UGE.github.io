@@ -23,16 +23,16 @@ import * as Quiz from "@/api/getQuiz.js";
       </div>
       <!-- MULTIPLE-->
       <div class="multiple" v-if="type[pos] == 'multiple'">
-        <div class="column answer" :id="id + '-' + pos + '-' + answers_order[pos][0]" @click="this.verif(answers_order[pos][0])">
+        <div class="column answer" :id="id + '-' + pos + '-' + answers_order[pos][0]" @click="verif(answers_order[pos][0])">
           <div>{{ answers[pos][answers_order[pos][0]] }}</div>
         </div>
-        <div class="column answer" :id="id + '-' + pos + '-' + answers_order[pos][1]" @click="this.verif(answers_order[pos][1])">
+        <div class="column answer" :id="id + '-' + pos + '-' + answers_order[pos][1]" @click="verif(answers_order[pos][1])">
           <div>{{ answers[pos][answers_order[pos][1]] }}</div>
         </div>
-        <div class="column answer" :id="id + '-' + pos + '-' + answers_order[pos][2]" @click="this.verif(answers_order[pos][2])">
+        <div class="column answer" :id="id + '-' + pos + '-' + answers_order[pos][2]" @click="verif(answers_order[pos][2])">
           <div>{{ answers[pos][answers_order[pos][2]] }}</div>
         </div>
-        <div class="column answer" :id="id + '-' + pos + '-' + answers_order[pos][3]" @click="this.verif(answers_order[pos][3])">
+        <div class="column answer" :id="id + '-' + pos + '-' + answers_order[pos][3]" @click="verif(answers_order[pos][3])">
           <div>{{ answers[pos][answers_order[pos][3]] }}</div>
         </div>
       </div>
@@ -189,7 +189,7 @@ export default {
       /*  document.getElementById("column-1").style.display = "none";
       document.getElementById("column-2").style.display = "none";
       document.getElementById("column-3").style.display = "none"; */
-      console.log("this.style");
+      console.log("style");
       console.log(this.type[this.pos]);
       if (this.type[this.pos] == "multiple") this.clean();
       if (step == -1) {
@@ -220,7 +220,7 @@ export default {
       }
 
       const type = this.type[this.pos];
-      console.log("this.pos");
+      console.log("pos");
       console.log(this.pos);
       console.log("type");
       console.log(type);

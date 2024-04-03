@@ -3,24 +3,24 @@
     <div class="card">
       <div class="halftone-image">
         <!-- <img pictureUrl="" v-bind:src="this.mainImage" class="banner halftone" alt="" /> -->
-        <img :src="'src/assets/building/' + this.mainImage + '.jpg'" />
+        <img :src="'/assets/building/' + this.mainImage + '.jpg'" />
       </div>
       <p class="name">{{ this.placeName }}</p>
       <p class="desc">{{ this.placeDescription }}</p>
       <div class="actions">
         <RouterLink :to="'/parcours/' + this.placeName">
           <div class="filter">
-            <img class="icon" :src="'src/assets/icon/parcours.png'" />
+            <img class="icon" :src="'/assets/icon/parcours.png'" />
           </div>
         </RouterLink>
         <RouterLink :to="'/event/' + this.placeName">
           <div class="filter">
-            <img class="icon" :src="'src/assets/icon/event.png'" />
+            <img class="icon" :src="'/assets/icon/event.png'" />
           </div>
         </RouterLink>
         <RouterLink :to="'/navigate/' + this.placeID">
           <div class="filter">
-            <img class="icon" :src="'src/assets/icon/path.png'" />
+            <img class="icon" :src="'/assets/icon/path.png'" />
           </div>
         </RouterLink>
       </div>
@@ -95,7 +95,7 @@ export default {
           this.mainImage = "";
           this.placeName = "";
           this.placeDescription = "";
-          document.getElementById("slider-content").style.display = "none";
+          if (document.getElementById("slider-content")) document.getElementById("slider-content").style.display = "none";
         }
       },
       immediate: true,

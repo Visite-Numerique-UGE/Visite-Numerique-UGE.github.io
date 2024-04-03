@@ -2,15 +2,6 @@
 import router from "@/router/index.js";
 import { watch } from "vue";
 import { RouterLink, RouterView, useRoute } from "vue-router";
-/* import home from "./assets/icon/home.png";
-import home_selected from "./assets/icon/home_selected.png";
-import event from "./assets/icon/event.png";
-import event_selected from "./assets/icon/event_selected.png";
-import map from "./assets/icon/map.png";
-import map_selected from "./assets/icon/map_selected.png";
-import parcours from "./assets/icon/parcours.png";
-import parcours_selected from "./assets/icon/parcours_selected.png";
- */
 </script>
 
 <template>
@@ -34,7 +25,7 @@ export default {
   name: "Slider",
   data() {
     return {
-      icon: ["src/assets/icon/home", "src/assets/icon/map", "src/assets/icon/parcours", "src/assets/icon/event"],
+      icon: ["/assets/icon/home", "/assets/icon/map", "/assets/icon/parcours", "/assets/icon/event"],
       route: useRoute(),
     };
   },
@@ -42,11 +33,15 @@ export default {
     route: {
       handler: function () {
         let route = this.$route.name.split("-")[0];
+
         if (route == "quiz") route = "parcours";
+
+        if (route == "navigate") route = "map";
 
         console.log("route");
         console.log(route);
         this.icon = this.icon.map((x) => x.replace("_selected", ""));
+
         let _filter = document.getElementById("filter");
         console.log("_filter");
         console.log(_filter);

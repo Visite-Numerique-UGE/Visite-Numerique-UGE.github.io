@@ -5,12 +5,12 @@
     <div class="column" id="column-1">
       <div class="home_button">
         <RouterLink to="/map">
-          <div class="filter"><img class="icon" id="_map" src="../assets/icon/map.png" /></div
+          <div class="filter"><img class="icon" id="_map" src="/assets/icon/map.png" /></div
         ></RouterLink>
       </div>
       <div class="name">Carte</div>
       <div class="halftone-image">
-        <img :src="'src/assets/img/map_4.jpg'" />
+        <img :src="'/assets/img/map_4.jpg'" />
       </div>
       <div class="desc">Perdu sur le campus ? Retrouve facilement ce qu'il te faut sur la carte interactive</div>
       <div class="home_arrow"></div>
@@ -19,12 +19,12 @@
     <div class="column" id="column-2">
       <div class="home_button">
         <RouterLink to="/parcours"
-          ><div class="filter"><img class="icon" src="../assets/icon/parcours.png" /></div
+          ><div class="filter"><img class="icon" src="/assets/icon/parcours.png" /></div
         ></RouterLink>
       </div>
       <div class="name">Parcours</div>
       <div class="halftone-image" style="">
-        <img :src="'src/assets/img/parcours_1.jpg'" />
+        <img :src="'/assets/img/parcours_1.jpg'" />
       </div>
 
       <div class="desc">Envie de découvrir le campus. Grâce à ces parcours, le campus n'aura plus aucun secret pour toi !</div>
@@ -34,12 +34,12 @@
     <div class="column" id="column-3">
       <div class="home_button">
         <RouterLink to="/event"
-          ><div class="filter"><img class="icon" src="../assets/icon/event.png" /></div
+          ><div class="filter"><img class="icon" src="/assets/icon/event.png" /></div
         ></RouterLink>
       </div>
       <div class="name">Evenement</div>
       <div class="halftone-image" style="">
-        <img :src="'src/assets/img/event_2.jpg'" />
+        <img :src="'/assets/img/event_2.jpg'" />
       </div>
 
       <div class="desc">Tu ne sais pas quoi faire prochainement ? Retrouve la liste de tous les évènements du campus.</div>

@@ -11,8 +11,8 @@
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { getPlaces } from "@/api/getPlaces.js";
-import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
-import 'leaflet-routing-machine';
+import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
+import "leaflet-routing-machine";
 import "lrm-graphhopper";
 export default {
   name: "Map",
@@ -23,7 +23,7 @@ export default {
       markers: [],
       route: null,
       userPosition: null,
-      id : null,
+      id: null,
     };
   },
   mounted() {
@@ -77,7 +77,7 @@ export default {
             place.c[0].v +
             "'class='marker-background '><img id = '" +
             place.c[0].v +
-            "'class='marker-image filtered' src='src/assets/building/" +
+            "'class='marker-image filtered' src='/assets/building/" +
             place.c[0].v +
             ".jpg" /* +
             place.c[6].v */ +
@@ -103,28 +103,30 @@ export default {
       });
     },
     calculateAndDisplayRoute(start, destination) {
+      console.log("calculateAndDisplayRoute start");
       if (this.routeControl) {
         this.map.removeControl(this.routeControl);
       }
       this.routeControl = L.Routing.control({
-        waypoints: [
-          L.latLng(start),
-          this.markers.find(marker => marker.getLatLng().equals(destination)).getLatLng(),
-        ],
+        waypoints: [L.latLng(start), this.markers.find((marker) => marker.getLatLng().equals(destination)).getLatLng()],
         routeWhileDragging: false,
         alternativeRoutes: false,
         addWaypoints: false,
         draggableWaypoints: false,
-        router: new L.Routing.GraphHopper('f8d3f7cb-8512-4c60-b0c5-e7ac1096fcb8', {
-          vehicle: 'foot',
+        router: new L.Routing.GraphHopper("f8d3f7cb-8512-4c60-b0c5-e7ac1096fcb8", {
+          vehicle: "foot",
         }),
       }).addTo(this.map);
       this.map.setView([destination[0] - 0.001, destination[1]], 18);
       document.getElementsByClassName("leaflet-pane leaflet-marker-pane")[0].lastChild.remove();
+
+      //leaflet-marker-icon leaflet-zoom-animated leaflet-interactive
+
+      console.log("calculateAndDisplayRoute end");
     },
 
     removeRoute() {
-      if (this.routeControl){
+      if (this.routeControl) {
         this.map.removeControl(this.routeControl);
         this.routeControl = null;
       }
@@ -135,14 +137,23 @@ export default {
       async handler(params) {
         console.log("route name : ", this.$route.name);
         console.log("route : ", this.$route.params.id);
-        if (this.$route.name == "navigate" && this.map.getBounds().contains(L.latLng(this.userPosition))){
+
+        console.log("this.userPosition", this.userPosition);
+        const lat_user = L.latLng(this.userPosition);
+        console.log("L.latLng(this.userPosition)", lat_user);
+        console.log("this.map.getBounds()", this.map.getBounds());
+        console.log("this.map.getBounds().contains(L.latLng(this.userPosition))", this.map.getBounds().contains(L.latLng(this.userPosition)));
+
+        if (this.$route.name == "navigate" /* && this.map.getBounds().contains(L.latLng(this.userPosition)) */) {
           //chopper l'élément
-          let destinationCoords = this.markers.find(marker => marker.options.id == this.$route.params.id).getLatLng();
+
+          console.log("avant destinationCoords");
+          let destinationCoords = this.markers.find((marker) => marker.options.id == this.$route.params.id).getLatLng();
+          console.log("avant calculateAndDisplayRoute");
           this.calculateAndDisplayRoute(this.userPosition, [destinationCoords.lat, destinationCoords.lng]);
-          } 
+        }
       },
     },
-
   },
 };
 </script>
