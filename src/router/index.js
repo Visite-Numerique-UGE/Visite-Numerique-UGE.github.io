@@ -41,12 +41,12 @@ const router = createRouter({
     {
       path: '/event/',
       name: 'event-list',
-      component: EventView
+      component: HomeView/*TODO: EventView */
     },
     {
       path: '/event/:id',
       name: 'event',
-      component: EventView
+      component: HomeView/* EventView */
     },
     {
       path: '/navigate/:id',

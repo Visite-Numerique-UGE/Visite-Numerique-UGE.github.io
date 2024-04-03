@@ -33,7 +33,7 @@ export default {
     route: {
       handler: function () {
         let route = this.$route.name.split("-")[0];
-
+        if (route == "event") return; //TODO:
         if (route == "quiz") route = "parcours";
 
         if (route == "navigate") route = "map";

@@ -27,7 +27,7 @@
 
       <div class="desc">Envie de découvrir le campus. Grâce à ces parcours, le campus n'aura plus aucun secret pour toi !</div>
       <div class="home_button">
-        <RouterLink to="/quiz"
+        <RouterLink to="/parcours"
           ><div class="filter">
             <img class="icon" src="/assets/icon/parcours.png" />
           </div>

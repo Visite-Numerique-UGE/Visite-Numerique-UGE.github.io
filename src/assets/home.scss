@@ -84,12 +84,13 @@
     padding-top: 20px;
   }
   .column {
-    max-height: 400px;
+    max-height: 500px;
   }
 }
 @media (max-height: 700px) {
   .arrow {
-    position: relative;
+    /* 
+    position: relative; */
     bottom: 35px;
   }
 

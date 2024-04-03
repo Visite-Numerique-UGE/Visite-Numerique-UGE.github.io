@@ -1,5 +1,7 @@
 <script setup>
 import * as Quiz from "@/api/getQuiz.js";
+
+import Map from "@/components/MapQuiz.vue";
 </script>
 
 <template>
@@ -45,6 +47,11 @@ import * as Quiz from "@/api/getQuiz.js";
           <button @click="verifSaisie()">Envoyer</button>
         </div>
       </div>
+      <!-- lieu -->
+      <div class="saisie" v-if="type[pos] == 'lieu'">
+        <!-- mettre map lieu -->
+        <div class="map_quiz"><Map /></div>
+      </div>
     </div>
     <div class="result" v-if="pos == length">
       <div class="center">
@@ -54,7 +61,12 @@ import * as Quiz from "@/api/getQuiz.js";
       </div>
       <div class="column question" id="">
         <div class="content-question">
-          <div class="question">Bravo !Bravo !Bravo !Bravo !Bravo !Bravo !Bravo !Bravo !Bravo !Bravo !Bravo !Bravo !Bravo !Bravo !Bravo !</div>
+          <!-- TODO: FINIR PAGE DE FIN -->
+          <div class="question">
+            Bravo ! <br /><br />
+            Merci d'avoir participé à ce parcours inauguratif. <br /><br />
+            D'autres parcours seront bientôt ajouté. Ainsi vous pourrez visitez Descartes dans ses moindres recoins !
+          </div>
         </div>
       </div>
     </div>
@@ -151,12 +163,16 @@ export default {
     };
   },
   async created() {
+    localStorage.setItem("pos-" + this.$route.params.id, this.pos);
+    localStorage.setItem("max-" + this.$route.params.id, this.max);
     this.quiz = await Quiz.quiz;
     this.quiz = this.filter();
     this.length = this.quiz.length;
     console.log("id");
     console.log(this.id);
     this.getQuestion();
+    localStorage.setItem("type-" + this.$route.params.id, JSON.stringify(this.type));
+    localStorage.setItem("answers-" + this.$route.params.id, JSON.stringify(this.answers));
   },
   methods: {
     filter() {
@@ -165,14 +181,17 @@ export default {
       });
     },
     getQuestion() {
-      for (let i = 0; this.quiz.length; i++) {
+      for (let i = 0; i < this.quiz.length; i++) {
         this.type.push(this.quiz[i].c[3].v);
         this.question.push(this.quiz[i].c[2].v);
         if (this.type[i] == "multiple") {
           this.answers.push([this.quiz[i].c[4].v, this.quiz[i].c[5].v, this.quiz[i].c[6].v, this.quiz[i].c[7].v]);
         } else if (this.type[i] == "saisie") {
           this.answers.push([this.quiz[i].c[4].v, "", "", ""]);
-        } else if (this.type[i] == "lieu" || this.type[i] == "anecdote") {
+        } else if (this.type[i] == "lieu") {
+          this.answers.push(this.quiz[i].c[8].v);
+        } else if (this.type[i] == "anecdote") {
+          /* TODO: Ajouter des images - ajouter une colonne sur la BDD */
           this.answers.push([""]);
         }
 
@@ -191,7 +210,9 @@ export default {
       document.getElementById("column-3").style.display = "none"; */
       console.log("style");
       console.log(this.type[this.pos]);
+
       if (this.type[this.pos] == "multiple") this.clean();
+
       if (step == -1) {
         this.pos = Math.max(this.pos - 1, 0);
       } else this.pos += step;
@@ -268,6 +289,7 @@ export default {
 
       let rep = [rep0, rep1, rep2, rep3];
       for (let i = 0; i < rep.length; i++) {
+        if (!rep[i]) break;
         rep[i].style.color = "#2458a0";
         rep[i].style.backgroundColor = "white";
       }
@@ -285,24 +307,48 @@ export default {
         rep.style.backgroundColor = "#df3663";
       }
     },
+    editDistance(s1, s2) {
+      s1 = s1.toLowerCase();
+      s2 = s2.toLowerCase();
+
+      var costs = new Array();
+      for (var i = 0; i <= s1.length; i++) {
+        var lastValue = i;
+        for (var j = 0; j <= s2.length; j++) {
+          if (i == 0) costs[j] = j;
+          else {
+            if (j > 0) {
+              var newValue = costs[j - 1];
+              if (s1.charAt(i - 1) != s2.charAt(j - 1)) newValue = Math.min(Math.min(newValue, lastValue), costs[j]) + 1;
+              costs[j - 1] = lastValue;
+              lastValue = newValue;
+            }
+          }
+        }
+        if (i > 0) costs[s2.length] = lastValue;
+      }
+      return costs[s2.length];
+    },
+    similarity(s1, s2) {
+      var longer = s1;
+      var shorter = s2;
+      if (s1.length < s2.length) {
+        longer = s2;
+        shorter = s1;
+      }
+      var longerLength = longer.length;
+      if (longerLength == 0) {
+        return 1.0;
+      }
+      return (longerLength - this.editDistance(longer, shorter)) / parseFloat(longerLength);
+    },
     verifSaisie() {
       const ans = this.answers[this.pos][0].toLowerCase();
       const ans_value = document.getElementById(this.id + "-" + this.pos + "-" + 0).value.toLowerCase();
 
-      console.log(ans_value);
-      if (ans.includes(ans_value)) {
+      if (this.similarity(ans, ans_value) > 0.7) {
         this.changeCard(1);
       }
-
-      /* if (answer == 0) {
-        this.clean();
-        this.changeCard(1);
-      } else {
-        let rep = document.getElementById(this.id + "-" + this.pos + "-" + answer);
-
-        rep.style.color = "white";
-        rep.style.backgroundColor = "#df3663";
-      } */
     },
   },
   async mounted() {
