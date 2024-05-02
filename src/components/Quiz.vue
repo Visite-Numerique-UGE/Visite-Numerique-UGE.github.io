@@ -182,17 +182,22 @@ export default {
     },
     getQuestion() {
       for (let i = 0; i < this.quiz.length; i++) {
+        console.log("this.quiz.length : ", this.quiz.length);
         this.type.push(this.quiz[i].c[3].v);
         this.question.push(this.quiz[i].c[2].v);
         if (this.type[i] == "multiple") {
+          console.log("getQuestion : multiple, i : ", i);
           this.answers.push([this.quiz[i].c[4].v, this.quiz[i].c[5].v, this.quiz[i].c[6].v, this.quiz[i].c[7].v]);
         } else if (this.type[i] == "saisie") {
+          console.log("getQuestion : saisie, i : ", i);
           this.answers.push([this.quiz[i].c[4].v, "", "", ""]);
         } else if (this.type[i] == "lieu") {
+          console.log("getQuestion : lieu, i : ", i);
           this.answers.push(this.quiz[i].c[8].v);
         } else if (this.type[i] == "anecdote") {
+          console.log("getQuestion : anecdote, i : ", i);
           /* TODO: Ajouter des images - ajouter une colonne sur la BDD */
-          this.answers.push([""]);
+          this.answers.push([" ", " ", " ", " "]);
         }
 
         let shuffle = [0, 1, 2, 3];
