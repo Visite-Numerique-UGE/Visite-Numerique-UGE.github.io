@@ -120,6 +120,27 @@
     margin-left: 85%;
   }
 }
+
+.list_event {
+  @extend .list_course;
+
+  min-height: fit-content;
+  max-height: fit-content;
+  height: fit-content;
+
+  .desc {
+    height: fit-content;
+  }
+
+  .content_list {
+    height: fit-content;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+  .name {
+    margin-bottom: 25px;
+  }
+}
 .last {
   margin-bottom: 110px;
 }
